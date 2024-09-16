@@ -1,3 +1,5 @@
+import { updateMedia} from './projectDisplay.js';  // Import slider functions
+
 let currentImageIndex = 0;
 let autoChangeInterval = null;
 let imagesForProject = 0;
@@ -64,7 +66,8 @@ export function updateDots(index) {
 // Function to update the image
 export function updateImage(images, index) {
   const projectImage = document.getElementById('project-image');
-  projectImage.src = images[index];  // Set the current image source
+  // projectImage.src = images[index];  // Set the current image source
+  updateMedia(images[index]);
    updateDots(index);  // Update the active dot
 }
 

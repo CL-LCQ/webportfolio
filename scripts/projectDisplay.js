@@ -46,8 +46,10 @@ export async function displayProject(index) {
  if (!project.enabled) {
     return;
   }
+
+
   // Update the image
-  const projectImage = document.getElementById('project-image');
+  // const projectImage = document.getElementById('project-image');
   // const mainDescription = document.getElementById('selected-project-description');
   // Update the info overlay with the project details
   const overlayTitle = document.getElementById('overlay-title');
@@ -60,7 +62,7 @@ export async function displayProject(index) {
   const overlayIndustry = document.getElementById('overlay-industry');  // New for industry
 
   // Set the image and project description (with fallback if undefined)
-  projectImage.src = project.imageURL || '';  // Set image or fallback to empty
+  // projectImage.src = project.imageURL || '';  // Set image or fallback to empty
   overlayTitle.textContent = project.title || 'No Title';  // Set the title or fallback
   overlayDate.textContent = project.projectdate || 'No Date';  // Set the project date or fallback
   overlayCompanyName.textContent = project.company || 'No description available.';
@@ -77,6 +79,9 @@ export async function displayProject(index) {
   if (project.url2) currentProjectImages.push(project.url2);
   if (project.url3) currentProjectImages.push(project.url3);
 
+  if (project.imageURL) {
+    updateMedia(project.imageURL);
+  }
 
   
   // Set the initial image for the selected project
@@ -100,4 +105,52 @@ export async function displayProject(index) {
   void overlayBox.offsetWidth;  // Force reflow to restart the animation
   overlayBox.classList.add('active');  // Add the class to trigger the animation again
 
+}
+
+
+// Function to update the media (image or video) based on the project URL
+export function updateMedia(url) {
+ const projectVideoContainer = document.getElementById('project-video-container');
+  projectVideoContainer.innerHTML = ''; // Clear any existing content
+
+  // Check if it's a YouTube link
+  if (url.includes('youtube.com') || url.includes('youtu.be')) {
+    const youtubeId = extractYouTubeId(url); // Extract YouTube ID
+    if (youtubeId) {
+            const iframeElement = document.createElement('iframe');
+      iframeElement.width = '100%';
+      iframeElement.height = '100%';
+      iframeElement.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&loop=1&mute=1&controls=0&modestbranding=1&rel=0`; // YouTube embed link without controls
+      iframeElement.setAttribute('allowfullscreen', 'true');
+      iframeElement.setAttribute('frameborder', '0');
+      iframeElement.setAttribute('allow', 'autoplay; encrypted-media;');
+      projectVideoContainer.appendChild(iframeElement);
+    }
+  } else if (url.endsWith('.mp4') || url.endsWith('.webm')) {
+    // If it's a video file
+    const videoElement = document.createElement('video');
+    videoElement.setAttribute('autoplay', 'true');
+    videoElement.setAttribute('loop', 'true');
+    videoElement.setAttribute('muted', 'true'); // Optional: Mute the video
+    videoElement.setAttribute('controls', 'true'); // Optional: Show video controls
+    videoElement.style.width = '100%';
+    videoElement.style.height = '100%';
+    videoElement.src = url; // Set the video source URL
+    projectVideoContainer.appendChild(videoElement);
+  } else {
+    // If it's an image
+    const imageElement = document.createElement('img');
+    imageElement.src = url;
+    imageElement.style.width = '100%';
+    imageElement.style.height = '100%';
+    imageElement.style.objectFit = 'cover'; // Maintain aspect ratio and cover the container
+    projectVideoContainer.appendChild(imageElement);
+  }
+}
+
+// Function to extract YouTube video ID from a URL
+function extractYouTubeId(url) {
+  const regex = /(?:youtube\.com\/(?:[^\/]+\/[^\/]+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+  const match = url.match(regex);
+  return match ? match[1] : null;
 }

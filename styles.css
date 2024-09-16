@@ -42,7 +42,7 @@ body, html {
   transform: scale(0); /* Start small */
   transition: opacity 0.3s ease; /* Smooth opacity change */
   backdrop-filter: blur(5px);  /* Stronger blur effect */
-
+z-index: 100;
 
 
 }
@@ -97,7 +97,20 @@ body, html {
   box-sizing: border-box;  /* Ensure padding and borders are included in the element's width and height */
   padding: 10px; /* Add padding inside the container */
 }
+.project-video {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
 
+.project-video video,
+.project-video img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the media covers the container */
+}
 /* Left column styling with flexbox */
 .left-column {
   width: 25%;  /* Takes up 1/4th of the window width */

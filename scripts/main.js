@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadSite(projects){
   document.getElementById('content').style.display = 'block';
-  await preloadAllImages(projects);  // Preload all images first
+  // await preloadAllImages(projects);  // Preload all images first
 
   showRightColumnContent();
 
