@@ -2,10 +2,13 @@ let currentImageIndex = 0;
 let autoChangeInterval = null;
 let imagesForProject = 0;
 let imageInterval;
+let imageStore = []
 
 
 // Function to create and display dots for image navigation
 export function createDots(images) {
+
+  imageStore = images;
 
 const dotsContainer = document.getElementById('dots-container');
   dotsContainer.innerHTML = ''; // Clear existing dots
@@ -42,7 +45,10 @@ const dotsContainer = document.getElementById('dots-container');
   void dotsContainer.offsetWidth;  // Force reflow to restart the animation
   dotsContainer.classList.add('active');  // Add the class to trigger the animation
   
- 
+   // Add an event listener to capture keydown events
+  document.addEventListener('keydown', handleKeydown);
+  // handleSwipe(images);
+
 }
 
 // Function to update the active dot
@@ -68,6 +74,10 @@ function goToNextImage(images) {
   updateImage(images, currentImageIndex);
  }
 
+ function goToPreviousImage(images){
+  currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;  // Decrement the index, loop back if necessary
+ }
+
 
 export function startAutoChange(images) {
  // Clear any existing interval
@@ -80,3 +90,85 @@ export function startAutoChange(images) {
     goToNextImage(images);  // Automatically move to the next image and dot
   }, 3000);  // Change every 3 seconds
 }
+
+//interaction
+
+
+// Function to handle left and right keyboard arrow presses
+function handleKeydown(event) {
+  if (event.key === 'ArrowRight') {
+    goToNextImage(imageStore);
+  } else if (event.key === 'ArrowLeft') {
+    goToPreviousImage(imageStore);
+  }
+  updateImage(imageStore,currentImageIndex);  // Update the image and dots after a change
+}
+
+let startX = 0; // Starting X position of the swipe
+let isDragging = false; // Track if the user is dragging
+// Function to handle swipe and drag events
+function handleSwipe(images) {
+  const projectImage = document.getElementById('project-image');
+
+  // Event listener for touch start (mobile devices)
+  projectImage.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX; // Record the starting X position
+    isDragging = true;
+  });
+
+  // Event listener for touch move (mobile devices) - passive
+  projectImage.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    
+    const touchX = e.touches[0].clientX;
+    const diff = touchX - startX; // Calculate the difference between start and current touch position
+
+    if (diff < -50) { // Swipe left (next image)
+      goToNextImage(images);
+      isDragging = false;
+    } else if (diff > 50) { // Swipe right (previous image)
+      goToPreviousImage(images);
+      isDragging = false;
+    }
+  }, { passive: true }); // Mark the event as passive
+
+  // Event listener for touch end (mobile devices)
+  projectImage.addEventListener('touchend', () => {
+    isDragging = false;
+  });
+
+  // Event listeners for mouse drag (desktop devices)
+  projectImage.addEventListener('mousedown', (e) => {
+    e.preventDefault();  // Prevent image dragging
+    startX = e.clientX; // Record the starting X position for mouse drag
+    isDragging = true;
+  });
+
+  projectImage.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    
+    const mouseX = e.clientX;
+    const diff = mouseX - startX; // Calculate the difference between start and current mouse position
+
+    if (diff < -50) { // Drag left (next image)
+      goToNextImage(images);
+      isDragging = false;
+    } else if (diff > 50) { // Drag right (previous image)
+      goToPreviousImage(images);
+      isDragging = false;
+    }
+  });
+
+  // Event listener for mouse up (desktop devices)
+  projectImage.addEventListener('mouseup', (e) => {
+    isDragging = false; // Stop the dragging behavior
+  });
+
+  // Event listener to stop dragging if the mouse leaves the image area
+  projectImage.addEventListener('mouseleave', () => {
+    isDragging = false; // Ensure dragging stops when the mouse leaves the image
+  });
+}
+
+
+
