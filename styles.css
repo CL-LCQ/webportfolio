@@ -1,0 +1,496 @@
+/* Global font settings */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* Apple-like system fonts */
+  background-color: #f9f9f9; /* Light gray background typical of iOS */
+
+}
+
+/* Portrait container */
+.portrait-container {
+  display: flex;
+  justify-content: center;  /* Center the image horizontally */
+  margin-bottom: 20px;  /* Add space below the portrait */
+}
+
+/* Circular portrait image */
+.portrait-image {
+  width: 150px;  /* Set the width of the image */
+  height: 150px;  /* Set the height of the image */
+  border-radius: 50%;  /* Make the image circular */
+  object-fit: cover;  /* Ensure the image covers the circle and doesn't distort */
+  border: 0px solid #007aff;  /* Optional: Add a blue border around the circle */
+}
+
+/* Styling for dots container */
+.dots-container {
+  position: absolute;
+  top: 30px;  /* Add 30px top margin */
+  left: 50%;  /* Align horizontally with the center of the right column */
+  transform: translateX(-50%);  /* Shift the container to the exact center of the right column */
+  display: flex;
+  justify-content: center;
+  gap: 10px;  /* Space between the dots */
+  background-color: rgba(255, 255, 255, 0.25);  /* Light translucent white */
+  padding: 10px;
+  border-radius: 16px;
+  opacity: 0; /* Hidden initially */
+  transform: scale(0); /* Start small */
+  transition: opacity 0.3s ease; /* Smooth opacity change */
+  backdrop-filter: blur(5px);  /* Stronger blur effect */
+
+
+
+}
+
+
+/* Active class to trigger the animation */
+#dots-container.active {
+  animation: scaleUpBounce 0.8s ease forwards;
+}
+
+/* Keyframe animation for the dot container scaling up with a bounce */
+@keyframes scaleUpBounce {
+  0% {
+    transform: scale(0) translateY(-100%);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1) translateY(10%);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(0.95) translateY(0);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Styling for each dot */
+.dot {
+  height: 12px;
+  width: 12px;
+  margin: 0 5px;
+  background-color: #878787;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Active dot styling */
+.dot.active {
+  background-color: #007aff;  /* Active dot color (iOS-style blue) */
+}
+
+/* Container layout */
+.container {
+  display: flex;
+  height: 100vh;  /* Full viewport height */
+  overflow: hidden;
+  box-sizing: border-box;  /* Ensure padding and borders are included in the element's width and height */
+  padding: 10px; /* Add padding inside the container */
+}
+
+/* Left column styling with flexbox */
+.left-column {
+  width: 25%;  /* Takes up 1/4th of the window width */
+  padding: 10px;
+  margin-right: 10px;  /* Add margin to the right of the left column */
+  background-color: #fff;
+  border-right: 1px solid #e0e0e0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  /* Ensure content is spaced out */
+  align-items: center;  /* Center items horizontally */
+  border-radius: 16px;
+  height: 100%; /* Full height of the viewport */  
+  overflow-y: auto;  /* Enable scrolling if the content overflows */
+  box-sizing: border-box;
+}
+
+/* Content area */
+.left-column .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;  /* Keep content at the top */
+  align-items: center;  /* Center content horizontally */
+  width: 100%;  /* Ensure content takes full width */
+  flex-grow: 1;  /* Allow content to take available space */
+}
+
+
+/* Style the contact button */
+.contact-button {
+  width:75%;
+  padding: 12px 24px;
+  background-color: #007aff;
+  color: white;
+  text-align: center;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.2em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  cursor: pointer;
+  margin-top: 10px;  /* Space between the button and the top content */
+  margin-bottom: 20px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+  align-self: center; /* Center the button horizontally */
+}
+
+/* Hover effect for contact button */
+.contact-button:hover {
+  background-color: #0056b3;  /* Change color on hover */
+  transform: scale(1.05);  /* Slightly enlarge on hover */
+}
+
+/* Social Media Links */
+.social-media {
+  display: flex;
+  justify-content: center; /* Center the icons horizontally */
+  gap: 20px; /* Space between the icons */
+}
+
+.left-column h1 {
+  font-size: 1.8em;
+  color: #333;
+  text-align: center;
+  margin-bottom: 5px; /* Reduce space below the name */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.name{
+  padding: 0;
+  margin: 0;
+}
+/* Style for the subtitle */
+.subtitle {
+   font-size: 1.1em; /* Slightly smaller font size */
+  color: #888; /* Lighter gray for subtlety */
+  font-weight: 300; /* Light font weight */
+  margin-bottom: 20px; /* Space between subtitle and other content */
+  margin-top: 0;
+  text-align: center; /* Align subtitle with name */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.personal-intro { 
+  font-size: 1.1em; /* Slightly smaller font size */
+  font-weight: 300; /* Light font weight */
+  margin-bottom: 20px; /* Space between subtitle and other content */
+  margin-top: 0;
+  margin-left: 20px;
+    margin-right: 20px;
+  text-align: left; /* Align subtitle with name */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+ }
+
+/* Project list with iOS 18 style */
+.project-list {
+  width:85%;
+  margin-left: 0; /* Ensure no extra margin on the left */
+  margin-right: 0; /* Ensure no extra margin on the right */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 10px;
+  border-radius: 16px;  /* Rounded box */
+  background-color: #f9f9f9;  /* Light gray */
+  overflow-y: auto;
+  margin-bottom: 50px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+
+/* Ensure links in the project list are styled correctly */
+.project-list ul li {
+  list-style-type: none;
+  text-decoration: none !important; /* Ensure underline is removed */
+  margin-bottom: 15px; /* Add space between list items */
+  color: #007aff!important; /* Ensure the color is consistent */
+
+  font-size: 1.2em; /* Set a default font size */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and scale */
+}
+
+/* Hover state for project titles */
+.project-list ul li:hover {
+  color: #007aff !important; /* Darker color on hover */
+  transform: scale(1.05); /* Scale up slightly on hover */
+}
+
+/* Prevent color change after link is clicked or visited */
+.project-list ul li a:link,
+.project-list ul li a:visited,
+.project-list ul li a:focus {
+  text-decoration: none; /* Remove underline */
+  color: #007aff ; /* Ensure color stays consistent */
+}
+
+/* Selected project in bold */
+.project-list ul li.selected {
+  font-weight: bold; /* Bold for the selected project */
+  color: #007aff; /* Optionally highlight the selected project with iOS blue */
+}
+
+.project-list-title {
+  font-size: 1.8em; /* Adjust the size as needed */
+  color: #333; /* Make it a bit darker for emphasis */
+  margin-bottom: 20px; /* Add space below the title */
+  text-align: left; /* Align title to the left */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.right-column {
+  width: 75%;  /* Takes up 3/4ths of the window width */
+  height: 100%; /* Full height of the viewport */
+  margin-left: 10px;  /* Add margin to the left of the right column */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;  /* This ensures that the dots are positioned relative to this column */
+}
+
+/* Ensure that right-column-content fills the remaining space */
+#right-column-content {
+  flex-grow: 1;  /* Allow it to take up available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center content */
+  align-items: center; /* Center horizontally */
+  height: 100%; /* Full height of the column */
+  width: 100%; /* Full width of the column */
+  position: relative; /* Allow absolute positioning for overlay */
+}
+
+#project-image {
+  width: 100%;
+  height: 100%; /* Full height of the right column */
+  object-fit: cover; /* Cover the entire area while maintaining aspect ratio */
+  border-radius: 16px; /* Rounded corners to match iOS design */
+}
+
+/* Chip container */
+.chip-container {
+  display: flex;
+  flex-wrap: wrap;   /* Ensure chips wrap if they don't fit in one line */
+  gap: 10px;         /* Add space between each chip */
+  margin-top: 20px;  /* Space between chips and other content */
+  z-index: 20;       /* Ensure the chip container is on top */
+}
+
+/* Chip styling with small font and outline */
+.info-overlay .chip {
+/*  border: 1px solid #007aff !important;  */
+/*  color: #007aff !important;            */
+border: 1px solid;
+  padding: 4px 8px !important;           /* Reduced padding for smaller chips */
+  border-radius: 12px !important;        /* Rounded corners for pill-shaped look */
+  font-size: 0.7em !important;           /* Smaller font size */
+  display: inline-block !important;
+  white-space: nowrap !important;        /* Prevent text wrapping */
+  background-color: white !important;    /* White background to ensure visibility */
+
+  z-index: 20;                           /* Ensure chips are on top of other content */
+}
+
+/* iOS 18-style overlay */
+.info-overlay {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  background-color: rgba(255, 255, 255, 0.75);  /* Light translucent white */
+  padding: 30px;
+  border-radius: 16px;  /* Rounded corners */
+  color: #333;
+  width: 600px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+/*  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
+  backdrop-filter: blur(5px);  /* Stronger blur effect */
+  z-index: 10;  /* Ensure the overlay is on top */
+  /* Animation setup */
+  opacity: 0;  /* Start invisible */
+  transition: transform 0.5s ease, opacity 0.5s ease;  /* Smooth slide in and fade */
+}
+
+/* Keyframe animation for sliding in */
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-150%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Transparent state */
+.info-overlay.transparent {
+  opacity: 0.1;  /* Lower opacity when transparent */
+  backdrop-filter: blur(0px);  /* Stronger blur effect */
+
+  background-color: rgba(255, 255, 255, 0.1);  /* Adjust the background transparency */
+}
+/* Apply opacity to text inside the overlay */
+.info-overlay.transparent h2,
+.info-overlay.transparent p,
+.info-overlay.transparent .chip {
+  opacity: 0.1;  /* Make text and chips transparent as well */
+}
+
+/* Active class triggers the keyframe animation */
+.info-overlay.active {
+  animation: slideInFromLeft 0.5s ease forwards;
+}
+
+
+
+/* Toggle button */
+.overlay-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #007aff;
+  transition: transform 0.2s ease;
+}
+
+.overlay-toggle:hover {
+  transform: scale(1.1);  /* Slight zoom on hover */
+}
+
+/* Toggle icon style */
+.overlay-toggle svg {
+  width: 24px;
+  height: 24px;
+  fill: #007aff;
+}
+
+/* Styling for the entire paragraph containing both the title and content */
+.category-paragraph {
+  margin-bottom: 15px;  /* Space between paragraphs */
+  font-size: 1em;  /* Normal font size */
+  color: #555;  /* Content color */
+  line-height: 1.6;  /* Line height for readability */
+}
+/* Category Title (What, Why, Role) */
+.category-title {
+  font-size: 1.2em;
+  font-weight: bold;
+/*  color: #007aff;*/
+  display: inline;
+}
+
+/* Content below each category title */
+.category-content {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 20px;  /* Space between content sections */
+  line-height: 1.5;  /* Increase line height for readability */
+  display: inline;
+}
+
+/* General styling for the title and description */
+.info-overlay h2 {
+  margin: 0 0 10px 0;
+  font-size: 2em;
+  font-weight: bold;
+  color: #333;
+}
+
+.info-overlay p {
+  margin: 10px 0;
+  font-size: 1.1em;
+  color: #666;
+  line-height: 1.6;
+}
+
+.info-overlay .placeholder {
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: #666;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+
+/* Social Media Links */
+.social-media {
+  display: flex;
+  justify-content: space-between;  /* Distribute icons evenly across the entire width */
+  width: 80%;  /* Take the full width of the left column */
+  padding: 20px;  /* Add padding for spacing on the sides */
+  margin-top: auto;  
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+.social-media a {
+
+  display: inline-block;
+}
+
+.social-media img {
+  width: 20px; /* Adjust the size of the icons */
+  height: 20px; /* Ensure consistent height */
+  transition: transform 0.3s ease; /* Add a hover effect */
+}
+
+.social-media img:hover {
+  transform: scale(1.1); /* Slightly enlarge the icon on hover */
+}
+.social-media svg path {
+  fill: #555; /* Dark grey */
+}
+
+/* Hover effect to lighten the icons */
+.social-media svg:hover path {
+  fill: #333; /* Lighter grey on hover */
+}
+
+/* Apply dark grey color to SVG images using filter */
+.social-media img {
+ filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(50%) contrast(90%);
+
+
+/* Hover effect to lighten the icons */
+.social-media img:hover {
+  filter: grayscale(50%) brightness(0.3); /* Lighten on hover */
+}
+
+/* Loading spinner */
+.loading-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;  /* Full height of the right column */
+  background-color: rgba(255, 255, 255, 0.8);  /* Optional background */
+}
+
+.spinner {
+  border: 8px solid #f3f3f3;  /* Light grey */
+  border-top: 8px solid #007aff;  /* Blue */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+

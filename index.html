@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charles Leclercq's Portfolio</title> <!-- Updated title -->
+  <link rel="stylesheet" href="styles.css">  <!-- Link to external CSS file -->
+</head>
+<body>
+
+
+  <!-- Main Content -->
+  <div id="content" style="display: none;">
+    <div class="container">
+      <!-- Left Column with Website Title, Project List, and Project Description -->
+      <div class="left-column">
+        <div class="content">
+          <!-- "Get in touch" Button -->
+           <a href="mailto:2dcharles@gmail.com" class="contact-button" target="_blank" rel="noopener noreferrer">
+            Get in touch
+          </a>
+
+          <div class="portrait-container">
+             <img src="assets/cl_portrait_bw.jpg" alt="image" class="portrait-image">
+
+          </div>
+          
+          <h1 class="name">Charles Leclercq</h1> <!-- Website title -->
+          <h3 class="subtitle">Design and Product Leader</h3>
+
+          <div class="personal-intro">
+              <p>I focus on bold, human-centered designs that spark creativity and rethink how we interact with technology. This portfolio highlights some early-stage products I’ve developed at the BBC, Ubisoft, and in startups. Feel free to get in touch to learn more!</p> 
+          </div>
+
+         
+
+          <!-- Box for the list of projects -->
+          <div class="project-list">
+            <h2 class="project-list-title">Selected Works</h2>
+            <ul id="project-titles-list">
+              <!-- List of project titles will be dynamically inserted here -->
+            </ul>
+          </div>
+
+          <!-- Social Media Links -->
+          <div class="social-media">
+            <a href="https://www.linkedin.com/in/cl7/" target="_blank">
+              <img src="assets/linkedin-logo.svg" alt="LinkedIn">
+            </a>
+            <a href="https://github.com/CL-LCQ" target="_blank">
+              <img src="assets/github-logo.svg" alt="GitHub">
+            </a>
+            <a href="https://medium.com/@charlesleclercq" target="_blank">
+              <img src="assets/medium-logo.svg" alt="Medium">
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+       <!-- Right Column (with loading screen initially) -->
+      <div class="right-column">
+        <div id="right-column-loading" class="loading-screen">
+          <p>Loading...</p>
+          <div class="spinner"></div>
+        </div>
+          <div id="right-column-content" style="display: none;">
+                <!-- Dots container for navigation -->
+              <div id="dots-container" class="dots-container"></div>
+              <img id="project-image" src="" alt="Project Image">
+              <div class="info-overlay" id="info-overlay">
+                <h2 id="overlay-title">Project Title</h2>
+
+                       <!-- Toggle Button (SVG icon for transparency toggle) -->
+                <button class="overlay-toggle" id="overlay-toggle">
+                  <!-- Simple eye icon (could be swapped with another) -->
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.7 8 1 12c1.7 4 6 7.5 11 7.5s9.3-3.5 11-7.5c-1.7-4-6-7.5-11-7.5zm0 13a5.5 5.5 0 110-11 5.5 5.5 0 010 11zm0-2a3.5 3.5 0 100-7 3.5 3.5 0 000 7z"/></svg>
+                </button>
+                  
+                          <!-- Category: Why -->
+                <p class="category-paragraph">
+                  <span class="category-title">Why:</span> 
+                  <span id="category-why" class="category-content">This is the content for the Why section.</span>
+                </p>
+
+                <!-- Category: What -->
+                <p class="category-paragraph">
+                  <span class="category-title">What:</span> 
+                  <span id="category-what" class="category-content">This is the content for the What section.</span>
+                </p>
+
+
+                <!-- Category: Role -->
+                <p class="category-paragraph">
+                  <span class="category-title">Role:</span> 
+                  <span id="category-role" class="category-content">This is the content for the Role section.</span>
+                </p>
+              
+
+                <!-- Chip container for date, company name, and industry -->
+                <div class="chip-container">
+                  <span class="chip" id="overlay-date">Project Date</span>
+                  <span class="chip" id="overlay-companyname">Company Name</span>
+                  <span class="chip" id="overlay-industry">Industry</span>
+                </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>  
+
+  <!-- Include the app.js script -->
+  <!-- <script src="app.js"></script> -->
+
+  <!-- Loading all the separated JS files -->
+  <script src="scripts/supabaseClient.js" type="module"></script>
+  <script src="scripts/projectDisplay.js" type="module"></script>
+  <script src="scripts/imageSlider.js" type="module"></script>
+  <script src="scripts/domEvents.js" type="module"></script>
+  <script src="scripts/main.js" type="module"></script> <!-- This is the main script that initializes everything -->
+
+
+</body>
+</html>
