@@ -254,10 +254,12 @@ z-index: 100;
 }
 
 .project-list-title {
+/*  margin-left: 15px;*/
+
   font-size: 1.6em; /* Adjust the size as needed */
   color: #333; /* Make it a bit darker for emphasis */
   margin-bottom: 20px; /* Add space below the title */
-  text-align: left; /* Align title to the left */
+  text-align: center; /* Align title to the left */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
