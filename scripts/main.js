@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadSite(projects){
   document.getElementById('content').style.display = 'block';
-  // await preloadAllImages(projects);  // Preload all images first
+  await preloadAllImages(projects);  // Preload all images first
 
   showRightColumnContent();
 
@@ -31,7 +31,6 @@ async function loadSite(projects){
 // Preload all project images
 async function preloadAllImages(projects) {
   const imageUrls = [];
-
   projects.forEach(project => {
     if (project.imageURL) imageUrls.push(project.imageURL);
     if (project.url2) imageUrls.push(project.url2);
