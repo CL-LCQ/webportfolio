@@ -205,6 +205,7 @@ z-index: 100;
     margin-right: 20px;
   text-align: left; /* Align subtitle with name */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color:#333;
  }
 
 /* Project list with iOS 18 style */
@@ -328,6 +329,7 @@ border: 1px solid;
   padding: 30px;
   border-radius: 16px;  /* Rounded corners */
   color: #333;
+  font-size: 1.1em; /* Slightly smaller font size */
   width: 600px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -336,7 +338,7 @@ border: 1px solid;
   z-index: 10;  /* Ensure the overlay is on top */
   /* Animation setup */
   opacity: 0;  /* Start invisible */
-  transition: transform 0.5s ease, opacity 0.5s ease;  /* Smooth slide in and fade */
+  transition: transform 0.5s ease, opacity 0.5s ease,width 0.5s ease, height 1s ease, padding 0.5s ease;  /* Smooth slide in and fade */
 }
 
 /* Keyframe animation for sliding in */
@@ -349,6 +351,15 @@ border: 1px solid;
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+/* When minimized, show only the title */
+.info-overlay.minimized {
+  height: 50px;  /* Just enough for the title */
+  padding: 10px 30px;  /* Reduced padding */
+  width: 600px;  /* Adjust the width as needed */
+  white-space: nowrap;  /* Prevent text wrapping */
+  overflow: hidden;
 }
 
 /* Transparent state */
@@ -370,19 +381,32 @@ border: 1px solid;
   animation: slideInFromLeft 0.5s ease forwards;
 }
 
+.vertical{
+  display: none;
+}
 
+.minimized .vertical{
+  display: inline;
+}
+
+.minimized .expanded-icon {
+  display: inline;
+}
 
 /* Toggle button */
 .overlay-toggle {
+   width: 40px;
+  height: 40px;
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.6);
   border: none;
   cursor: pointer;
-  font-size: 1.2em;
+  font-size: 1.1em;
   color: #007aff;
   transition: transform 0.2s ease;
+  border-radius: 20px;
 }
 
 .overlay-toggle:hover {
@@ -391,6 +415,7 @@ border: 1px solid;
 
 /* Toggle icon style */
 .overlay-toggle svg {
+  margin-top: 5px;
   width: 24px;
   height: 24px;
   fill: #007aff;
@@ -399,13 +424,13 @@ border: 1px solid;
 /* Styling for the entire paragraph containing both the title and content */
 .category-paragraph {
   margin-bottom: 15px;  /* Space between paragraphs */
-  font-size: 1em;  /* Normal font size */
+  font-size: 0.9em;  /* Normal font size */
   color: #555;  /* Content color */
   line-height: 1.6;  /* Line height for readability */
 }
 /* Category Title (What, Why, Role) */
 .category-title {
-  font-size: 1.2em;
+  font-size: 0.9em;
   font-weight: bold;
 /*  color: #007aff;*/
   display: inline;
@@ -413,7 +438,7 @@ border: 1px solid;
 
 /* Content below each category title */
 .category-content {
-  font-size: 1em;
+  font-size: 0.9em;
   color: #555;
   margin-bottom: 20px;  /* Space between content sections */
   line-height: 1.5;  /* Increase line height for readability */
@@ -494,6 +519,8 @@ border: 1px solid;
   align-items: center;
   height: 100%;  /* Full height of the right column */
   background-color: rgba(255, 255, 255, 0.8);  /* Optional background */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
 }
 
 .spinner {
