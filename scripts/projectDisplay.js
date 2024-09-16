@@ -107,20 +107,20 @@ export async function displayProject(index) {
 
 }
 
-
 // Function to update the media (image or video) based on the project URL
 export function updateMedia(url) {
- const projectVideoContainer = document.getElementById('project-video-container');
+  const projectVideoContainer = document.getElementById('project-video-container');
   projectVideoContainer.innerHTML = ''; // Clear any existing content
 
   // Check if it's a YouTube link
   if (url.includes('youtube.com') || url.includes('youtu.be')) {
     const youtubeId = extractYouTubeId(url); // Extract YouTube ID
     if (youtubeId) {
-            const iframeElement = document.createElement('iframe');
+      const iframeElement = document.createElement('iframe');
       iframeElement.width = '100%';
       iframeElement.height = '100%';
-      iframeElement.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&loop=1&mute=1&controls=0&modestbranding=1&rel=0`; // YouTube embed link without controls
+      iframeElement.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&loop=1&mute=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&fs=0&disablekb=1`; 
+      // YouTube embed link without controls, no suggestions, no annotations, no fullscreen, and keyboard control disabled.
       iframeElement.setAttribute('allowfullscreen', 'true');
       iframeElement.setAttribute('frameborder', '0');
       iframeElement.setAttribute('allow', 'autoplay; encrypted-media;');
