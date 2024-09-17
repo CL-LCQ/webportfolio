@@ -113,7 +113,7 @@ z-index: 100;
 }
 /* Left column styling with flexbox */
 .left-column {
-  width: 25%;  /* Takes up 1/4th of the window width */
+  width: 29%;  /* Takes up 1/4th of the window width */
   padding: 10px;
   margin-right: 10px;  /* Add margin to the right of the left column */
   background-color: #fff;
@@ -265,7 +265,7 @@ z-index: 100;
 }
 
 .right-column {
-  width: 75%;  /* Takes up 3/4ths of the window width */
+  width: 69%;  /* Takes up 3/4ths of the window width */
   height: 100%; /* Full height of the viewport */
   margin-left: 10px;  /* Add margin to the left of the right column */
   display: flex;
