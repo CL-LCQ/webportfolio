@@ -9,6 +9,11 @@ body, html {
 
 }
 
+
+
+
+
+
 /* Portrait container */
 .portrait-container {
   display: flex;
@@ -28,12 +33,12 @@ body, html {
 
 /* Styling for dots container */
 .dots-container {
-  position: absolute;
-  top: 30px;  /* Add 30px top margin */
-  left: 50%;  /* Align horizontally with the center of the right column */
-  transform: translateX(-50%);  /* Shift the container to the exact center of the right column */
   display: flex;
   justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 30px;
+  width: auto; /* Width adjusts to content */
   gap: 10px;  /* Space between the dots */
   background-color: rgba(255, 255, 255, 0.25);  /* Light translucent white */
   padding: 10px;
@@ -42,9 +47,7 @@ body, html {
   transform: scale(0); /* Start small */
   transition: opacity 0.3s ease; /* Smooth opacity change */
   backdrop-filter: blur(5px);  /* Stronger blur effect */
-z-index: 100;
-
-
+  z-index: 100;
 }
 
 
@@ -129,6 +132,9 @@ z-index: 100;
   overflow-y: auto;  /* Enable scrolling if the content overflows */
   box-sizing: border-box;
 }
+
+
+
 
 /* Content area */
 .left-column .content {
@@ -290,6 +296,38 @@ z-index: 100;
   width: 100%; /* Full width of the column */
   position: relative; /* Allow absolute positioning for overlay */
 }
+
+/* When the width is smaller than 768px (adjust this value based on your needs), stack the columns vertically */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column-reverse;  /* Stack the columns vertically */
+    height: auto;  /* Let the container grow based on content */
+  }
+
+  .left-column, .right-column {
+    width: 100%;  /* Make both columns take the full width */
+    height: auto;  /* Allow them to grow based on content */
+  }
+.right-column {
+  margin-bottom:20px;
+  margin-left:0px;
+}
+
+ .dot-container {
+    position: fixed;  /* Keep it centered relative to the screen */
+    top: 50px;  /* Adjust the top position based on the layout */
+    left: 50%;
+    transform: translateX(-50%);  /* Center the container horizontally */
+    width: auto;  /* Adjust width to fit the dots */
+}
+
+  .info-overlay {
+    display: none;
+  }
+
+
+}
+
 
 #project-image {
   width: 100%;
@@ -538,4 +576,5 @@ border: 1px solid;
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
 
