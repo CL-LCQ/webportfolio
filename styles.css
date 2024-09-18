@@ -313,13 +313,7 @@ body, html {
   margin-left:0px;
 }
 
- .dot-container {
-    position: fixed;  /* Keep it centered relative to the screen */
-    top: 50px;  /* Adjust the top position based on the layout */
-    left: 50%;
-    transform: translateX(-50%);  /* Center the container horizontally */
-    width: auto;  /* Adjust width to fit the dots */
-}
+
 
   .info-overlay {
     display: none;
