@@ -1,6 +1,6 @@
 import { loadSupabaseClient, initializeSupabase } from './supabaseClient.js';
 import { displayProjectTitles, displayProject } from './projectDisplay.js';
-import { addOverlayToggleListener } from './domEvents.js';
+import { addOverlayToggleListener, checkWindowSize } from './domEvents.js';
 
 import { preloadImages } from './preloadImages.js';
 
@@ -15,6 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(error => console.error("Error loading Supabase script:", error));
 
   addOverlayToggleListener();
+
+
+  // Add a resize event listener
+  window.addEventListener('resize', checkWindowSize);
+
+  // Call it once when the page loads to set the initial state
+  document.addEventListener('DOMContentLoaded', checkWindowSize);
+
 });
 
 async function loadSite(projects){
@@ -46,3 +54,5 @@ function showRightColumnContent() {
   document.getElementById('right-column-loading').style.display = 'none';  // Hide the loading screen
   document.getElementById('right-column-content').style.display = 'block';  // Show the content
 }
+
+

@@ -12,3 +12,18 @@ export function addOverlayToggleListener() {
     console.error('Element(s) not found: overlay-toggle or info-overlay');
   }
 }
+
+// Function to check window height and toggle the overlay
+export function checkWindowSize() {
+
+  const overlay = document.getElementById('info-overlay');
+
+   if (overlay) {
+    console.log('size is ' + window.innerHeight)
+    if (window.innerHeight < 670) {
+      overlay.classList.add('minimized');
+    }else{
+      overlay.classList.remove('minimized');
+    }
+  }
+}
