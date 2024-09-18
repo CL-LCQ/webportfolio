@@ -1,4 +1,4 @@
-import { updateImage, createDots } from './imageSlider.js';  // Import slider functions
+import { detectSwipe, updateImage, createDots } from './imageSlider.js';  // Import slider functions
 
 
 let currentIndex = 0; // Track the current project index
@@ -105,6 +105,8 @@ export async function displayProject(index) {
   void overlayBox.offsetWidth;  // Force reflow to restart the animation
   overlayBox.classList.add('active');  // Add the class to trigger the animation again
 
+  // detectSwipe(document.getElementById('project-video-container'));
+  detectSwipe(document.getElementById('project-video-container'));
 }
 
 // Function to update the media (image or video) based on the project URL
@@ -146,6 +148,10 @@ export function updateMedia(url) {
     imageElement.style.objectFit = 'cover'; // Maintain aspect ratio and cover the container
     projectVideoContainer.appendChild(imageElement);
   }
+
+
+
+
 }
 
 // Function to extract YouTube video ID from a URL

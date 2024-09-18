@@ -1,4 +1,6 @@
 import { updateMedia} from './projectDisplay.js';  // Import slider functions
+// import { detectSwipe } from './detectSwipe.js';
+
 
 let currentImageIndex = 0;
 let autoChangeInterval = null;
@@ -49,7 +51,10 @@ const dotsContainer = document.getElementById('dots-container');
   
    // Add an event listener to capture keydown events
   document.addEventListener('keydown', handleKeydown);
-  // handleSwipe(images);
+
+
+
+ 
 
 }
 
@@ -65,10 +70,12 @@ export function updateDots(index) {
 
 // Function to update the image
 export function updateImage(images, index) {
-  const projectImage = document.getElementById('project-image');
-  // projectImage.src = images[index];  // Set the current image source
+
+
   updateMedia(images[index]);
-   updateDots(index);  // Update the active dot
+  updateDots(index);  // Update the active dot
+
+  // detectSwipe();
 }
 
 // Function to go to the next image
@@ -99,10 +106,12 @@ export function startAutoChange(images) {
 
 // Function to handle left and right keyboard arrow presses
 function handleKeydown(event) {
-  if (event.key === 'ArrowRight') {
+  if (event.key === 'ArrowRight' || event == 'ArrowRight') {
     goToNextImage(imageStore);
-  } else if (event.key === 'ArrowLeft') {
+        // console.log('swipe right');
+  } else if (event.key === 'ArrowLeft'|| event == 'ArrowLeft') {
     goToPreviousImage(imageStore);
+    // console.log('swipe left');
   }
   updateImage(imageStore,currentImageIndex);  // Update the image and dots after a change
 }
@@ -110,68 +119,89 @@ function handleKeydown(event) {
 let startX = 0; // Starting X position of the swipe
 let isDragging = false; // Track if the user is dragging
 // Function to handle swipe and drag events
-function handleSwipe(images) {
-  const projectImage = document.getElementById('project-image');
 
-  // Event listener for touch start (mobile devices)
-  projectImage.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX; // Record the starting X position
-    isDragging = true;
-  });
+//SWIPE
 
-  // Event listener for touch move (mobile devices) - passive
-  projectImage.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
-    
-    const touchX = e.touches[0].clientX;
-    const diff = touchX - startX; // Calculate the difference between start and current touch position
 
-    if (diff < -50) { // Swipe left (next image)
-      goToNextImage(images);
-      isDragging = false;
-    } else if (diff > 50) { // Swipe right (previous image)
-      goToPreviousImage(images);
-      isDragging = false;
+
+
+
+export function detectSwipe(element) {
+  // If listeners already exist, remove them first
+  if (element.swipeListenersAdded) {
+    element.removeEventListener('touchstart', element.handleTouchStart);
+    element.removeEventListener('touchend', element.handleTouchEnd);
+    element.removeEventListener('mousedown', element.handleMouseDown);
+    element.removeEventListener('mouseup', element.handleMouseUp);
+    element.removeEventListener('mouseleave', element.handleMouseLeave);
+    element.removeEventListener('mousemove', element.handleMouseMove);
+    element.removeEventListener('touchmove', element.handleTouchMove);
+  }
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+  let isDragging = false;
+
+  // Swipe detection logic
+  function handleSwipe() {
+    const swipeDistance = touchStartX - touchEndX;
+    if (swipeDistance > 50) {
+      handleKeydown('ArrowRight');
+    } else if (swipeDistance < -50) {
+       handleKeydown('ArrowLeft');
     }
-  }, { passive: true }); // Mark the event as passive
+  }
 
-  // Event listener for touch end (mobile devices)
-  projectImage.addEventListener('touchend', () => {
+  // Define event handler functions and attach them to the element
+  element.handleTouchStart = (event) => {
+    touchStartX = event.changedTouches[0].screenX;
+    isDragging = true;
+  };
+
+  element.handleTouchEnd = (event) => {
+    touchEndX = event.changedTouches[0].screenX;
+    handleSwipe();
     isDragging = false;
-  });
+  };
 
-  // Event listeners for mouse drag (desktop devices)
-  projectImage.addEventListener('mousedown', (e) => {
-    e.preventDefault();  // Prevent image dragging
-    startX = e.clientX; // Record the starting X position for mouse drag
+  element.handleMouseDown = (event) => {
+    touchStartX = event.clientX;
     isDragging = true;
-  });
+    event.preventDefault(); // Prevent image selection while dragging
+  };
 
-  projectImage.addEventListener('mousemove', (e) => {
+  element.handleMouseUp = (event) => {
+    touchEndX = event.clientX;
+    handleSwipe();
+    isDragging = false;
+  };
+
+  element.handleMouseMove = (event) => {
     if (!isDragging) return;
-    
-    const mouseX = e.clientX;
-    const diff = mouseX - startX; // Calculate the difference between start and current mouse position
+    touchEndX = event.clientX;
+    event.preventDefault(); // Prevent selection during drag
+  };
 
-    if (diff < -50) { // Drag left (next image)
-      goToNextImage(images);
-      isDragging = false;
-    } else if (diff > 50) { // Drag right (previous image)
-      goToPreviousImage(images);
-      isDragging = false;
-    }
-  });
+  element.handleMouseLeave = () => {
+    isDragging = false;
+  };
 
-  // Event listener for mouse up (desktop devices)
-  projectImage.addEventListener('mouseup', (e) => {
-    isDragging = false; // Stop the dragging behavior
-  });
+  element.handleTouchMove = (event) => {
+    event.preventDefault(); // Prevent scrolling or selection
+  };
 
-  // Event listener to stop dragging if the mouse leaves the image area
-  projectImage.addEventListener('mouseleave', () => {
-    isDragging = false; // Ensure dragging stops when the mouse leaves the image
-  });
+  // Add event listeners
+  element.addEventListener('touchstart', element.handleTouchStart);
+  element.addEventListener('touchend', element.handleTouchEnd);
+  element.addEventListener('mousedown', element.handleMouseDown);
+  element.addEventListener('mouseup', element.handleMouseUp);
+  element.addEventListener('mousemove', element.handleMouseMove);
+  element.addEventListener('mouseleave', element.handleMouseLeave);
+  element.addEventListener('touchmove', element.handleTouchMove);
+
+  // Disable image selection
+  element.style.userSelect = 'none';
+
+  // Mark that listeners have been added
+  element.swipeListenersAdded = true;
 }
-
-
-
