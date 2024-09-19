@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(error => console.error("Error loading Supabase script:", error));
 
+  document.getElementById('info-overlay').classList.toggle('minimized');
   addOverlayToggleListener();
 
 

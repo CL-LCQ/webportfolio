@@ -391,7 +391,7 @@ border: 1px solid;
 
 /* When minimized, show only the title */
 .info-overlay.minimized {
-  height: 50px;  /* Just enough for the title */
+  height: 110px;  /* Just enough for the title */
   padding: 10px 30px;  /* Reduced padding */
   width: 600px;  /* Adjust the width as needed */
   white-space: nowrap;  /* Prevent text wrapping */
@@ -415,6 +415,17 @@ border: 1px solid;
 /* Active class triggers the keyframe animation */
 .info-overlay.active {
   animation: slideInFromLeft 0.5s ease forwards;
+}
+
+.info-overlay.minimised .chip-container {
+  margin-top: 0; /* Remove bottom margin */
+  padding-top: 0; /* Remove additional padding */
+  justify-content: flex-end; /* Align chips to the right */
+}
+
+/* Optional: Hide the category paragraphs when minimized */
+.info-overlay.minimised .category-paragraph {
+  display: none;
 }
 
 .vertical{
