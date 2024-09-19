@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Call it once when the page loads to set the initial state
   document.addEventListener('DOMContentLoaded', checkWindowSize);
 
+  
+
 });
 
 async function loadSite(projects){
@@ -54,5 +56,6 @@ function showRightColumnContent() {
   document.getElementById('right-column-loading').style.display = 'none';  // Hide the loading screen
   document.getElementById('right-column-content').style.display = 'block';  // Show the content
 }
+
 
 

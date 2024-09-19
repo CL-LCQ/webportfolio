@@ -54,6 +54,7 @@ const dotsContainer = document.getElementById('dots-container');
 
 
 
+
  
 
 }
@@ -106,12 +107,16 @@ export function startAutoChange(images) {
 
 // Function to handle left and right keyboard arrow presses
 function handleKeydown(event) {
+   
   if (event.key === 'ArrowRight' || event == 'ArrowRight') {
     goToNextImage(imageStore);
         // console.log('swipe right');
   } else if (event.key === 'ArrowLeft'|| event == 'ArrowLeft') {
     goToPreviousImage(imageStore);
     // console.log('swipe left');
+  }
+  else if (event.key === 'ArrowUp' || event.key === 'ArrowDown'){
+    handleProjectListNavigation(event);
   }
   updateImage(imageStore,currentImageIndex);  // Update the image and dots after a change
 }
@@ -204,4 +209,64 @@ export function detectSwipe(element) {
 
   // Mark that listeners have been added
   element.swipeListenersAdded = true;
+}
+
+// Function to detect the currently selected project's index
+function getSelectedProjectIndex() {
+  const projectItems = document.querySelectorAll('.project-list ul li');  // Select all project list items
+  let selectedIndex = -1;  // Default to -1 if no project is selected
+
+  // Loop through all project list items and find the one with the 'selected' class
+  projectItems.forEach((item, index) => {
+    if (item.classList.contains('selected')) {
+      selectedIndex = index;  // Set the index of the selected project
+    }
+  });
+
+  return selectedIndex;  // Return the index of the selected project
+}
+
+// Function to handle project list navigation with arrow keys
+function handleProjectListNavigation(event) {
+  const projectLinks = document.querySelectorAll('.project-title-link'); // Select all project links
+  let currentSelectedIndex = getSelectedProjectIndex();
+
+  // console.log('selected project is ' + currentSelectedIndex);
+
+    // Listen for keydown events to detect arrow key presses
+
+    if (event.key === 'ArrowUp') {
+      // Navigate to the previous project
+      if (currentSelectedIndex > 0) {
+        setSelectedProject(currentSelectedIndex - 1);
+      }
+    } else if (event.key === 'ArrowDown') {
+      // Navigate to the next project
+      if (currentSelectedIndex < projectLinks.length - 1) {
+        setSelectedProject(currentSelectedIndex + 1);
+      }
+    }
+  
+
+  // Helper function to set the selected project
+  function setSelectedProject(index) {
+    // Remove 'selected' class from all links
+    projectLinks.forEach(link => link.parentElement.classList.remove('selected'));
+
+    // Ensure the index is within bounds
+    if (index >= 0 && index < projectLinks.length) {
+      // Add 'selected' class to the current project
+      projectLinks[index].parentElement.classList.add('selected');
+      currentSelectedIndex = index;
+
+      // console.log('now setting ' + currentSelectedIndex);
+      // Simulate clicking the project to load it
+      projectLinks[index].click();
+    }
+  }
+
+  // Initially select the first project
+  // setSelectedProject(currentSelectedIndex);
+
+
 }
