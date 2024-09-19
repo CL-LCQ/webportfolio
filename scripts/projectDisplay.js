@@ -130,6 +130,7 @@ export function updateMedia(url) {
     }
   } else if (url.endsWith('.mp4') || url.endsWith('.webm')) {
     // If it's a video file
+    console.log('it s a video file');
     const videoElement = document.createElement('video');
     videoElement.setAttribute('autoplay', 'true');
     videoElement.setAttribute('loop', 'true');
@@ -137,6 +138,8 @@ export function updateMedia(url) {
     videoElement.setAttribute('controls', 'true'); // Optional: Show video controls
     videoElement.style.width = '100%';
     videoElement.style.height = '100%';
+    videoElement.muted = true;
+    videoElement.controls = false;
     videoElement.src = url; // Set the video source URL
     projectVideoContainer.appendChild(videoElement);
   } else {
