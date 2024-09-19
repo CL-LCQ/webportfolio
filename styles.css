@@ -11,7 +11,15 @@ body, html {
 
 
 
-
+.copyright{
+  display: inline-block;
+  align-self: flex;
+  justify-content: center; 
+  font-size: 0.7em;
+   color: #d9d9d9; /* Lighter gray for subtlety */
+    text-align: center; /* Align subtitle with name */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
 
 
 /* Portrait container */
@@ -355,7 +363,11 @@ border: 1px solid;
 
   z-index: 20;                           /* Ensure chips are on top of other content */
 }
+.right-column .info-overlay {
+  width: 70%;  /* Set the width to 70% of the right column */
+  max-width: 100%; /* Ensure it doesn't exceed the width of the right column */
 
+}
 /* iOS 18-style overlay */
 .info-overlay {
   position: absolute;
@@ -366,7 +378,7 @@ border: 1px solid;
   border-radius: 16px;  /* Rounded corners */
   color: #333;
   font-size: 1.1em; /* Slightly smaller font size */
-  width: 600px;
+  width: 70%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.5;
 /*  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
@@ -376,6 +388,8 @@ border: 1px solid;
   opacity: 0;  /* Start invisible */
   transition: transform 0.5s ease, opacity 0.5s ease,width 0.5s ease, height 1s ease, padding 0.5s ease;  /* Smooth slide in and fade */
 }
+
+
 
 /* Keyframe animation for sliding in */
 @keyframes slideInFromLeft {
@@ -393,7 +407,7 @@ border: 1px solid;
 .info-overlay.minimized {
   height: 110px;  /* Just enough for the title */
   padding: 10px 30px;  /* Reduced padding */
-  width: 600px;  /* Adjust the width as needed */
+/*  width: 70%;  /* Adjust the width as needed */
   white-space: nowrap;  /* Prevent text wrapping */
   overflow: hidden;
 }
@@ -409,12 +423,7 @@ border: 1px solid;
 
   background-color: rgba(255, 255, 255, 0.1);  /* Adjust the background transparency */
 }
-/* Apply opacity to text inside the overlay */
-.info-overlay.transparent h2,
-.info-overlay.transparent p,
-.info-overlay.transparent .chip {
-  opacity: 0.1;  /* Make text and chips transparent as well */
-}
+
 
 /* Active class triggers the keyframe animation */
 .info-overlay.active {
@@ -446,6 +455,7 @@ border: 1px solid;
 .minimized .expanded-icon {
   display: inline;
 }
+
 
 /* Toggle button */
 .overlay-toggle {
@@ -514,6 +524,7 @@ border: 1px solid;
   font-size: 2em;
   font-weight: bold;
   color: #333;
+
 }
 
 .info-overlay p {
@@ -521,7 +532,22 @@ border: 1px solid;
   font-size: 1.1em;
   color: #666;
   line-height: 1.6;
+  opacity: 1;
+  transition: opacity 1s ease; /* Smooth opacity transition */
 }
+
+.info-overlay.minimized p {
+  margin: 10px 0;
+  font-size: 1.1em;
+  color: #666;
+  line-height: 1.6;
+  opacity: 0; 
+  transition: opacity 0.3s ease; /* Smooth opacity transition */
+
+}
+
+
+
 
 .info-overlay .placeholder {
   margin-top: 10px;
