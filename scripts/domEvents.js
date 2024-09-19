@@ -23,7 +23,7 @@ export function checkWindowSize() {
     if (window.innerHeight < 670) {
       overlay.classList.add('minimized');
     }else{
-      overlay.classList.remove('minimized');
+      // overlay.classList.remove('minimized');
     }
   }
 }

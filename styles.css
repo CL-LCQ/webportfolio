@@ -398,6 +398,10 @@ border: 1px solid;
   overflow: hidden;
 }
 
+.overlay-title.minimized {
+  margin-bottom: 0px;
+}
+
 /* Transparent state */
 .info-overlay.transparent {
   opacity: 0.1;  /* Lower opacity when transparent */
@@ -423,6 +427,9 @@ border: 1px solid;
   justify-content: flex-end; /* Align chips to the right */
 }
 
+.info-overlay.minimised h2{
+  margin: 0 0 0px 0;
+}
 /* Optional: Hide the category paragraphs when minimized */
 .info-overlay.minimised .category-paragraph {
   display: none;
@@ -488,6 +495,7 @@ border: 1px solid;
   font-size: 0.9em;
   font-weight: bold;
 /*  color: #007aff;*/
+ color: #333;
   display: inline;
 }
 
