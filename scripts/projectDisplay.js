@@ -25,9 +25,8 @@ export async function displayProjectTitles(data) {
     
     // Structure: "Number: Project Title" with clickable title
     li.innerHTML = `
-      <span>${index + 1}. </span>
       <a href="#" class="project-title-link" data-index="${index}">${project.selection_title}</a>
-    `;
+      `;
     
     // Add event listener to the project title link
     li.querySelector('a').addEventListener('click', (e) => {
@@ -56,6 +55,7 @@ export async function displayProject(index) {
   const categoryWhat = document.getElementById('category-what');
   const categoryWhy = document.getElementById('category-why');
   const categoryRole = document.getElementById('category-role');
+  const categoryTech = document.getElementById('category-tech');
   const overlayDate = document.getElementById('overlay-date');
   const overlayBox = document.querySelector('.info-overlay');  // Get the overlay box
   const overlayCompanyName = document.getElementById('overlay-companyname');  // New for company name
@@ -70,7 +70,7 @@ export async function displayProject(index) {
   categoryWhat.textContent = project.what || 'No description available for What.';
   categoryWhy.textContent = project.why || 'No description available for Why.';
   categoryRole.textContent = project.role || 'No description available for Role.';
-
+  categoryTech.textContent = project.tech || 'No description provided';
 
 
 
@@ -90,7 +90,6 @@ export async function displayProject(index) {
 
   // Create dots for the images of the selected project
   createDots(currentProjectImages);
-
 
 // Remove 'selected' class from all list items
   document.querySelectorAll('.project-list ul li').forEach(li => {

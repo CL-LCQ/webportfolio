@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(error => console.error("Error loading Supabase script:", error));
 
-  document.getElementById('info-overlay').classList.toggle('minimized');
+  // document.getElementById('info-overlay').classList.toggle('minimized'); //uncomment to start minimized
   addOverlayToggleListener();
 
 
@@ -35,8 +35,7 @@ async function loadSite(projects){
   showRightColumnContent();
 
   displayProjectTitles(projects);
-  displayProject(0);  // Display the first project
-
+  displayProject(0);  // Display the first project  
 }
 
 // Preload all project images

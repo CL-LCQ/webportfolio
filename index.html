@@ -29,17 +29,23 @@
         <div class="content">
           
 
-<!--           <div class="portrait-container">
+          <div class="portrait-container">
              <img src="assets/cl_portrait_bw.jpg" alt="image" class="portrait-image">
 
-          </div> -->
+          </div>
           
           <h1 class="name">Charles Leclercq</h1> <!-- Website title -->
           <h3 class="subtitle">Design and Product Leader</h3>
+           <div class="personal-intro">
+              <p> I love working with cross functional teams <b>inventing and creating delightful experiences with emerging technologies.</b><br> 
+                  This page presents some of my <b>0 to 1 projects</b>, drop me a line to learn more!
+              </p> 
+          </div>
+
 
             <!-- Box for the list of projects -->
           <div class="project-list">
-            <h2 class="project-list-title">Selected Works</h2>
+            <h2 class="project-list-title"></h2>
             <ul id="project-titles-list">
               <!-- List of project titles will be dynamically inserted here -->
             </ul>
@@ -50,15 +56,7 @@
             Get in touch
           </a>
 
-          <div class="personal-intro">
-              <p><b>I take bold ideas from 0 to 1.</b><br> 
-My favourite projects are human-centred, spark creativity, and revisit our relationship with computers. They include AAA video games, 3D creation tangible interfaces, and one of the first generative AI wearables that helps people see the world.
-
-I've worked in large teams at the <b>BBC, Ubisoft, and Cookpad, lead start-ups, and partnered with companies like Microsoft.</b><br> <br> 
-
-This page presents some 0 to 1s. I’d love to hear from you, get in touch to learn more!</p> 
-          </div>
-
+         
          
 
         
@@ -87,6 +85,13 @@ This page presents some 0 to 1s. I’d love to hear from you, get in touch to le
           <div class="spinner"></div>
         </div>
         <div id="dots-container" class="dots-container"></div>
+        <div id="button-container" class="btn-container">
+                     <!-- Round button to go to the next image -->
+            <button id="next-button" class="round-button">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007aff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"></polyline> <!-- This draws a clean arrow -->
+    </svg>
+            </button> </div>
           <div id="right-column-content" style="display: none;">
 
                 <!-- Dots container for navigation -->
@@ -94,9 +99,11 @@ This page presents some 0 to 1s. I’d love to hear from you, get in touch to le
 
               <div id="project-video-container" class="project-video"></div>
               <div class="info-overlay" id="info-overlay">
-                <h2 id="overlay-title">Project Title</h2>
-
-                             <!-- Chip container for date, company name, and industry -->
+                <div id="project-title">
+                  <h2 id="overlay-title">Project Title</h2> 
+                  <p id="category-role">Role details</p>
+                </div>
+                <!-- Chip container for date, company name, and industry -->
                 <div class="chip-container">
                   <span class="chip" id="overlay-date">Project Date</span>
                   <span class="chip" id="overlay-companyname">Company Name</span>
@@ -106,41 +113,41 @@ This page presents some 0 to 1s. I’d love to hear from you, get in touch to le
 
                        <!-- Toggle Button (SVG icon for transparency toggle) -->
                 <button class="overlay-toggle" id="overlay-toggle">
-                  <!-- Simple eye icon (could be swapped with another) -->
-                   <svg class="icon-expanded" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <!-- Minus icon for the expanded state -->
-                    <path class="horizontal" d="M20 14H4v-4h16v4z"/> 
-                    <path class="vertical" d="M10 4v16h4V4h-4z"/>                 
+                  <svg class="icon-expanded" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"  stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="#007aff">
+                    <!-- Horizontal line (minus icon) -->
+                    <line class="horizontal" class="horizontal" x1="4" y1="12" x2="20" y2="12" />
+                    <!-- Vertical line (to form the plus icon when combined with the horizontal) -->
+                    <line class="vertical" x1="12" y1="4" x2="12" y2="20" />
                   </svg>
                 </button>
 
                 
                 <div class="overlay-content">
+
+                   <!-- Category: Role -->
+
                             <!-- Category: What -->
                   <p class="category-paragraph">
                     <span class="category-title">What:</span> 
                     <span id="category-what" class="category-content">This is the content for the What section.</span>
                   </p>
 
-                  <!-- Category: Role -->
-                  <p class="category-paragraph">
-                    <span class="category-title">Role:</span> 
-                    <span id="category-role" class="category-content">This is the content for the Role section.</span>
-                  </p>
                   
                             <!-- Category: Why -->
                   <p class="category-paragraph">
                     <span class="category-title">Impact:</span> 
                     <span id="category-why" class="category-content">This is the content for the Why section.</span>
                   </p>
+
+                  <p class="category-paragraph">
+                    <span class="category-title">Tech:</span> 
+                    <span id="category-tech" class="category-content">This is the content for the Tech section.</span>
+                  </p>
+
+
               </div>  
-
-
-
-               
-              
-
             </div>
+
           </div>
 
       </div>

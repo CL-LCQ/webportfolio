@@ -42,8 +42,16 @@ const dotsContainer = document.getElementById('dots-container');
     dotsContainer.appendChild(dot);
   });
 
+dotsContainer.style.display ='none';
+
+
+
   // Set the first dot as active
   updateDots(0);
+
+
+
+
    // Trigger the animation for the dot container
   dotsContainer.classList.remove('active');  // Reset the animation
   void dotsContainer.offsetWidth;  // Force reflow to restart the animation
@@ -54,7 +62,17 @@ const dotsContainer = document.getElementById('dots-container');
 
 
 
+// startAutoChange(images)
 
+
+const nextButton = document.getElementById('next-button');
+nextButton.classList.remove('active');  // Reset the animation
+void nextButton.offsetWidth;  // Force reflow to restart the animation
+dotsContainer.classList.add('active');  // Add the class to trigger the animation
+
+nextButton.addEventListener('click', () => {
+  goToNextImage(imageStore); // Calls the function that moves to the next image
+});
  
 
 }
@@ -81,7 +99,7 @@ export function updateImage(images, index) {
 
 // Function to go to the next image
 function goToNextImage(images) {
-   currentImageIndex = (currentImageIndex + 1) % images.length; // Increment the index, loop back if necessary
+  currentImageIndex = (currentImageIndex + 1) % images.length; // Increment the index, loop back if necessary
   updateImage(images, currentImageIndex);
  }
 
@@ -91,18 +109,23 @@ function goToNextImage(images) {
 
 
 export function startAutoChange(images) {
- // Clear any existing interval
+  // Clear any existing interval
   if (autoChangeInterval) {
     clearInterval(autoChangeInterval);
   }
 
-  // Set up an interval to change the image every 3 seconds
+  let startingIndex = currentImageIndex; // Save the index of the current image
+  
+  // Set up an interval to go to the next image every 300ms
   autoChangeInterval = setInterval(() => {
-    goToNextImage(images);  // Automatically move to the next image and dot
-  }, 3000);  // Change every 3 seconds
-}
+    goToNextImage(images); // Go to the next image
 
-//interaction
+    // Check if the carousel has looped back to the first image
+    if (currentImageIndex === startingIndex) {
+      clearInterval(autoChangeInterval); // Stop the interval when it's back to the first image
+    }
+  }, 300); // Change every 300ms
+}
 
 
 // Function to handle left and right keyboard arrow presses

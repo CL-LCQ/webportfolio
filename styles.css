@@ -47,7 +47,7 @@ body, html {
   top: 30px;
   width: auto; /* Width adjusts to content */
   gap: 10px;  /* Space between the dots */
-  background-color: rgba(255, 255, 255, 0.25);  /* Light translucent white */
+  background-color: rgba(255, 255, 255, 0.5);  /* Light translucent white */
   padding: 10px;
   border-radius: 16px;
   opacity: 0; /* Hidden initially */
@@ -182,9 +182,8 @@ body, html {
 
 /* Social Media Links */
 .social-media {
-  display: flex;
   justify-content: center; /* Center the icons horizontally */
-  gap: 20px; /* Space between the icons */
+  gap: 0px; /* Space between the icons */
 }
 
 .left-column h1 {
@@ -367,6 +366,29 @@ border: 1px solid;
   max-width: 100%; /* Ensure it doesn't exceed the width of the right column */
 
 }
+
+#project-title {
+  display: inline-block; /* Ensure block-level alignment for inline elements */
+}
+
+#project-title h2, 
+#project-title p {
+  display: inline-block; /* Make both title and role details inline-block elements */
+  vertical-align: baseline; /* Align to the text baseline */
+  margin: 0; /* Remove default margins */
+}
+
+#project-title h2 {
+  
+  line-height: 1.2; /* Set line-height to maintain baseline alignment */
+  margin-right: 10px; /* Add spacing between the title and role details */
+}
+
+#project-title p {
+  font-size: 16px; /* Ensure the font size is smaller than h2 */
+  line-height: 1.2; /* Match line-height to ensure both are on the same baseline */
+}
+
 /* iOS 18-style overlay */
 .info-overlay {
   position: absolute;
@@ -387,8 +409,60 @@ border: 1px solid;
   opacity: 0;  /* Start invisible */
   transition: transform 0.5s ease, opacity 0.5s ease,width 0.5s ease, height 1s ease, padding 0.5s ease;  /* Smooth slide in and fade */
 }
+.round-button {
+  position: absolute;
+  top: 30px; /* Position the button 10px from the top */
+  right: 30px; /* Position the button 10px from the right */
+  background-color: rgba(255, 255, 255, 0.75); /* Transparent grey */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px); /* Blur the background behind the button */
+  transition: background-color 0.3s, backdrop-filter 0.3s, transform 0.3s;
+  z-index: 100; /* Keep it on top of other elements */
+  
+  /* Add the bounce animation when the button appears */
+  animation: bounce 1s ease;
+}
 
+.round-button:hover {
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly less transparent on hover */
+  transform: scale(1.1); /* Slight zoom on hover */
+}
 
+.round-button:active {
+  background-color: rgba(255, 255, 255, 1); /* Less transparent when active */
+}
+
+.round-button:focus {
+  outline: none;
+}
+
+/* Bounce keyframes for the animation */
+@keyframes bounce {
+0% {
+    transform: scale(0) translateY(-100%);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1) translateY(10%);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(0.95) translateY(0);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
 
 /* Keyframe animation for sliding in */
 @keyframes slideInFromLeft {
@@ -419,7 +493,6 @@ border: 1px solid;
 .info-overlay.transparent {
   opacity: 0.1;  /* Lower opacity when transparent */
   backdrop-filter: blur(0px);  /* Stronger blur effect */
-
   background-color: rgba(255, 255, 255, 0.1);  /* Adjust the background transparency */
 }
 
@@ -435,13 +508,6 @@ border: 1px solid;
   justify-content: flex-end; /* Align chips to the right */
 }
 
-.info-overlay.minimised h2{
-  margin: 0 0 0px 0;
-}
-/* Optional: Hide the category paragraphs when minimized */
-.info-overlay.minimised .category-paragraph {
-  display: none;
-}
 
 .vertical{
   display: none;
@@ -462,7 +528,6 @@ border: 1px solid;
   display: flex;
   justify-content: center;
   align-items: center;
-
   width: 40px;
   height: 40px;
   top: 10px;
@@ -535,16 +600,31 @@ border: 1px solid;
   transition: opacity 1s ease; /* Smooth opacity transition */
 }
 
-.info-overlay.minimized p {
+/*.info-overlay.minimized p{
   margin: 10px 0;
   font-size: 1.1em;
   color: #666;
   line-height: 1.6;
   opacity: 0; 
-  transition: opacity 0.3s ease; /* Smooth opacity transition */
+  transition: opacity 0.3s ease;
 
 }
+ */
 
+/* When minimized, hide the overlay content */
+.info-overlay.minimized .overlay-content {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+/* When not minimized, the overlay content should be visible */
+.info-overlay .overlay-content {
+  opacity: 1;
+  max-height: 1000px; /* Large enough to fit the content */
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+}
 
 
 
