@@ -301,6 +301,17 @@ body, html {
   height: 100%; /* Full height of the column */
   width: 100%; /* Full width of the column */
   position: relative; /* Allow absolute positioning for overlay */
+  min-height: 300px;
+  
+}
+
+#project-video-container{
+    filter: blur(10px);
+  transition: filter 0.5s ease; /* Smooth transition when the i */
+}
+
+#project-video-container.loaded {
+   filter: none;
 }
 
 /* When the width is smaller than 768px (adjust this value based on your needs), stack the columns vertically */
@@ -675,7 +686,7 @@ border: 1px solid;
 .social-media img {
  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(50%) contrast(90%);
 
-
+}
 /* Hover effect to lighten the icons */
 .social-media img:hover {
   filter: grayscale(50%) brightness(0.3); /* Lighten on hover */
@@ -708,4 +719,42 @@ border: 1px solid;
   100% { transform: rotate(360deg); }
 }
 
+#button-container {
+  display: flex;             /* Use flexbox for layout */
+  flex-wrap: wrap;           /* Allow wrapping if buttons overflow */
+  gap: 20px;                 /* Space between buttons */
+  justify-content: flex-start; /* Ensure buttons are aligned to the left */
+  align-items: flex-start;    /* Align buttons to the top if wrapped */
+}
 
+.blue-button {
+  display: inline-flex;       /* Button is only as wide as its content */
+  align-items: center;        /* Center text and SVG inside the button */
+  background-color: #007bff;  /* Blue background */
+  color: white;               /* White text */
+  padding: 10px 20px;         /* Padding for button */
+  border-radius: 16px;        /* Rounded corners */
+  text-decoration: none;      /* Remove underline from the link */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;            /* Set font size */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+  white-space: nowrap;        /* Prevent text wrapping inside button */
+  margin-top: 10px;           /* Add top margin for vertical space */
+}
+
+
+.blue-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.blue-button svg {
+  margin-left: 8px;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: white;
+}
+
+.blue-button:active {
+  background-color: #003f7f; /* Even darker blue when clicked */
+}

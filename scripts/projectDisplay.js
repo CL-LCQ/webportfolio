@@ -61,6 +61,10 @@ export async function displayProject(index) {
   const overlayCompanyName = document.getElementById('overlay-companyname');  // New for company name
   const overlayIndustry = document.getElementById('overlay-industry');  // New for industry
 
+
+  const buttonLink = document.getElementById('dynamic-link');  
+  const buttonName = document.getElementById('dynamic-text');  
+
   // Set the image and project description (with fallback if undefined)
   // projectImage.src = project.imageURL || '';  // Set image or fallback to empty
   overlayTitle.textContent = project.title || 'No Title';  // Set the title or fallback
@@ -71,8 +75,17 @@ export async function displayProject(index) {
   categoryWhy.textContent = project.why || 'No description available for Why.';
   categoryRole.textContent = project.role || 'No description available for Role.';
   categoryTech.textContent = project.tech || 'No description provided';
+  // buttonLink.href = project.link|| 'No description provided';;
+  // buttonName.textContent = project.linkname || 'No description provided';;
 
 
+
+  const linksFromDB = [
+  { name: project.linkname, url: project.link }
+  ];
+
+  //check for all the links
+  createButtons(linksFromDB)
 
   // Prepare the images for the selected project (main image, url2, url3 if they exist)
   currentProjectImages = [project.imageURL];  // Reset the current project's images
@@ -108,13 +121,43 @@ export async function displayProject(index) {
   detectSwipe(document.getElementById('project-video-container'));
 }
 
+
+
+// Function to create buttons dynamically
+function createButtons(links) {
+  const buttonContainer = document.getElementById('link-buttons-container');
+   buttonContainer.innerHTML = '';
+
+  links.forEach(link => {
+    // Create an anchor element for each button
+    const button = document.createElement('a');
+    button.href = link.url;
+    button.target = "_blank";  // Open in a new tab
+    button.classList.add('blue-button');
+    
+    // Set button text
+    button.innerHTML = `${link.name} 
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 3h7v7" />
+        <path d="M10 14L21 3" />
+        <path d="M21 21H3V3" />
+      </svg>`;
+    
+    // Append the button to the container
+    buttonContainer.appendChild(button);
+  });
+}
+
+
 // Function to update the media (image or video) based on the project URL
 export function updateMedia(url) {
   const projectVideoContainer = document.getElementById('project-video-container');
-  projectVideoContainer.innerHTML = ''; // Clear any existing content
+  projectVideoContainer.classList.remove('loaded'); //blur content
+  console.log('updating media...');
 
   // Check if it's a YouTube link
   if (url.includes('youtube.com') || url.includes('youtu.be')) {
+      console.log('this is a youtube video link...');
     const youtubeId = extractYouTubeId(url); // Extract YouTube ID
     if (youtubeId) {
       const iframeElement = document.createElement('iframe');
@@ -125,11 +168,13 @@ export function updateMedia(url) {
       iframeElement.setAttribute('allowfullscreen', 'true');
       iframeElement.setAttribute('frameborder', '0');
       iframeElement.setAttribute('allow', 'autoplay; encrypted-media;');
+       console.log('clearing...');
+      projectVideoContainer.innerHTML = ''; // Clear any existing content
+       console.log('appending...');
       projectVideoContainer.appendChild(iframeElement);
     }
   } else if (url.endsWith('.mp4') || url.endsWith('.webm')) {
-    // If it's a video file
-    console.log('it s a video file');
+       console.log('mp4 video... '+url);
     const videoElement = document.createElement('video');
     videoElement.setAttribute('autoplay', 'true');
     videoElement.setAttribute('loop', 'true');
@@ -140,18 +185,28 @@ export function updateMedia(url) {
     videoElement.muted = true;
     videoElement.controls = false;
     videoElement.src = url; // Set the video source URL
+     console.log('clearing...');
+    projectVideoContainer.innerHTML = ''; // Clear any existing content
+     console.log('appending...');
     projectVideoContainer.appendChild(videoElement);
+   
   } else {
     // If it's an image
+       console.log('this is an image...'+url);
     const imageElement = document.createElement('img');
     imageElement.src = url;
     imageElement.style.width = '100%';
     imageElement.style.height = '100%';
     imageElement.style.objectFit = 'cover'; // Maintain aspect ratio and cover the container
+       console.log('clearing...');
+    projectVideoContainer.innerHTML = ''; // Clear any existing content
+       console.log('appending...');
     projectVideoContainer.appendChild(imageElement);
   }
 
 
+   console.log('finished, updating status to loaded...');
+ projectVideoContainer.classList.add('loaded');  // Remove the blur once loaded
 
 
 }
