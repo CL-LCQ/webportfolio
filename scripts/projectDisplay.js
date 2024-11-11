@@ -109,19 +109,68 @@ displayLinksInline(relatedLinks,  linkButtonsContainer);
   // currentProjectImages = [project.imageURL];  // Reset the current project's images
   // if (project.url2) currentProjectImages.push(project.url2);
   // if (project.url3) currentProjectImages.push(project.url3);
-
   currentProjectImages = [project.hero_image];  // Reset the current project's images
 
-  if (project.imageURL) {
-    updateMedia(project.imageURL);
+  if (project.hero_image) {
+    updateMedia(project.hero_image,'project-video-container' );
   }
 
 
+  // if(project.imageURL) {
+  //   const mediaDisplay1 = document.getElementById('media-01');  // Target div for image display
+  //   mediaDisplay1.innerHTML = '';
+  //   // Create an img element
+  //   const imgElement = document.createElement('img');
+  //   imgElement.src = project.imageURL;  // Set image source to project.imageURL
+  //   imgElement.alt = 'Description of image';  // Optional: Set alt text for accessibility
+  //   imgElement.style.width = '100%';  // Make image fit the width of the parent
+  //   imgElement.style.height = 'auto';  // Maintain aspect ratio
+  //   // Append the img element to the div
+  //   mediaDisplay1.appendChild(imgElement);
+  // }
 
-  
+const observer = new MutationObserver((mutationsList, observer) => {
+    for (const mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            const overlay = document.querySelector('.info-overlay');
+            if (overlay) {
+                updateOverlaySize();  // Call function to adjust size
+                observer.disconnect();  // Stop observing once done
+            }
+        }
+    }
+});
+
+    if(project.imageURL) {
+       updateMedia(project.imageURL,'media-01' );
+    }
+
+    if(project.url2) {
+       updateMedia(project.url2,'media-02' );
+    }
+
+        if(project.url3) {
+       updateMedia(project.url3,'media-03' );
+    }else{
+        const media3container = document.getElementById('media-03');
+        media3container.innerHTML ='';
+
+    }
+
+
+
+
+// Adjust the size after a short delay
+setTimeout(() => {
+    const overlay = document.querySelector('.info-overlay');
+    if (overlay) {
+        overlay.style.height = 'auto';  // Allow height to adapt to content
+        overlay.style.width = '100%';   // Adjust width to fit within parent container if needed
+    }
+}, 100);  // Delay for 100 milliseconds to allow for rendering
   // Set the initial image for the selected project
-  currentImageIndex = 0;
-  updateImage(currentProjectImages, currentImageIndex);  // Display the first image for the current project
+  // currentImageIndex = 0;
+  // updateImage(currentProjectImages, currentImageIndex);  // Display the first image for the current project
 
 
   if(container){
@@ -160,7 +209,16 @@ displayLinksInline(relatedLinks,  linkButtonsContainer);
   // container.scrollTo({ top: 0, behavior: 'smooth' });
   smoothScrollToTop(container, 700);
   // detectSwipe(document.getElementById('project-video-container'));
-  detectSwipe(document.getElementById('project-video-container'));
+  // detectSwipe(document.getElementById('project-video-container'));
+}
+
+
+function updateOverlaySize() {
+    const overlay = document.querySelector('.info-overlay');
+    if (overlay) {
+        overlay.style.height = 'auto';  // Ensure height adapts to content
+        overlay.style.width = 'auto';   // Optional: adjust width if needed
+    }
 }
 
 // Function to format and display the links
@@ -204,65 +262,60 @@ function smoothScrollToTop(container, duration) {
 
 
 // Function to update the media (image or video) based on the project URL
-export function updateMedia(url) {
-  const projectVideoContainer = document.getElementById('project-video-container');
-  projectVideoContainer.classList.remove('loaded'); //blur content
-  console.log('updating media...');
+export function updateMedia(url, id) {
+  const projectVideoContainer = document.getElementById(id);
+  projectVideoContainer.classList.remove('loaded'); // Blur content
+  projectVideoContainer.innerHTML = ''; // Clear any existing content
 
-  // Check if it's a YouTube link
+  // Function to adjust overlay height to match content
+  function adjustOverlaySize() {
+    console.log("overlay updated");
+    const overlay = document.querySelector('.info-overlay');
+    const parent = document.querySelector('.overlay-container');
+    if (overlay) {
+      overlay.style.height = `${overlay.scrollHeight+30}px`; // Force overlay to match content height
+      parent.style.height = `${overlay.scrollHeight+30}px`; // Force overlay to match content height
+      console.log("overlay updated with size " + `${overlay.scrollHeight+30}px`);
+    }
+    projectVideoContainer.classList.add('loaded');  // Remove blur once loaded
+  }
+
   if (url.includes('youtube.com') || url.includes('youtu.be')) {
-      console.log('this is a youtube video link...');
-    const youtubeId = extractYouTubeId(url); // Extract YouTube ID
+    const youtubeId = extractYouTubeId(url);
     if (youtubeId) {
       const iframeElement = document.createElement('iframe');
       iframeElement.width = '100%';
       iframeElement.height = '100%';
-      iframeElement.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&loop=1&mute=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&fs=0&disablekb=1`; 
-      // YouTube embed link without controls, no suggestions, no annotations, no fullscreen, and keyboard control disabled.
+      iframeElement.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&loop=1&mute=1&controls=0&modestbranding=1&rel=0&iv_load_policy=3&showinfo=0&fs=0&disablekb=1`;
       iframeElement.setAttribute('allowfullscreen', 'true');
       iframeElement.setAttribute('frameborder', '0');
       iframeElement.setAttribute('allow', 'autoplay; encrypted-media;');
-       console.log('clearing...');
-      projectVideoContainer.innerHTML = ''; // Clear any existing content
-       console.log('appending...');
+
+      iframeElement.onload = adjustOverlaySize; // Adjust height when iframe loads
       projectVideoContainer.appendChild(iframeElement);
     }
   } else if (url.endsWith('.mp4') || url.endsWith('.webm')) {
-       console.log('mp4 video... '+url);
     const videoElement = document.createElement('video');
     videoElement.setAttribute('autoplay', 'true');
     videoElement.setAttribute('loop', 'true');
-    videoElement.setAttribute('muted', 'true'); // Optional: Mute the video
-    videoElement.setAttribute('controls', 'true'); // Optional: Show video controls
+    videoElement.setAttribute('muted', 'true');
+    videoElement.setAttribute('controls', 'true');
     videoElement.style.width = '100%';
     videoElement.style.height = '100%';
-    videoElement.muted = true;
-    videoElement.controls = false;
-    videoElement.src = url; // Set the video source URL
-     console.log('clearing...');
-    projectVideoContainer.innerHTML = ''; // Clear any existing content
-     console.log('appending...');
+    videoElement.src = url;
+
+    videoElement.onloadedmetadata = adjustOverlaySize; // Adjust height when video metadata loads
     projectVideoContainer.appendChild(videoElement);
-   
   } else {
-    // If it's an image
-       console.log('this is an image...'+url);
     const imageElement = document.createElement('img');
     imageElement.src = url;
     imageElement.style.width = '100%';
-    imageElement.style.height = '70%';
-    imageElement.style.objectFit = 'cover'; // Maintain aspect ratio and cover the container
-       console.log('clearing...');
-    projectVideoContainer.innerHTML = ''; // Clear any existing content
-       console.log('appending...');
+    imageElement.style.height = 'auto';   // Ensure height adapts based on image
+    imageElement.style.objectFit = 'cover';
+
+    imageElement.onload = adjustOverlaySize; // Adjust height when image loads
     projectVideoContainer.appendChild(imageElement);
   }
-
-
-   console.log('finished, updating status to loaded...');
- projectVideoContainer.classList.add('loaded');  // Remove the blur once loaded
-
-
 }
 
 // Function to extract YouTube video ID from a URL

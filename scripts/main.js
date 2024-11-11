@@ -23,14 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Call it once when the page loads to set the initial state
   document.addEventListener('DOMContentLoaded', checkWindowSize);
-
-  
-
 });
+
+
+
 
 async function loadSite(projects){
   document.getElementById('content').style.display = 'block';
-  // await preloadAllImages(projects);  // Preload all images first
+  await preloadAllImages(projects);  // Preload all images first
 
   showRightColumnContent();
 
@@ -38,14 +38,16 @@ async function loadSite(projects){
   displayProject(0);  // Display the first project  
 }
 
+
+
 // Preload all project images
 async function preloadAllImages(projects) {
   const imageUrls = [];
   projects.forEach(project => {
     if(project.hero_image) imageUrls.push(project.hero_image);
-    // if (project.imageURL) imageUrls.push(project.imageURL);
-    // if (project.url2) imageUrls.push(project.url2);
-    // if (project.url3) imageUrls.push(project.url3);
+    if (project.imageURL) imageUrls.push(project.imageURL);
+    if (project.url2) imageUrls.push(project.url2);
+    if (project.url3) imageUrls.push(project.url3);
   });
 
   // Preload all images in parallel
