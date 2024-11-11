@@ -339,6 +339,7 @@ body, html {
     gap: 30px;            /* Space between columns */
     width: 100%;          /* Full width of the container */
     padding: 30px;
+    height: auto;
     box-sizing: border-box; /* Ensures padding doesn’t affect total width */
     font-size: 1.1em;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -347,30 +348,32 @@ body, html {
     align-items: flex-start; /* Allows flex items to grow based on their content */
 }
 .info-overlay {
-    grid-column: 1;  
+    grid-column: 1;
     background-color: rgba(255, 255, 255, 0.75);
     padding: 30px;
     border-radius: 8px;
     color: #333;
-    width: 70%;                      /* Takes full width of the column */
+    width: 70%;                     /* Adjust width as needed */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px)!important;
-       z-index: 10;
+    backdrop-filter: blur(10px) !important;
+    z-index: 10;
+    height: auto;                   /* Ensures height adapts to content */
+    box-sizing: border-box;         /* Includes padding in width and height calculations */
+    display: block;                 /* Ensures block behavior in grid */
+    overflow: visible;              /* Prevents content from being cut off */
 }
 .link-overlay {
-       backdrop-filter: blur(10px);
-    grid-column: 2;
+    position: sticky;
+    top: 150px;                /* Distance from top of viewport */
+    backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.75);
     padding: 30px;
     border-radius: 8px;
-    width: 30%;      /* Adjust as needed, or set to 'auto' for content-based width */
+    width: 30%;
     color: #333;
-    opacity: 1;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     z-index: 10;
-    height: auto; /* Ensures height adapts to content */
-    box-sizing: border-box; /* Ensures padding is considered in height calculations */
-    flex-shrink: 0; /* Prevents flex item from shrinking */
+    box-sizing: border-box;
 }
 
 .category-link-list{
@@ -564,7 +567,7 @@ body, html {
   margin: 0 0 10px 0;
   font-size: 2em;
   font-weight: bold;
-  color: #333;
+  color: black;
 
 }
 
@@ -625,6 +628,9 @@ body, html {
   filter:  brightness(0.7); /* Lighten on hover */
 }
 
+.media img{
+  border-radius: 8px;
+}
 
 
 /* Loading spinner */
