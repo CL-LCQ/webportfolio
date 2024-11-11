@@ -246,7 +246,7 @@ export function updateMedia(url) {
     const imageElement = document.createElement('img');
     imageElement.src = url;
     imageElement.style.width = '100%';
-    imageElement.style.height = '100%';
+    imageElement.style.height = '70%';
     imageElement.style.objectFit = 'cover'; // Maintain aspect ratio and cover the container
        console.log('clearing...');
     projectVideoContainer.innerHTML = ''; // Clear any existing content

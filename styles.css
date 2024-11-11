@@ -334,7 +334,7 @@ body, html {
 
 .overlay-container {
     position: relative;
-    top: -250px; /* Move 20px up; adjust as needed */
+    top: -40%; /* Move 20px up; adjust as needed */
     display: flex;
 
     gap: 30px;                       /* Space between columns */
