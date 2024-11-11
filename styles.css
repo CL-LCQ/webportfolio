@@ -31,8 +31,8 @@ body, html {
 /* Circular portrait image */
 .portrait-image {
   margin-top: 20px;
-  width: 150px;  /* Set the width of the image */
-  height: 150px;  /* Set the height of the image */
+  width: 100px;  /* Set the width of the image */
+  height: 100px;  /* Set the height of the image */
   border-radius: 50%;  /* Make the image circular */
   object-fit: cover;  /* Ensure the image covers the circle and doesn't distort */
   border: 0px solid #007aff;  /* Optional: Add a blue border around the circle */
@@ -124,9 +124,9 @@ body, html {
 }
 /* Left column styling with flexbox */
 .left-column {
-  width: 29%;  /* Takes up 1/4th of the window width */
+  width: 30%;  /* Takes up 1/4th of the window width */
+  max-width: 380px;
   padding: 10px;
-
   background-color: #fff;
   border-right: 1px solid #e0e0e0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
@@ -162,8 +162,8 @@ body, html {
   color: white;
   text-align: center;
   border: none;
-  border-radius: 16px;
-  font-size: 1.2em;
+  border-radius: 8px;
+  font-size: 1.1em;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   cursor: pointer;
   margin-top: 10px;  /* Space between the button and the top content */
@@ -210,7 +210,7 @@ body, html {
 }
 
 .personal-intro { 
-  font-size: 1.1em; /* Slightly smaller font size */
+  font-size: 0.9em; /* Slightly smaller font size */
   font-weight: 300; /* Light font weight */
   margin-bottom: 20px; /* Space between subtitle and other content */
   margin-top: 0;
@@ -325,6 +325,7 @@ body, html {
     width: 100%;  /* Make both columns take the full width */
     height: auto;  /* Allow them to grow based on content */
      margin-bottom:20px;
+     max-width: 2000px;
   }
 .right-column {
  
@@ -406,7 +407,7 @@ border: 1px solid;
   position: absolute;
   bottom: 40px;
   right: 40px;
-  background-color: rgba(255, 255, 255, 0.75);  /* Light translucent white */
+  background-color: rgba(255, 255, 255, 0.90);  /* Light translucent white */
   padding: 30px;
   border-radius: 16px;  /* Rounded corners */
   color: #333;
@@ -415,7 +416,7 @@ border: 1px solid;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.5;
 /*  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
-  backdrop-filter: blur(5px);  /* Stronger blur effect */
+  backdrop-filter: blur(10px);  /* Stronger blur effect */
   z-index: 10;  /* Ensure the overlay is on top */
   /* Animation setup */
   opacity: 0;  /* Start invisible */
@@ -655,8 +656,8 @@ border: 1px solid;
   width: 80%;  /* Take the full width of the left column */
   padding: 20px;  /* Add padding for spacing on the sides */
   margin-top: auto;  
-  margin-right: 30px;
-  margin-left: 30px;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .social-media a {
@@ -665,31 +666,19 @@ border: 1px solid;
 }
 
 .social-media img {
-  width: 20px; /* Adjust the size of the icons */
-  height: 20px; /* Ensure consistent height */
+  width: 45px; /* Adjust the size of the icons */
+  height: 45px; /* Ensure consistent height */
   transition: transform 0.3s ease; /* Add a hover effect */
 }
 
 .social-media img:hover {
   transform: scale(1.1); /* Slightly enlarge the icon on hover */
 }
-.social-media svg path {
-  fill: #555; /* Dark grey */
-}
 
-/* Hover effect to lighten the icons */
-.social-media svg:hover path {
-  fill: #333; /* Lighter grey on hover */
-}
 
-/* Apply dark grey color to SVG images using filter */
-.social-media img {
- filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(50%) contrast(90%);
-
-}
 /* Hover effect to lighten the icons */
 .social-media img:hover {
-  filter: grayscale(50%) brightness(0.3); /* Lighten on hover */
+  filter:  brightness(0.7); /* Lighten on hover */
 }
 
 
