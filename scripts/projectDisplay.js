@@ -64,6 +64,7 @@ export async function displayProject(index) {
   const overlayTitle = document.getElementById('overlay-title');
   const categoryWhat = document.getElementById('category-what');
   const categoryWhy = document.getElementById('category-why');
+  const categoryImpact = document.getElementById('category-impact');
   const categoryRole = document.getElementById('category-role');
   const categoryTech = document.getElementById('category-tech');
   const overlayDate = document.getElementById('overlay-date');
@@ -90,6 +91,7 @@ export async function displayProject(index) {
   overlayIndustry.textContent = project.industry || 'No description available.';
   categoryWhat.textContent = project.what || 'No description available for What.';
   categoryWhy.textContent = project.why || 'No description available for Why.';
+  categoryImpact.textContent = project.impact || 'No description available for Why.';
   categoryRole.textContent = project.role || 'No description available for Role.';
   categoryTech.textContent = project.tech || 'No description provided';
   // buttonLink.href = project.link|| 'No description provided';;
@@ -104,9 +106,11 @@ displayLinksInline(relatedLinks,  linkButtonsContainer);
   // createButtons(linksFromDB)
 
   // Prepare the images for the selected project (main image, url2, url3 if they exist)
-  currentProjectImages = [project.imageURL];  // Reset the current project's images
-  if (project.url2) currentProjectImages.push(project.url2);
-  if (project.url3) currentProjectImages.push(project.url3);
+  // currentProjectImages = [project.imageURL];  // Reset the current project's images
+  // if (project.url2) currentProjectImages.push(project.url2);
+  // if (project.url3) currentProjectImages.push(project.url3);
+
+  currentProjectImages = [project.hero_image];  // Reset the current project's images
 
   if (project.imageURL) {
     updateMedia(project.imageURL);

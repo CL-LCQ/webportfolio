@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(error => console.error("Error loading Supabase script:", error));
 
   // document.getElementById('info-overlay').classList.toggle('minimized'); //uncomment to start minimized
-  addOverlayToggleListener();
+  // addOverlayToggleListener();
 
 
   // Add a resize event listener
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadSite(projects){
   document.getElementById('content').style.display = 'block';
-  await preloadAllImages(projects);  // Preload all images first
+  // await preloadAllImages(projects);  // Preload all images first
 
   showRightColumnContent();
 
@@ -42,9 +42,10 @@ async function loadSite(projects){
 async function preloadAllImages(projects) {
   const imageUrls = [];
   projects.forEach(project => {
-    if (project.imageURL) imageUrls.push(project.imageURL);
-    if (project.url2) imageUrls.push(project.url2);
-    if (project.url3) imageUrls.push(project.url3);
+    if(project.hero_image) imageUrls.push(project.hero_image);
+    // if (project.imageURL) imageUrls.push(project.imageURL);
+    // if (project.url2) imageUrls.push(project.url2);
+    // if (project.url3) imageUrls.push(project.url3);
   });
 
   // Preload all images in parallel

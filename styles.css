@@ -334,17 +334,17 @@ body, html {
 
 .overlay-container {
     position: relative;
-    top: -40%; /* Move 20px up; adjust as needed */
+    top: -40%; /* Adjust as needed */
     display: flex;
-
-    gap: 30px;                       /* Space between columns */
-    width: 100%;                     /* Full width of the container */
+    gap: 30px;            /* Space between columns */
+    width: 100%;          /* Full width of the container */
     padding: 30px;
-    box-sizing: border-box;          /* Ensures padding doesn’t affect total width */
+    box-sizing: border-box; /* Ensures padding doesn’t affect total width */
     font-size: 1.1em;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     z-index: 10;
+    align-items: flex-start; /* Allows flex items to grow based on their content */
 }
 .info-overlay {
     grid-column: 1;  
@@ -358,17 +358,19 @@ body, html {
        z-index: 10;
 }
 .link-overlay {
-   backdrop-filter: blur(10px);
-    grid-column: 2;  
+       backdrop-filter: blur(10px);
+    grid-column: 2;
     background-color: rgba(255, 255, 255, 0.75);
     padding: 30px;
     border-radius: 8px;
-    width: 30%;      
+    width: 30%;      /* Adjust as needed, or set to 'auto' for content-based width */
     color: #333;
     opacity: 1;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     z-index: 10;
-
+    height: auto; /* Ensures height adapts to content */
+    box-sizing: border-box; /* Ensures padding is considered in height calculations */
+    flex-shrink: 0; /* Prevents flex item from shrinking */
 }
 
 .category-link-list{
@@ -537,7 +539,15 @@ body, html {
   font-weight: bold;
 /*  color: #007aff;*/
  color: #333;
+
   display: inline;
+}
+
+.gradient-text {
+  background-image: linear-gradient(to right, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 1.5em;
 }
 
 /* Content below each category title */
