@@ -57,6 +57,10 @@ export async function displayProject(index) {
   // const projectImage = document.getElementById('project-image');
   // const mainDescription = document.getElementById('selected-project-description');
   // Update the info overlay with the project details
+
+  const container = document.querySelector('.right-column-content');
+
+
   const overlayTitle = document.getElementById('overlay-title');
   const categoryWhat = document.getElementById('category-what');
   const categoryWhy = document.getElementById('category-why');
@@ -64,6 +68,7 @@ export async function displayProject(index) {
   const categoryTech = document.getElementById('category-tech');
   const overlayDate = document.getElementById('overlay-date');
   const overlayBox = document.querySelector('.info-overlay');  // Get the overlay box
+  const overlayLink= document.querySelector('.link-overlay');  // Get the overlay box
   const overlayContainer = document.querySelector('.overlay-container');  // Get the overlay box
   const overlayCompanyName = document.getElementById('overlay-companyname');  // New for company name
   const overlayIndustry = document.getElementById('overlay-industry');  // New for industry
@@ -86,7 +91,6 @@ export async function displayProject(index) {
   // buttonName.textContent = project.linkname || 'No description provided';;
 
 
-
   const linksFromDB = [
   { name: project.linkname, url: project.link }
   ];
@@ -103,10 +107,27 @@ export async function displayProject(index) {
     updateMedia(project.imageURL);
   }
 
+
+
   
   // Set the initial image for the selected project
   currentImageIndex = 0;
   updateImage(currentProjectImages, currentImageIndex);  // Display the first image for the current project
+
+
+  if(container){
+        if (projectElement) {
+        console.log(projectElement.scrollHeight); // Access scrollHeight
+        container.scrollTop = container.scrollHeight;
+    } else {
+        console.error("Element not found: #project");
+    }
+  }
+  else{
+    console.error("Element not found: #project");
+  }
+  
+
 
   // Create dots for the images of the selected project
   createDots(currentProjectImages);
@@ -120,10 +141,18 @@ export async function displayProject(index) {
   document.querySelector(`.project-list ul li:nth-child(${index + 1})`).classList.add('selected');
 
  // Trigger the slide-in animation by resetting the 'active' class
-  overlayContainer.classList.remove('active');  // Remove the active class to reset animation
+  overlayBox.classList.remove('active');  // Remove the active class to reset animation
   void overlayBox.offsetWidth;  // Force reflow to restart the animation
-  overlayContainer.classList.add('active');  // Add the class to trigger the animation again
+  overlayBox.classList.add('active');  // Add the class to trigger the animation again
 
+  overlayLink.classList.remove('active');  // Remove the active class to reset animation
+  void overlayLink.offsetWidth;  // Force reflow to restart the animation
+  overlayLink.classList.add('active');  // Add the class to trigger the animation again
+
+
+  ///SCROLL directly to bottom and up
+
+  container.scrollTo({ top: 0, behavior: 'smooth' });
   // detectSwipe(document.getElementById('project-video-container'));
   detectSwipe(document.getElementById('project-video-container'));
 }

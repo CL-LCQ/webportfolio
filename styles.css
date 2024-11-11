@@ -345,28 +345,29 @@ body, html {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     z-index: 10;
-        transition: opacity 0.5s ease;
 }
 .info-overlay {
     grid-column: 1;  
     background-color: rgba(255, 255, 255, 0.75);
     padding: 30px;
-    border-radius: 16px;
+    border-radius: 8px;
     color: #333;
     width: 70%;                      /* Takes full width of the column */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px)!important;
+       z-index: 10;
 }
 .link-overlay {
+   backdrop-filter: blur(10px);
     grid-column: 2;  
     background-color: rgba(255, 255, 255, 0.75);
     padding: 30px;
-    border-radius: 16px;
+    border-radius: 8px;
     width: 30%;      
     color: #333;
     opacity: 1;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
+    z-index: 10;
 
 }
 
@@ -376,7 +377,7 @@ body, html {
   0% {
 /*    transform: translateX(-150%);*/
     opacity: 0;
-       transform: scale(1.1); /* Start at 120% */
+       transform: scale(1.05); /* Start at 120% */
   }
   100% {
 /*    transform: translateX(0);*/
@@ -390,9 +391,16 @@ body, html {
 
 /* Active class triggers the keyframe animation */
 .overlay-container.active {
+/*  animation: appear 0.5s ease forwards;*/
+}
+
+.info-overlay.active{
   animation: appear 0.5s ease forwards;
 }
 
+.link-overlay.active{
+  animation: appear 0.5s ease forwards;
+}
 
 
 /* Chip container */
