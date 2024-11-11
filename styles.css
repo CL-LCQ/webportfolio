@@ -442,7 +442,7 @@ body, html {
   background-color: rgba(255, 255, 255, 0.90);  /* Light translucent white */
   padding: 20px;
   backdrop-filter: blur(10px);  /* Stronger blur effect */
-  z-index: 1;                   /* Ensures it stays above scrollable content */
+  z-index: 20;                   /* Ensures it stays above scrollable content */
 
 }
 
@@ -610,8 +610,8 @@ body, html {
 }
 
 .social-media img {
-  width: 45px; /* Adjust the size of the icons */
-  height: 45px; /* Ensure consistent height */
+  width: 30px; /* Adjust the size of the icons */
+  height: 30px; /* Ensure consistent height */
   transition: transform 0.3s ease; /* Add a hover effect */
 }
 
@@ -635,7 +635,7 @@ body, html {
   height: 100%;  /* Full height of the right column */
   width: 100%;
   background-color: rgba(255, 255, 255, 0.8);  /* Optional background */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
 }
 
