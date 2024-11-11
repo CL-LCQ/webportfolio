@@ -291,8 +291,20 @@ export function updateMedia(url, id) {
     videoElement.setAttribute('loop', 'true');
     videoElement.setAttribute('muted', 'true');
     videoElement.setAttribute('controls', 'true');
-    videoElement.style.width = '100%';
-    videoElement.style.height = '100%';
+
+
+    videoElement.onloadedmetadata = function() {
+        if (videoElement.videoHeight > videoElement.videoWidth) {
+            // If the video is portrait, divide the height by 3
+            videoElement.style.height = `${videoElement.videoHeight / 2}px`;
+              videoElement.style.width = '100%';
+        } else {
+            // If the video is landscape or square, use full height
+            videoElement.style.height = '100%';
+            videoElement.style.width = '100%';
+        }
+    };
+
     videoElement.src = url;
 
     // videoElement.onloadedmetadata = adjustOverlaySize; // Adjust height when video metadata loads
