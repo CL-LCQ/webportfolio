@@ -76,6 +76,11 @@ export async function displayProject(index) {
 
   const buttonLink = document.getElementById('dynamic-link');  
   const buttonName = document.getElementById('dynamic-text');  
+  const pressLinkContainer = document.getElementById('press-link-container');
+  const linkButtonsContainer = document.getElementById('link-buttons-container');
+
+    linkButtonsContainer.innerHTML = '';
+    pressLinkContainer.innerHTML = '';
 
   // Set the image and project description (with fallback if undefined)
   // projectImage.src = project.imageURL || '';  // Set image or fallback to empty
@@ -90,13 +95,13 @@ export async function displayProject(index) {
   // buttonLink.href = project.link|| 'No description provided';;
   // buttonName.textContent = project.linkname || 'No description provided';;
 
-
-  const linksFromDB = [
-  { name: project.linkname, url: project.link }
-  ];
-
+const relatedLinks = project.link;
+const pressLinks = project.press;
+// Call displayLinksInline to display the links
+displayLinksInline(pressLinks, pressLinkContainer);
+displayLinksInline(relatedLinks,  linkButtonsContainer);
   //check for all the links
-  createButtons(linksFromDB)
+  // createButtons(linksFromDB)
 
   // Prepare the images for the selected project (main image, url2, url3 if they exist)
   currentProjectImages = [project.imageURL];  // Reset the current project's images
@@ -154,6 +159,24 @@ export async function displayProject(index) {
   detectSwipe(document.getElementById('project-video-container'));
 }
 
+// Function to format and display the links
+function displayLinksInline(linkData, container) {
+    const linksContent = container;
+
+    // Check if linkData exists and is an array
+    if (Array.isArray(linkData)) {
+        // Create an array of anchor (<a>) elements as strings
+        const linksArray = linkData.map(linkItem => {
+            return `<a href="${linkItem.link}" target="_blank">${linkItem.title}</a>`;
+        });
+
+        // Join the array with commas and display it
+        linksContent.innerHTML = linksArray.join(', ');
+    } else {
+        console.error("Invalid data format for pressLinks");
+    }
+}
+
 function smoothScrollToTop(container, duration) {
     const start = container.scrollTop;
     const change = -start;
@@ -174,30 +197,6 @@ function smoothScrollToTop(container, duration) {
     requestAnimationFrame(animateScroll);
 }
 
-// Function to create buttons dynamically
-function createButtons(links) {
-  const buttonContainer = document.getElementById('link-buttons-container');
-   buttonContainer.innerHTML = '';
-
-  links.forEach(link => {
-    // Create an anchor element for each button
-    const button = document.createElement('a');
-    button.href = link.url;
-    button.target = "_blank";  // Open in a new tab
-    button.classList.add('blue-button');
-    
-    // Set button text
-    button.innerHTML = `${link.name} 
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M14 3h7v7" />
-        <path d="M10 14L21 3" />
-        <path d="M21 21H3V3" />
-      </svg>`;
-    
-    // Append the button to the container
-    buttonContainer.appendChild(button);
-  });
-}
 
 
 // Function to update the media (image or video) based on the project URL
