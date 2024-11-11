@@ -116,17 +116,13 @@ export async function displayProject(index) {
 
 
   if(container){
-        if (projectElement) {
-        console.log(projectElement.scrollHeight); // Access scrollHeight
-        container.scrollTop = container.scrollHeight;
-    } else {
-        console.error("Element not found: #project");
-    }
+    console.log(container.scrollHeight); // Access scrollHeight
+    container.scrollTop = container.scrollHeight;
+    } 
+  else {
+      console.error("Element not found: #project");
   }
-  else{
-    console.error("Element not found: #project");
-  }
-  
+
 
 
   // Create dots for the images of the selected project
@@ -152,12 +148,31 @@ export async function displayProject(index) {
 
   ///SCROLL directly to bottom and up
 
-  container.scrollTo({ top: 0, behavior: 'smooth' });
+  // container.scrollTo({ top: 0, behavior: 'smooth' });
+  smoothScrollToTop(container, 700);
   // detectSwipe(document.getElementById('project-video-container'));
   detectSwipe(document.getElementById('project-video-container'));
 }
 
+function smoothScrollToTop(container, duration) {
+    const start = container.scrollTop;
+    const change = -start;
+    const startTime = performance.now();
 
+    function animateScroll(currentTime) {
+        const elapsedTime = currentTime - startTime;
+        const progress = Math.min(elapsedTime / duration, 1);
+        
+        // Ease-in-out effect
+        container.scrollTop = start + change * (0.5 - 0.5 * Math.cos(Math.PI * progress));
+        
+        if (progress < 1) {
+            requestAnimationFrame(animateScroll);
+        }
+    }
+
+    requestAnimationFrame(animateScroll);
+}
 
 // Function to create buttons dynamically
 function createButtons(links) {
