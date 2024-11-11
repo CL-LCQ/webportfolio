@@ -113,7 +113,7 @@ body, html {
   height: 100%;
   position: relative;
   overflow: hidden;
-  border-radius: 16px;
+ 
 }
 
 .project-video video,
@@ -306,6 +306,7 @@ body, html {
   position: relative; /* Allow absolute positioning for overlay */
   min-height: 300px;
   overflow-y: auto;   /* Enable vertical scrolling within the content */
+  overflow-x: hidden!important;
 }
 
 #project-video-container{
@@ -364,7 +365,7 @@ body, html {
 }
 
 .title-overlay-sticky{
-   position: absolute;
+  position: absolute;
   width: 100%;
   position: sticky;             /* Makes this div stick within its parent container */
   top: 0;                       /* Sticks to the top of the container */
@@ -449,8 +450,8 @@ border: 1px solid;
   width: 50%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-/*  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
-  backdrop-filter: blur(10px);  /* Stronger blur effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);   Subtle shadow 
+  backdrop-filter: blur(10px);  /* Stronger blur effect 
   z-index: 10;  /* Ensure the overlay is on top */
   /* Animation setup */
   opacity: 0;  /* Start invisible */
