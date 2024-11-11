@@ -93,18 +93,12 @@ body, html {
 
 }
 
-.project-video {
+.hero-container {
   width: 100%;
-  height: 100%;
+  height: 100%%;
   position: relative;
   overflow: hidden;
  
-}
-.project-video video,
-.project-video img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures the media covers the container */
 }
 
 
@@ -334,7 +328,7 @@ body, html {
 
 .overlay-container {
     position: relative;
-    top: -40%; /* Adjust as needed */
+    top: -10%; /* Adjust as needed */
     display: flex;
     gap: 30px;            /* Space between columns */
     width: 100%;          /* Full width of the container */

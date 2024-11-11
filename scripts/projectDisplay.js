@@ -112,7 +112,7 @@ displayLinksInline(relatedLinks,  linkButtonsContainer);
   currentProjectImages = [project.hero_image];  // Reset the current project's images
 
   if (project.hero_image) {
-    updateMedia(project.hero_image,'project-video-container' );
+    updateMedia(project.hero_image,'hero-container' );
   }
 
 
@@ -129,17 +129,17 @@ displayLinksInline(relatedLinks,  linkButtonsContainer);
   //   mediaDisplay1.appendChild(imgElement);
   // }
 
-const observer = new MutationObserver((mutationsList, observer) => {
-    for (const mutation of mutationsList) {
-        if (mutation.type === 'childList') {
-            const overlay = document.querySelector('.info-overlay');
-            if (overlay) {
-                updateOverlaySize();  // Call function to adjust size
-                observer.disconnect();  // Stop observing once done
-            }
-        }
-    }
-});
+// const observer = new MutationObserver((mutationsList, observer) => {
+//     for (const mutation of mutationsList) {
+//         if (mutation.type === 'childList') {
+//             const overlay = document.querySelector('.info-overlay');
+//             if (overlay) {
+//                 updateOverlaySize();  // Call function to adjust size
+//                 observer.disconnect();  // Stop observing once done
+//             }
+//         }
+//     }
+// });
 
     if(project.imageURL) {
        updateMedia(project.imageURL,'media-01' );
@@ -164,14 +164,10 @@ const observer = new MutationObserver((mutationsList, observer) => {
 setTimeout(() => {
     const overlay = document.querySelector('.info-overlay');
     if (overlay) {
-        overlay.style.height = 'auto';  // Allow height to adapt to content
-        overlay.style.width = '100%';   // Adjust width to fit within parent container if needed
+        overlay.style.height =  `${overlay.scrollHeight+30}px`;;  // Allow height to adapt to content
+        // overlay.style.width = '100%';   // Adjust width to fit within parent container if needed
     }
-}, 100);  // Delay for 100 milliseconds to allow for rendering
-  // Set the initial image for the selected project
-  // currentImageIndex = 0;
-  // updateImage(currentProjectImages, currentImageIndex);  // Display the first image for the current project
-
+}, 500);  // Delay for 100 milliseconds to allow for rendering
 
   if(container){
     console.log(container.scrollHeight); // Access scrollHeight
@@ -208,18 +204,10 @@ setTimeout(() => {
 
   // container.scrollTo({ top: 0, behavior: 'smooth' });
   smoothScrollToTop(container, 700);
-  // detectSwipe(document.getElementById('project-video-container'));
-  // detectSwipe(document.getElementById('project-video-container'));
+
 }
 
 
-function updateOverlaySize() {
-    const overlay = document.querySelector('.info-overlay');
-    if (overlay) {
-        overlay.style.height = 'auto';  // Ensure height adapts to content
-        overlay.style.width = 'auto';   // Optional: adjust width if needed
-    }
-}
 
 // Function to format and display the links
 function displayLinksInline(linkData, container) {
@@ -267,18 +255,21 @@ export function updateMedia(url, id) {
   projectVideoContainer.classList.remove('loaded'); // Blur content
   projectVideoContainer.innerHTML = ''; // Clear any existing content
 
+
+  projectVideoContainer.classList.add('loaded');  // Remove blur once loaded
+
   // Function to adjust overlay height to match content
-  function adjustOverlaySize() {
-    console.log("overlay updated");
-    const overlay = document.querySelector('.info-overlay');
-    const parent = document.querySelector('.overlay-container');
-    if (overlay) {
-      overlay.style.height = `${overlay.scrollHeight+30}px`; // Force overlay to match content height
-      parent.style.height = `${overlay.scrollHeight+30}px`; // Force overlay to match content height
-      console.log("overlay updated with size " + `${overlay.scrollHeight+30}px`);
-    }
-    projectVideoContainer.classList.add('loaded');  // Remove blur once loaded
-  }
+  // function adjustOverlaySize() {
+  //   console.log("overlay updated");
+  //   const overlay = document.querySelector('.info-overlay');
+  //   const parent = document.querySelector('.overlay-container');
+  //   if (overlay) {
+  //     overlay.style.height = `${overlay.scrollHeight+30}px`; // Force overlay to match content height
+  //     parent.style.height = `${overlay.scrollHeight+30}px`; // Force overlay to match content height
+  //     console.log("overlay updated with size " + `${overlay.scrollHeight+30}px`);
+  //   }
+  
+  // }
 
   if (url.includes('youtube.com') || url.includes('youtu.be')) {
     const youtubeId = extractYouTubeId(url);
@@ -291,7 +282,7 @@ export function updateMedia(url, id) {
       iframeElement.setAttribute('frameborder', '0');
       iframeElement.setAttribute('allow', 'autoplay; encrypted-media;');
 
-      iframeElement.onload = adjustOverlaySize; // Adjust height when iframe loads
+      // iframeElement.onload = adjustOverlaySize; // Adjust height when iframe loads
       projectVideoContainer.appendChild(iframeElement);
     }
   } else if (url.endsWith('.mp4') || url.endsWith('.webm')) {
@@ -304,16 +295,26 @@ export function updateMedia(url, id) {
     videoElement.style.height = '100%';
     videoElement.src = url;
 
-    videoElement.onloadedmetadata = adjustOverlaySize; // Adjust height when video metadata loads
+    // videoElement.onloadedmetadata = adjustOverlaySize; // Adjust height when video metadata loads
     projectVideoContainer.appendChild(videoElement);
   } else {
     const imageElement = document.createElement('img');
     imageElement.src = url;
-    imageElement.style.width = '100%';
-    imageElement.style.height = 'auto';   // Ensure height adapts based on image
-    imageElement.style.objectFit = 'cover';
+    if(id='hero-container'){
+        imageElement.style.width = '100%';           // Set the target width
+        imageElement.style.height = '55vh';          // Set the target height
+        imageElement.style.objectFit = 'cover';       // Ensures the image fills the box, cropping as needed
 
-    imageElement.onload = adjustOverlaySize; // Adjust height when image loads
+    }
+    else{
+
+      imageElement.style.width = '100%';
+      imageElement.style.height = 'auto';   // Ensure height adapts based on image
+      imageElement.style.objectFit = 'cover';
+
+    }
+
+    // imageElement.onload = adjustOverlaySize; // Adjust height when image loads
     projectVideoContainer.appendChild(imageElement);
   }
 }
