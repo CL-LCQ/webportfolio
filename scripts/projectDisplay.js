@@ -64,6 +64,7 @@ export async function displayProject(index) {
   const categoryTech = document.getElementById('category-tech');
   const overlayDate = document.getElementById('overlay-date');
   const overlayBox = document.querySelector('.info-overlay');  // Get the overlay box
+  const overlayContainer = document.querySelector('.overlay-container');  // Get the overlay box
   const overlayCompanyName = document.getElementById('overlay-companyname');  // New for company name
   const overlayIndustry = document.getElementById('overlay-industry');  // New for industry
 
@@ -119,9 +120,9 @@ export async function displayProject(index) {
   document.querySelector(`.project-list ul li:nth-child(${index + 1})`).classList.add('selected');
 
  // Trigger the slide-in animation by resetting the 'active' class
-  overlayBox.classList.remove('active');  // Remove the active class to reset animation
+  overlayContainer.classList.remove('active');  // Remove the active class to reset animation
   void overlayBox.offsetWidth;  // Force reflow to restart the animation
-  overlayBox.classList.add('active');  // Add the class to trigger the animation again
+  overlayContainer.classList.add('active');  // Add the class to trigger the animation again
 
   // detectSwipe(document.getElementById('project-video-container'));
   detectSwipe(document.getElementById('project-video-container'));
