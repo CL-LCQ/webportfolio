@@ -293,10 +293,6 @@ body, html {
   border-radius: 16px; /* Rounded corners to match iOS design */ 
 }
 
-.scrollable-content{
-    height: 100%;       /* Fill the container's height */
-    overflow-y: auto;   /* Enable vertical scrolling within the content */
-}
 
 /* Ensure that right-column-content fills the remaining space */
 #right-column-content {
@@ -367,8 +363,39 @@ body, html {
   z-index: 20;       /* Ensure the chip container is on top */
 }
 
+.title-overlay-sticky{
+   position: absolute;
+  width: 100%;
+  position: sticky;             /* Makes this div stick within its parent container */
+  top: 0;                       /* Sticks to the top of the container */
+  
+  align-items: center;          /* Center items vertically */
+  background-color: rgba(255, 255, 255, 0.90);  /* Light translucent white */
+  padding: 20px;
+  backdrop-filter: blur(10px);  /* Stronger blur effect */
+  z-index: 1;                   /* Ensures it stays above scrollable content */
+
+}
+
+.title-role-container {
+    display: flex;                 /* Aligns title and role horizontally */
+    align-items: flex-end;           /* Vertically centers items within the container */
+    gap: 10px;                     /* Space between title and role */
+}
+
+#overlay-title {
+    font-size: 1.5em;              /* Adjust title font size as needed */
+    margin: 0;                     /* Remove default margin */
+}
+
+#category-role {
+    font-size: 1em;                /* Adjust role font size as needed */
+    margin: 0;                     /* Remove default margin */
+    color: #666;                   /* Optional color for role details */
+}
+
 /* Chip styling with small font and outline */
-.info-overlay .chip {
+.title-overlay-sticky .chip {
 /*  border: 1px solid #007aff !important;  */
 /*  color: #007aff !important;            */
 border: 1px solid;
@@ -382,7 +409,7 @@ border: 1px solid;
   z-index: 20;                           /* Ensure chips are on top of other content */
 }
 .right-column .info-overlay {
-  width: 80%;  /* Set the width to 70% of the right column */
+  width: 60%;  /* Set the width to 70% of the right column */
   max-width: 100%; /* Ensure it doesn't exceed the width of the right column */
 
 }
@@ -413,13 +440,13 @@ border: 1px solid;
 .info-overlay {
   position: absolute;
   bottom: -280px;
-
+  left: 30px;
   background-color: rgba(255, 255, 255, 0.90);  /* Light translucent white */
   padding: 30px;
   border-radius: 16px;  /* Rounded corners */
   color: #333;
   font-size: 1.1em; /* Slightly smaller font size */
-  width: 70%;
+  width: 50%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.5;
 /*  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
@@ -427,7 +454,7 @@ border: 1px solid;
   z-index: 10;  /* Ensure the overlay is on top */
   /* Animation setup */
   opacity: 0;  /* Start invisible */
-  transition: transform 0.5s ease, opacity 0.5s ease,width 0.5s ease, height 1s ease, padding 0.5s ease;  /* Smooth slide in and fade */
+  transition: opacity 0.5s ease;  /* Smooth slide in and fade */
 }
 .round-button {
   position: absolute;
@@ -487,11 +514,11 @@ border: 1px solid;
 /* Keyframe animation for sliding in */
 @keyframes slideInFromLeft {
   0% {
-    transform: translateX(-150%);
+/*    transform: translateX(-150%);*/
     opacity: 0;
   }
   100% {
-    transform: translateX(0);
+/*    transform: translateX(0);*/
     opacity: 1;
   }
 }
@@ -509,12 +536,6 @@ border: 1px solid;
   margin-bottom: 0px;
 }
 
-/* Transparent state */
-.info-overlay.transparent {
-  opacity: 0.1;  /* Lower opacity when transparent */
-  backdrop-filter: blur(0px);  /* Stronger blur effect */
-  background-color: rgba(255, 255, 255, 0.1);  /* Adjust the background transparency */
-}
 
 
 /* Active class triggers the keyframe animation */
@@ -696,6 +717,7 @@ border: 1px solid;
   justify-content: center;
   align-items: center;
   height: 100%;  /* Full height of the right column */
+  width: 100%;
   background-color: rgba(255, 255, 255, 0.8);  /* Optional background */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
