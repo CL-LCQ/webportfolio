@@ -143,10 +143,18 @@ displayLinksInline(relatedLinks,  linkButtonsContainer);
 
     if(project.imageURL) {
        updateMedia(project.imageURL,'media-01' );
+    }else{
+        const media3container = document.getElementById('media-01');
+        media3container.innerHTML ='';
+
     }
 
     if(project.url2) {
        updateMedia(project.url2,'media-02' );
+    }else{
+        const media3container = document.getElementById('media-02');
+        media3container.innerHTML ='';
+
     }
 
         if(project.url3) {
@@ -291,7 +299,7 @@ export function updateMedia(url, id) {
     videoElement.setAttribute('loop', 'true');
     videoElement.setAttribute('muted', 'true');
     videoElement.setAttribute('controls', 'true');
-
+    videoElement.muted = true;
 
     videoElement.onloadedmetadata = function() {
         if (videoElement.videoHeight > videoElement.videoWidth) {
