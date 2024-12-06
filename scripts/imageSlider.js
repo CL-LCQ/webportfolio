@@ -63,26 +63,25 @@ dotsContainer.style.display ='none';
 // startAutoChange(images)
 
 
-const nextButton = document.getElementById('next-button');
-nextButton.classList.remove('active');  // Reset the animation
-void nextButton.offsetWidth;  // Force reflow to restart the animation
-dotsContainer.classList.add('active');  // Add the class to trigger the animation
+// const nextButton = document.getElementById('next-button');
+// nextButton.classList.remove('active');  // Reset the animation
+// void nextButton.offsetWidth;  // Force reflow to restart the animation
+// dotsContainer.classList.add('active');  // Add the class to trigger the animation
 
-nextButton.addEventListener('click', () => {
-  // goToNextImage(imageStore); // Calls the function that moves to the next image
-  console.log('tapped next')
-    const event = new KeyboardEvent('keydown', {
-    key: 'ArrowRight',
-    keyCode: 39, // keyCode for the right arrow
-    code: 'ArrowRight',
-    which: 39,
-    bubbles: true // Allow the event to bubble up through the DOM
-    });
-
-  // Dispatch the event on the document or a specific element
-  // document.dispatchEvent(event);
-    handleKeydown(event)
-});
+// nextButton.addEventListener('click', () => {
+//   // goToNextImage(imageStore); // Calls the function that moves to the next image
+//   console.log('tapped next')
+//     const event = new KeyboardEvent('keydown', {
+//     key: 'ArrowRight',
+//     keyCode: 39, // keyCode for the right arrow
+//     code: 'ArrowRight',
+//     which: 39,
+//     bubbles: true // Allow the event to bubble up through the DOM
+//     });
+//   // Dispatch the event on the document or a specific element
+//   // document.dispatchEvent(event);
+//     handleKeydown(event)
+// });
  
 
 }

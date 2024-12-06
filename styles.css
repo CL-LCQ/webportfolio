@@ -21,22 +21,6 @@ body, html {
 }
 
 
-/* Portrait container */
-.portrait-container {
-  display: flex;
-  justify-content: center;  /* Center the image horizontally */
-  margin-bottom: 20px;  /* Add space below the portrait */
-}
-
-/* Circular portrait image */
-.portrait-image {
-  margin-top: 20px;
-  width: 150px;  /* Set the width of the image */
-  height: 150px;  /* Set the height of the image */
-  border-radius: 50%;  /* Make the image circular */
-  object-fit: cover;  /* Ensure the image covers the circle and doesn't distort */
-  border: 0px solid #007aff;  /* Optional: Add a blue border around the circle */
-}
 
 /* Styling for dots container */
 .dots-container {
@@ -108,25 +92,21 @@ body, html {
   padding: 20px; /* Add padding inside the container */
 
 }
-.project-video {
+
+.hero-container {
   width: 100%;
-  height: 100%;
+  height: 100%%;
   position: relative;
   overflow: hidden;
-  border-radius: 16px;
+ 
 }
 
-.project-video video,
-.project-video img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures the media covers the container */
-}
+
 /* Left column styling with flexbox */
 .left-column {
-  width: 29%;  /* Takes up 1/4th of the window width */
+  width: 30%;  /* Takes up 1/4th of the window width */
+  max-width: 380px;
   padding: 10px;
-
   background-color: #fff;
   border-right: 1px solid #e0e0e0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
@@ -162,8 +142,8 @@ body, html {
   color: white;
   text-align: center;
   border: none;
-  border-radius: 16px;
-  font-size: 1.2em;
+  border-radius: 8px;
+  font-size: 1.1em;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   cursor: pointer;
   margin-top: 10px;  /* Space between the button and the top content */
@@ -210,7 +190,7 @@ body, html {
 }
 
 .personal-intro { 
-  font-size: 1.1em; /* Slightly smaller font size */
+  font-size: 0.9em; /* Slightly smaller font size */
   font-weight: 300; /* Light font weight */
   margin-bottom: 20px; /* Space between subtitle and other content */
   margin-top: 0;
@@ -289,7 +269,10 @@ body, html {
   justify-content: center;
   position: relative;  /* This ensures that the dots are positioned relative to this column */
   flex-grow: 1; 
+  overflow: hidden;     
+  border-radius: 16px; /* Rounded corners to match iOS design */ 
 }
+
 
 /* Ensure that right-column-content fills the remaining space */
 #right-column-content {
@@ -302,8 +285,10 @@ body, html {
   width: 100%; /* Full width of the column */
   position: relative; /* Allow absolute positioning for overlay */
   min-height: 300px;
-  
+  overflow-y: auto;   /* Enable vertical scrolling within the content */
+  overflow-x: hidden!important;
 }
+
 
 #project-video-container{
     filter: blur(10px);
@@ -325,30 +310,116 @@ body, html {
     width: 100%;  /* Make both columns take the full width */
     height: auto;  /* Allow them to grow based on content */
      margin-bottom:20px;
+     max-width: 2000px;
   }
-.right-column {
- 
-  margin-left:0px;
-}
-
-
-
-  .info-overlay {
-    display: none;
+  .right-column {
+    margin-left:0px;
   }
 
-
 }
-
-
-
 
 #project-image {
   width: 100%;
   height: 100%; /* Full height of the right column */
   object-fit: cover; /* Cover the entire area while maintaining aspect ratio */
-  border-radius: 16px; /* Rounded corners to match iOS design */
+
 }
+
+
+.overlay-container {
+    position: relative;
+    top: -10%; /* Adjust as needed */
+    display: flex;
+    gap: 30px;            /* Space between columns */
+    width: 100%;          /* Full width of the container */
+    padding: 30px;
+    height: auto;
+    box-sizing: border-box; /* Ensures padding doesn’t affect total width */
+    font-size: 1.1em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    z-index: 10;
+    align-items: flex-start; /* Allows flex items to grow based on their content */
+}
+.info-overlay {
+    grid-column: 1;
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 30px;
+    border-radius: 8px;
+    color: #333;
+    width: 70%;                     /* Adjust width as needed */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px) !important;
+    z-index: 10;
+    height: auto;                   /* Ensures height adapts to content */
+    box-sizing: border-box;         /* Includes padding in width and height calculations */
+    display: block;                 /* Ensures block behavior in grid */
+    overflow: visible;              /* Prevents content from being cut off */
+}
+.link-overlay {
+    position: sticky;
+    top: 150px;                /* Distance from top of viewport */
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 30px;
+    border-radius: 8px;
+    width: 30%;
+    color: #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+.category-link-list{
+    font-size: 0.7em;      /* Set font size for links */
+    text-decoration: none; /* Remove underline */
+}
+#link-buttons-container a,
+#press-link-container a {
+    font-size: 0.7em;      /* Set font size for links */
+    text-decoration: none; /* Remove underline */
+    color: #007aff;        /* Customize link color */
+}
+
+
+
+#link-buttons-container a:hover,
+#press-link-container a:hover {
+    text-decoration: underline; /* Add underline on hover for emphasis */
+    color: #003f7f;   
+}
+
+
+/* Keyframe animation for sliding in */
+@keyframes appear {
+  0% {
+/*    transform: translateX(-150%);*/
+    opacity: 0;
+       transform: scale(1.05); /* Start at 120% */
+  }
+  100% {
+/*    transform: translateX(0);*/
+    opacity: 1;
+       transform: scale(1); /* Start at 120% */
+  }
+}
+
+
+
+
+/* Active class triggers the keyframe animation */
+.overlay-container.active {
+/*  animation: appear 0.5s ease forwards;*/
+}
+
+.info-overlay.active{
+  animation: appear 0.7s ease forwards;
+}
+
+.link-overlay.active{
+  animation: appear 0.7s ease forwards;
+}
+
 
 /* Chip container */
 .chip-container {
@@ -359,25 +430,48 @@ body, html {
   z-index: 20;       /* Ensure the chip container is on top */
 }
 
+.title-overlay-sticky{
+  position: absolute;
+  width: 100%;
+  position: sticky;             /* Makes this div stick within its parent container */
+  top: 0;                       /* Sticks to the top of the container */
+  align-items: center;          /* Center items vertically */
+  background-color: rgba(255, 255, 255, 0.90);  /* Light translucent white */
+  padding: 20px;
+  backdrop-filter: blur(10px);  /* Stronger blur effect */
+  z-index: 20;                   /* Ensures it stays above scrollable content */
+
+}
+
+.title-role-container {
+    display: flex;                 /* Aligns title and role horizontally */
+    align-items: flex-end;           /* Vertically centers items within the container */
+    gap: 10px;                     /* Space between title and role */
+}
+
+#overlay-title {
+    font-size: 1.5em;              /* Adjust title font size as needed */
+    margin: 0;                     /* Remove default margin */
+}
+
+#category-role {
+    font-size: 1em;                /* Adjust role font size as needed */
+    margin: 0;                     /* Remove default margin */
+    color: #666;                   /* Optional color for role details */
+}
+
 /* Chip styling with small font and outline */
-.info-overlay .chip {
-/*  border: 1px solid #007aff !important;  */
-/*  color: #007aff !important;            */
-border: 1px solid;
+.title-overlay-sticky .chip {
+  border: 1px solid;
   padding: 4px 8px !important;           /* Reduced padding for smaller chips */
   border-radius: 12px !important;        /* Rounded corners for pill-shaped look */
   font-size: 0.7em !important;           /* Smaller font size */
   display: inline-block !important;
   white-space: nowrap !important;        /* Prevent text wrapping */
   background-color: white !important;    /* White background to ensure visibility */
-
   z-index: 20;                           /* Ensure chips are on top of other content */
 }
-.right-column .info-overlay {
-  width: 70%;  /* Set the width to 70% of the right column */
-  max-width: 100%; /* Ensure it doesn't exceed the width of the right column */
 
-}
 
 #project-title {
   display: inline-block; /* Ensure block-level alignment for inline elements */
@@ -401,61 +495,9 @@ border: 1px solid;
   line-height: 1.2; /* Match line-height to ensure both are on the same baseline */
 }
 
-/* iOS 18-style overlay */
-.info-overlay {
-  position: absolute;
-  bottom: 40px;
-  right: 40px;
-  background-color: rgba(255, 255, 255, 0.75);  /* Light translucent white */
-  padding: 30px;
-  border-radius: 16px;  /* Rounded corners */
-  color: #333;
-  font-size: 1.1em; /* Slightly smaller font size */
-  width: 70%;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-/*  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
-  backdrop-filter: blur(5px);  /* Stronger blur effect */
-  z-index: 10;  /* Ensure the overlay is on top */
-  /* Animation setup */
-  opacity: 0;  /* Start invisible */
-  transition: transform 0.5s ease, opacity 0.5s ease,width 0.5s ease, height 1s ease, padding 0.5s ease;  /* Smooth slide in and fade */
-}
-.round-button {
-  position: absolute;
-  top: 30px; /* Position the button 10px from the top */
-  right: 30px; /* Position the button 10px from the right */
-  background-color: rgba(255, 255, 255, 0.75); /* Transparent grey */
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 24px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  backdrop-filter: blur(10px); /* Blur the background behind the button */
-  transition: background-color 0.3s, backdrop-filter 0.3s, transform 0.3s;
-  z-index: 100; /* Keep it on top of other elements */
-  
-  /* Add the bounce animation when the button appears */
-  animation: bounce 1s ease;
-}
 
-.round-button:hover {
-  background-color: rgba(255, 255, 255, 0.9); /* Slightly less transparent on hover */
-  transform: scale(1.1); /* Slight zoom on hover */
-}
 
-.round-button:active {
-  background-color: rgba(255, 255, 255, 1); /* Less transparent when active */
-}
 
-.round-button:focus {
-  outline: none;
-}
 
 /* Bounce keyframes for the animation */
 @keyframes bounce {
@@ -476,98 +518,10 @@ border: 1px solid;
   }
 }
 
-/* Keyframe animation for sliding in */
-@keyframes slideInFromLeft {
-  0% {
-    transform: translateX(-150%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* When minimized, show only the title */
-.info-overlay.minimized {
-  height: 110px;  /* Just enough for the title */
-  padding: 10px 30px;  /* Reduced padding */
-/*  width: 70%;  /* Adjust the width as needed */
-  white-space: nowrap;  /* Prevent text wrapping */
-  overflow: hidden;
-}
-
-.overlay-title.minimized {
-  margin-bottom: 0px;
-}
-
-/* Transparent state */
-.info-overlay.transparent {
-  opacity: 0.1;  /* Lower opacity when transparent */
-  backdrop-filter: blur(0px);  /* Stronger blur effect */
-  background-color: rgba(255, 255, 255, 0.1);  /* Adjust the background transparency */
-}
 
 
-/* Active class triggers the keyframe animation */
-.info-overlay.active {
-  animation: slideInFromLeft 0.5s ease forwards;
-}
-
-.info-overlay.minimised .chip-container {
-  margin-top: 0; /* Remove bottom margin */
-  padding-top: 0; /* Remove additional padding */
-  justify-content: flex-end; /* Align chips to the right */
-}
 
 
-.vertical{
-  display: none;
-}
-
-.minimized .vertical{
-  display: inline;
-}
-
-.minimized .expanded-icon {
-  display: inline;
-}
-
-
-/* Toggle button */
-.overlay-toggle {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  top: 10px;
-  right: 10px;
-  background-color: rgba(255, 255, 255, 0.6);
-  border: none;
-  cursor: pointer;
-  font-size: 1.1em;
-  color: #007aff;
-  transition: transform 0.2s ease;
-  border-radius: 20px;
-
-
-}
-
-.overlay-toggle:hover {
-  transform: scale(1.1);  /* Slight zoom on hover */
-}
-
-/* Toggle icon style */
-.overlay-toggle svg {
-  width: 24px;
-  height: 24px;
-  fill: #007aff;
-  vertical-align: middle; /* Align the SVG vertically in the middle */
-  display: block; /* Ensure it's block-level */
-  margin: 0 auto; /* Center it horizontally */
-}
 
 /* Styling for the entire paragraph containing both the title and content */
 .category-paragraph {
@@ -582,7 +536,15 @@ border: 1px solid;
   font-weight: bold;
 /*  color: #007aff;*/
  color: #333;
+
   display: inline;
+}
+
+.gradient-text {
+  background-image: linear-gradient(to right, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 1.5em;
 }
 
 /* Content below each category title */
@@ -599,7 +561,7 @@ border: 1px solid;
   margin: 0 0 10px 0;
   font-size: 2em;
   font-weight: bold;
-  color: #333;
+  color: black;
 
 }
 
@@ -611,26 +573,6 @@ border: 1px solid;
   opacity: 1;
   transition: opacity 1s ease; /* Smooth opacity transition */
 }
-
-/*.info-overlay.minimized p{
-  margin: 10px 0;
-  font-size: 1.1em;
-  color: #666;
-  line-height: 1.6;
-  opacity: 0; 
-  transition: opacity 0.3s ease;
-
-}
- */
-
-/* When minimized, hide the overlay content */
-.info-overlay.minimized .overlay-content {
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: opacity 0.3s ease, max-height 0.3s ease;
-}
-
 /* When not minimized, the overlay content should be visible */
 .info-overlay .overlay-content {
   opacity: 1;
@@ -655,8 +597,8 @@ border: 1px solid;
   width: 80%;  /* Take the full width of the left column */
   padding: 20px;  /* Add padding for spacing on the sides */
   margin-top: auto;  
-  margin-right: 30px;
-  margin-left: 30px;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .social-media a {
@@ -665,33 +607,24 @@ border: 1px solid;
 }
 
 .social-media img {
-  width: 20px; /* Adjust the size of the icons */
-  height: 20px; /* Ensure consistent height */
+  width: 30px; /* Adjust the size of the icons */
+  height: 30px; /* Ensure consistent height */
   transition: transform 0.3s ease; /* Add a hover effect */
 }
 
 .social-media img:hover {
   transform: scale(1.1); /* Slightly enlarge the icon on hover */
 }
-.social-media svg path {
-  fill: #555; /* Dark grey */
-}
 
-/* Hover effect to lighten the icons */
-.social-media svg:hover path {
-  fill: #333; /* Lighter grey on hover */
-}
 
-/* Apply dark grey color to SVG images using filter */
-.social-media img {
- filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(50%) contrast(90%);
-
-}
 /* Hover effect to lighten the icons */
 .social-media img:hover {
-  filter: grayscale(50%) brightness(0.3); /* Lighten on hover */
+  filter:  brightness(0.7); /* Lighten on hover */
 }
 
+.media img{
+  border-radius: 8px;
+}
 
 
 /* Loading spinner */
@@ -700,8 +633,9 @@ border: 1px solid;
   justify-content: center;
   align-items: center;
   height: 100%;  /* Full height of the right column */
+  width: 100%;
   background-color: rgba(255, 255, 255, 0.8);  /* Optional background */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
 }
 
@@ -719,42 +653,6 @@ border: 1px solid;
   100% { transform: rotate(360deg); }
 }
 
-#button-container {
-  display: flex;             /* Use flexbox for layout */
-  flex-wrap: wrap;           /* Allow wrapping if buttons overflow */
-  gap: 20px;                 /* Space between buttons */
-  justify-content: flex-start; /* Ensure buttons are aligned to the left */
-  align-items: flex-start;    /* Align buttons to the top if wrapped */
-}
-
-.blue-button {
-  display: inline-flex;       /* Button is only as wide as its content */
-  align-items: center;        /* Center text and SVG inside the button */
-  background-color: #007bff;  /* Blue background */
-  color: white;               /* White text */
-  padding: 10px 20px;         /* Padding for button */
-  border-radius: 16px;        /* Rounded corners */
-  text-decoration: none;      /* Remove underline from the link */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 16px;            /* Set font size */
-  transition: background-color 0.3s ease; /* Smooth hover effect */
-  white-space: nowrap;        /* Prevent text wrapping inside button */
-  margin-top: 10px;           /* Add top margin for vertical space */
-}
 
 
-.blue-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-}
 
-.blue-button svg {
-  margin-left: 8px;
-  width: 16px;
-  height: 16px;
-  fill: none;
-  stroke: white;
-}
-
-.blue-button:active {
-  background-color: #003f7f; /* Even darker blue when clicked */
-}
