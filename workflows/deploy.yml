@@ -30,8 +30,8 @@ jobs:
       - name: 🚀 Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@4.5.0
         with:
-          server: '${{ secrets.FTP_HOST }}'       # Uses secret for the FTP host
-          username: '${{ secrets.FTP_USERNAME }}' # Uses secret for the FTP username
-          password: '${{ secrets.FTP_PASSWORD }}' # Uses secret for the FTP password
+          server: ${{ secrets.FTP_HOST }}       # Reference the secret for FTP host
+          username: ${{ secrets.FTP_USERNAME }} # Reference the secret for FTP username
+          password: ${{ secrets.FTP_PASSWORD }} # Reference the secret for FTP password
           local-dir: build/
-          server-dir: '/clcq.me/'     
+          server-dir: /clcq.me/                 # Change this to your correct Dreamhost server directory
