@@ -16,13 +16,18 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18.x' # Or 'lts/*' for latest LTS
+          node-version: '18.x'
 
       - name: Install Dependencies and Build
         run: |
-          npm install @testing-library/react@latest --save-dev # Upgrade testing library
-          npm install # Install other dependencies
-          npm run build # Or your build command (e.g., yarn build)
+          npm install @babel/plugin-proposal-private-property-in-object --save-dev
+          npm install @testing-library/react@latest --save-dev
+          npm install
+          npm run build
+
+      - name: Run ESLint (Optional but highly recommended)
+        run: npm run lint # or yarn lint
+        continue-on-error: true # Allows deployment even with linting warnings
 
       - name: Add SSH Key
         uses: webfactory/ssh-agent@v0.5.3
