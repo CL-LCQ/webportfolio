@@ -1,4 +1,4 @@
-name: 🚀 Deploy Website via SFTP
+name:  Deploy Website via SFTP
 
 on:
   push:
@@ -10,31 +10,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📂 Checkout Repositor
+      - name:  Checkout Repository
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js to build React app
-      - name: 📦 Set up Node.js
+      # Step 2: Set up Node.js to build React app (assuming you have a build step)
+      - name:  Set up Node.js
         uses: actions/setup-node@v4
         with:
-        node-version: '18.x'  # You can specify a specific version or "lts"
+          node-version: '18.x'  # You can specify a specific version or "lts"
 
-
-      - name: 📥 Install Dependencies
+      - name:  Install Dependencies
         run: |
           npm install
-          npm run build
+          npm run build  # Replace with your build command
 
-      - name: 🔐 Add SSH Key
+      - name:  Add SSH Key
         uses: webfactory/ssh-agent@v0.5.3
         with:
-          ssh-private-key: ${{ secrets.SFTP_SSH_KEY }}
+          ssh-private-key: ${{ secrets.SFTP_SSH_KEY }}  # Ensure secret name matches
 
-      - name: 🚀 Deploy to DreamHost via SFTP
-        uses: SamKirkland/FTP-Deploy-Action@4.5.0
+      - name:  Deploy to DreamHost via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.1
         with:
+          username: ${{ secrets.FTP_USERNAME }}  # Consider renaming to SFTP_USERNAME for clarity
           server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
           protocol: 'sftp'
-          local-dir: build/
-          server-dir: /home/clcq/clcq.me/
+          local_dir: 'build/'  # Assuming your built files are in a build folder
+          remote_dir: '/home/clcq/clcq.me/'
