@@ -13,6 +13,16 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Add SSH Key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SFTP_SSH_KEY }}
+          ssh-key-passphrase: ${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}
+
+      - name: Test SSH Connection
+        run: |
+          ssh -o StrictHostKeyChecking=no -p 22 ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }} "echo 'SSH connection successful'"
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -24,12 +34,6 @@ jobs:
         run: |
           yarn install
           yarn build || true # Continue even if the build fails
-
-      - name: Add SSH Key
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SFTP_SSH_KEY }}
-          ssh-key-passphrase: ${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}
 
       - name: Deploy Build Files via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.1
