@@ -34,6 +34,7 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SFTP_SSH_KEY }}
+          ssh-key-passphrase: ''
 
       - name: Deploy to DreamHost via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.1
