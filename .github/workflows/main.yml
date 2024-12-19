@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repositor
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
       - name: Set up Node.js
@@ -20,7 +20,8 @@ jobs:
 
       - name: Install Dependencies and Build
         run: |
-          npm install
+          npm install @testing-library/react@latest --save-dev # Upgrade testing library
+          npm install # Install other dependencies
           npm run build # Or your build command (e.g., yarn build)
 
       - name: Add SSH Key
@@ -33,10 +34,6 @@ jobs:
         with:
           username: ${{ secrets.SFTP_USERNAME }}
           server: ${{ secrets.SFTP_HOST }}
-          remote_dir: '/home/clcq/clcq.me/' # Ensure leading slash
-          local_dir: 'build/' # Path to your built files
-          # Optional, but recommended:
-          over_ssh: true  # Use SSH connection for SFTP
-          # Optional:
-          # port: 22 # Use if your SFTP server uses a non-standard port
-          # clean_remote: true # Be VERY careful with this! Deletes everything in remote_dir before deploy
+          remote_dir: '/home/clcq/clcq.me/'
+          local_dir: 'build/'
+          over_ssh: true
