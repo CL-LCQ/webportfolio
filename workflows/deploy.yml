@@ -1,4 +1,4 @@
-name:  Deploy Website via SFTP
+name: Deploy Website via SFTP
 
 on:
   push:
@@ -10,30 +10,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name:  Checkout Repository 0
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js to build React app (assuming you have a build step)
-      - name:  Set up Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18.x'  # You can specify a specific version or "lts"
+          node-version: '18.x' # Or 'lts/*' for latest LTS
 
-      - name:  Install Dependencies
+      - name: Install Dependencies and Build
         run: |
           npm install
-          npm run build  # Replace with your build command
+          npm run build # Or your build command (e.g., yarn build)
 
-      - name:  Add SSH Key
+      - name: Add SSH Key
         uses: webfactory/ssh-agent@v0.5.3
         with:
-          ssh-private-key: ${{ secrets.SFTP_SSH_KEY }}  # Ensure secret name matches
+          ssh-private-key: ${{ secrets.SFTP_SSH_KEY }}
 
-      - name:  Deploy to DreamHost via SFTP
+      - name: Deploy to DreamHost via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.1
         with:
-          username: ${{ secrets.FTP_USERNAME }}  # Consider renaming to SFTP_USERNAME for clarity
-          server: ${{ secrets.FTP_HOST }}
-          protocol: 'sftp'
-          local_dir: 'build/'  # Assuming your built files are in a build folder
-          remote_dir: '/home/clcq/clcq.me/'
+          username: ${{ secrets.SFTP_USERNAME }}
+          server: ${{ secrets.SFTP_HOST }}
+          remote_dir: '/home/clcq/clcq.me/' # Ensure leading slash
+          local_dir: 'build/' # Path to your built files
+          # Optional, but recommended:
+          over_ssh: true  # Use SSH connection for SFTP
+          # Optional:
+          # port: 22 # Use if your SFTP server uses a non-standard port
+          # clean_remote: true # Be VERY careful with this! Deletes everything in remote_dir before deploy
