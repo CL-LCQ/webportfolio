@@ -36,3 +36,5 @@ jobs:
           protocol: 'sftp'                         # Use SFTP for secure deployment
           local-dir: build/                        # Folder to deploy
           server-dir: /home/clcq/clcq.me/          # Directory on DreamHost
+
+         // 
