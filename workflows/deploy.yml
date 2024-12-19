@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📂 Checkout Repository
+      - name: 📂 Checkout Repositor
         uses: actions/checkout@v3
 
       # Step 2: Set up Node.js to build React app
