@@ -19,9 +19,13 @@ jobs:
           ssh-private-key: ${{ secrets.SFTP_SSH_KEY }}
           ssh-key-passphrase: ${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}
 
+      - name: Verify SSH Key
+        run: |
+          ssh-add -l || echo "No SSH keys loaded"
+
       - name: Test SSH Connection
         run: |
-          ssh -o StrictHostKeyChecking=no -p 22 ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }} "echo 'SSH connection successful'"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -p 22 ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }} "echo 'SSH connection successful'"
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -35,11 +39,6 @@ jobs:
           yarn install
           yarn build || true # Continue even if the build fails
 
-      - name: Deploy Build Files via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.1
-        with:
-          username: ${{ secrets.SFTP_USERNAME }}
-          server: ${{ secrets.SFTP_HOST }}
-          remote_path: '/home/clcq/clcq.me/' # Use remote_path
-          local_path: 'build/' # Use local_path
-          port: 22 # If needed
+      - name: Deploy Build Files via SSH
+        run: |
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa" ./build/ ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }}:/home/clcq/clcq.me/
