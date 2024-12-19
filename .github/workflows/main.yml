@@ -1,38 +1,42 @@
-name: 🚀 Deploy Website via FTP
+name: Deploy Website via SFTP
 
 on:
   push:
     branches:
-      - main  # Change 'main' to your branch name if different
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Checkout the repository
-    - name: 📂 Checkout Repository
-      uses: actions/checkout@v3
+      - name: Checkout Repositor
+        uses: actions/checkout@v3
 
-    # Step 2: Set up Node.js to build React app
-    - name: 📦 Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x' # Or 'lts/*' for latest LTS
 
-    # Step 3: Install dependencies and build the React app
-    - name: 📥 Install Dependencies
-      run: |
-        npm install
-        npm run build
+      - name: Install Dependencies and Build
+        run: |
+          npm install
+          npm run build # Or your build command (e.g., yarn build)
 
-    # Step 4: Upload files to FTP server
-    - name: 🚀 Deploy to FTP
-      uses: SamKirkland/FTP-Deploy-Action@4.5.0
-      with:
-        server: ${{ iad1-shared-b8-01.dreamhost.com}}
-        username: ${{ clcq }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: portfolio-react/build/
-        server-dir: /clcq.me/  # Change this to the directory on your FTP server where the website should be uploaded
-        protocol: ftp  # Optional, could be sftp or ftps depending on your server
+      - name: Add SSH Key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SFTP_SSH_KEY }}
+
+      - name: Deploy to DreamHost via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.1
+        with:
+          username: ${{ secrets.SFTP_USERNAME }}
+          server: ${{ secrets.SFTP_HOST }}
+          remote_dir: '/home/clcq/clcq.me/' # Ensure leading slash
+          local_dir: 'build/' # Path to your built files
+          # Optional, but recommended:
+          over_ssh: true  # Use SSH connection for SFTP
+          # Optional:
+          # port: 22 # Use if your SFTP server uses a non-standard port
+          # clean_remote: true # Be VERY careful with this! Deletes everything in remote_dir before deploy
