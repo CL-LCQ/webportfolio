@@ -26,13 +26,13 @@ jobs:
       - name: 🔐 Add SSH Key
         uses: webfactory/ssh-agent@v0.5.3
         with:
-          ssh-private-key: '${{ secrets.SFTP_SSH_KEY }}'
+          ssh-private-key: ${{ secrets.SFTP_SSH_KEY }}
 
       - name: 🚀 Deploy to DreamHost via SFTP
         uses: SamKirkland/FTP-Deploy-Action@4.5.0
         with:
-          server: 'iad1-shared-b8-01.dreamhost.com'
-          username: 'clcq'
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
           protocol: 'sftp'
           local-dir: build/
           server-dir: /home/clcq/clcq.me/
