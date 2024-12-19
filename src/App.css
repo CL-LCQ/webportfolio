@@ -1,0 +1,119 @@
+
+:root {
+  --primary-color: #FFB65A;
+  --accent-color: #85857B;
+}
+
+/* Set the background color for the whole canvas */
+body, html {
+  height: 100%;
+  background-color: #E9E9E9;
+  font-family: 'Karla', sans-serif;
+  overflow:auto;
+  
+}
+
+body.background {
+
+  overflow: hidden; /* Disable scrolling */
+  
+}
+
+/* Container to divide the canvas into rows */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 20px; /* Add some padding around the grid */
+
+}
+
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark layer */
+  z-index: 2; /* Ensure it covers everything except the page-container */
+  pointer-events: none; /* Allow user interactions to pass through if necessary */
+  opacity: 0%;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.background{
+  opacity: 100%;
+}
+
+.page-container {
+  position: fixed; 
+  inset: 25px; /* Top, bottom, left, right = 50px */
+  background: rgba(250, 250, 250, 0.8); /* Light semi-transparent background */
+  z-index: 9999; /* Stay above everything */
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  overflow-y: auto; 
+  border-radius: 15px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Add shadow for elevation */
+  backdrop-filter: blur(8px);
+   /* Scale and opacity animation */
+   opacity: 0;
+   transform: scale(0.9);
+   animation: scale-up 0.3s ease forwards; 
+ }
+ 
+ @keyframes scale-up {
+   0% {
+     opacity: 0;
+     transform: scale(0.9);
+   }
+   100% {
+     opacity: 1;
+     transform: scale(1);
+   }
+ }
+
+.header-item {
+  text-align: center; /* Center-align text in each item */
+  font-size: 16px; /* Adjust font size */
+  font-weight: 600; /* Adjust font weight */
+
+}
+
+.header-logo {
+  justify-self: start; /* Align logo to the left */
+}
+
+.header-nav {
+  justify-self: start; /* Center navigation */
+}
+
+.header-actions {
+  justify-self: start; /* Align actions to the right */
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #333;
+}
+
+/* Main content area */
+.app-main {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: left; /* Center items horizontally */
+  gap: 20px; /* Space between header title and project grid */
+  margin-top: 20px;
+  padding: 20px;
+}
+
+
+/* Project grid layout */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(250px, 30%, 400px), 1fr));
+  gap: 40px; /* Space between cards */
+}
