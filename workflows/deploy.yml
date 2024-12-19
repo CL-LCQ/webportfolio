@@ -10,31 +10,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
       - name: 📂 Checkout Repository
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js to build React app
       - name: 📦 Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
 
-      # Step 3: Install dependencies and build the React app
       - name: 📥 Install Dependencies
         run: |
           npm install
           npm run build
 
-      # Step 4: Deploy files to DreamHost via SFTP
-      - name: 🚀 Deploy to DreamHost
+      - name: 🔐 Add SSH Key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: '${{ secrets.SFTP_SSH_KEY }}'
+
+      - name: 🚀 Deploy to DreamHost via SFTP
         uses: SamKirkland/FTP-Deploy-Action@4.5.0
         with:
-          server: ${{ secrets.FTP_HOST }}      # Hostname from DreamHost
-          username: ${{ secrets.FTP_USERNAME }} # DreamHost username
-          password: ${{ secrets.FTP_PASSWORD }} # DreamHost password
-          protocol: 'sftp'                         # Use SFTP for secure deployment
-          local-dir: build/                        # Folder to deploy
-          server-dir: /home/clcq/clcq.me/          # Directory on DreamHost
-
-         // 
+          server: 'iad1-shared-b8-01.dreamhost.com'
+          username: 'clcq'
+          protocol: 'sftp'
+          local-dir: build/
+          server-dir: /home/clcq/clcq.me/
