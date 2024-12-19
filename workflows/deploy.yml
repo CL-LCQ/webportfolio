@@ -33,6 +33,6 @@ jobs:
         server: ${{ iad1-shared-b8-01.dreamhost.com}}
         username: ${{ clcq }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: build/
+        local-dir: portfolio-react/build/
         server-dir: /clcq.me/  # Change this to the directory on your FTP server where the website should be uploaded
         protocol: ftp  # Optional, could be sftp or ftps depending on your server
