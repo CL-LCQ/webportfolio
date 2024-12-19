@@ -1,0 +1,112 @@
+:root {
+  --primary-color: #3498db;
+}
+
+/* Main Card Container */
+.card-container {
+  aspect-ratio: 16/9;
+  border: 1px solid rgba(250, 250, 250, 0.6);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: -5px 5px 5px rgba(99, 53, 30, 0.1);
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* Loading State */
+.card-container.loading {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+/* Loaded State */
+.card-container.loaded {
+  opacity: 1;
+  transform: scale(1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover Effect for Loaded State */
+.card-container.loaded:hover {
+  transform: scale(1.05);
+  box-shadow: -5px 10px 10px rgba(99, 53, 30, 0.3);
+}
+
+/* Fade-In Scale Animation */
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.card-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
+  display: block;
+}
+
+.card-title {
+  font-family: 'IBM Plex Mono', monospace;
+  position: absolute;
+  bottom: 0px;
+  left: 10px;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  margin: 0;
+  z-index: 2; /* Ensure above image */
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+  backdrop-filter: blur(8px);
+  z-index: 2; /* Ensure above image */
+}
+
+.card-year {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+  margin-right: 10px;
+  padding-right: 10px;
+}
