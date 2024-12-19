@@ -3,36 +3,35 @@ name: 🚀 Deploy Website via FTP
 on:
   push:
     branches:
-      - main  # Change 'main' to your branch name if different
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Checkout the repository
-    - name: 📂 Checkout Repository
-      uses: actions/checkout@v3
+      # Step 1: Checkout the repository
+      - name: 📂 Checkout Repository
+        uses: actions/checkout@v3
 
-    # Step 2: Set up Node.js to build React app
-    - name: 📦 Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
+      # Step 2: Set up Node.js to build React app
+      - name: 📦 Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
 
-    # Step 3: Install dependencies and build the React app
-    - name: 📥 Install Dependencies
-      run: |
-        npm install
-        npm run build
+      # Step 3: Install dependencies and build the React app
+      - name: 📥 Install Dependencies
+        run: |
+          npm install
+          npm run build
 
-    # Step 4: Upload files to FTP server
-    - name: 🚀 Deploy to FTP
-      uses: SamKirkland/FTP-Deploy-Action@4.5.0
-      with:
-        server: ${{ iad1-shared-b8-01.dreamhost.com}}
-        username: ${{ clcq }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: portfolio-react/build/
-        server-dir: /clcq.me/  # Change this to the directory on your FTP server where the website should be uploaded
-        protocol: ftp  # Optional, could be sftp or ftps depending on your server
+      # Step 4: Upload files to FTP server using secrets
+      - name: 🚀 Deploy to FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.5.0
+        with:
+          server: ${{ secrets.FTP_HOST }}       # Uses secret for the FTP host
+          username: ${{ secrets.FTP_USERNAME }} # Uses secret for the FTP username
+          password: ${{ secrets.FTP_PASSWORD }} # Uses secret for the FTP password
+          local-dir: build/
+          server-dir: /clcq.me/
