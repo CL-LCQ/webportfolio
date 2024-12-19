@@ -1,4 +1,4 @@
-name: Deploy Website via SFTP
+name: Test SSH Connection
 
 on:
   push:
@@ -6,30 +6,12 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  test-ssh-connection:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18.x'
-
-      - name: Install Dependencies and Build
-        run: |
-          yarn add @babel/plugin-proposal-private-property-in-object -D
-          yarn add @testing-library/react@latest -D
-          yarn install
-          yarn build
-
-      - name: Run ESLint
-        env:
-          CI: false  # Prevent CI from treating warnings as errors
-        run: yarn eslint src --ignore-pattern 'src/App.js' --ignore-pattern 'src/components/Card/Card.js' --ignore-pattern 'src/components/Header/Header.js' --ignore-pattern 'src/components/MediaDisplay/MediaDisplay.js'
-        continue-on-error: true
 
       - name: Add SSH Key
         uses: webfactory/ssh-agent@v0.5.3
@@ -37,11 +19,6 @@ jobs:
           ssh-private-key: ${{ secrets.SFTP_SSH_KEY }}
           ssh-key-passphrase: ${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}
 
-      - name: Deploy to DreamHost via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.1
-        with:
-          username: ${{ secrets.SFTP_USERNAME }}
-          server: ${{ secrets.SFTP_HOST }}
-          remote_path: '/home/clcq/clcq.me/' # Use remote_path
-          local_path: 'build/' # Use local_path
-          port: 22 # If needed
+      - name: Test SSH Connection
+        run: |
+          ssh -o StrictHostKeyChecking=no -p 22 ${{ secrets.SFTP_USERNAME }}@${{ secrets.SFTP_HOST }} "echo 'SSH connection successful'"
