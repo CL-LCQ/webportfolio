@@ -20,14 +20,14 @@ jobs:
 
       - name: Install Dependencies and Build
         run: |
-          npm install @babel/plugin-proposal-private-property-in-object --save-dev
-          npm install @testing-library/react@latest --save-dev
-          npm install
-          npm run build
+          yarn add @babel/plugin-proposal-private-property-in-object -D
+          yarn add @testing-library/react@latest -D
+          yarn install # This installs all other dependencies using yarn
+          yarn build
 
       - name: Run ESLint (Optional but highly recommended)
-        run: npm run lint # or yarn lint
-        continue-on-error: true # Allows deployment even with linting warnings
+        run: yarn lint
+        continue-on-error: true
 
       - name: Add SSH Key
         uses: webfactory/ssh-agent@v0.5.3
