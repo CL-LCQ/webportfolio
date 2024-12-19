@@ -20,13 +20,12 @@ jobs:
 
       - name: Install Dependencies and Build
         run: |
-          CI=false yarn build # Set CI=false inline
           yarn add @babel/plugin-proposal-private-property-in-object -D
           yarn add @testing-library/react@latest -D
           yarn install
-        shell: bash # Important: Specify bash shell
+          yarn build
 
-      - name: Run ESLint (Optional but highly recommended)
+      - name: Run ESLint
         run: yarn lint
         continue-on-error: true
 
@@ -34,13 +33,13 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SFTP_SSH_KEY }}
-          ssh-key-passphrase: ''
+          ssh-key-passphrase: ${{ secrets.SFTP_SSH_KEY_PASSPHRASE }}
 
       - name: Deploy to DreamHost via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.1
         with:
           username: ${{ secrets.SFTP_USERNAME }}
           server: ${{ secrets.SFTP_HOST }}
-          remote_dir: '/home/clcq/clcq.me/'
-          local_dir: 'build/'
-          over_ssh: true
+          remote_path: '/home/clcq/clcq.me/' # Use remote_path
+          local_path: 'build/' # Use local_path
+          port: 22 # If needed
