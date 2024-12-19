@@ -30,9 +30,9 @@ jobs:
       - name: 🚀 Deploy to DreamHost
         uses: SamKirkland/FTP-Deploy-Action@4.5.0
         with:
-          server: '${{ secrets.SFTP_HOST }}'       # Hostname from DreamHost
-          username: '${{ secrets.SFTP_USERNAME }}' # DreamHost username
-          password: '${{ secrets.SFTP_PASSWORD }}' # DreamHost password
+          server: ${{ secrets.FTP_HOST }}      # Hostname from DreamHost
+          username: ${{ secrets.FTP_USERNAME }} # DreamHost username
+          password: ${{ secrets.FTP_PASSWORD }} # DreamHost password
           protocol: 'sftp'                         # Use SFTP for secure deployment
           local-dir: build/                        # Folder to deploy
           server-dir: /home/clcq/clcq.me/          # Directory on DreamHost
