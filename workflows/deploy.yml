@@ -1,4 +1,4 @@
-name: 🚀 Deploy Website via FTP
+name: 🚀 Deploy Website via SFTP
 
 on:
   push:
@@ -26,13 +26,13 @@ jobs:
           npm install
           npm run build
 
-      # Step 4: Upload files to FTP server
-      - name: 🚀 Deploy to FTP
+      # Step 4: Deploy files to DreamHost via SFTP
+      - name: 🚀 Deploy to DreamHost
         uses: SamKirkland/FTP-Deploy-Action@4.5.0
         with:
-          server: '${{ secrets.FTP_HOST }}'
-          username: '${{ secrets.FTP_USERNAME }}'
-          password: '${{ secrets.FTP_PASSWORD }}'
-          protocol: 'ftp'  # Use FTP instead of SFTP
-          local-dir: build/  # Folder on the GitHub runner
-          server-dir: /clcq.me/  # Path on the FTP server
+          server: '${{ secrets.SFTP_HOST }}'       # Hostname from DreamHost
+          username: '${{ secrets.SFTP_USERNAME }}' # DreamHost username
+          password: '${{ secrets.SFTP_PASSWORD }}' # DreamHost password
+          protocol: 'sftp'                         # Use SFTP for secure deployment
+          local-dir: build/                        # Folder to deploy
+          server-dir: /home/clcq/clcq.me/          # Directory on DreamHost
