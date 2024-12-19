@@ -26,12 +26,13 @@ jobs:
           npm install
           npm run build
 
-      # Step 4: Upload files to FTP server using secrets
+      # Step 4: Upload files to FTP server
       - name: 🚀 Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@4.5.0
         with:
-          server: ${{ secrets.FTP_HOST }}       # Reference the secret for FTP host
-          username: ${{ secrets.FTP_USERNAME }} # Reference the secret for FTP username
-          password: ${{ secrets.FTP_PASSWORD }} # Reference the secret for FTP password
-          local-dir: build/
-          server-dir: /clcq.me/                 # Change this to your correct Dreamhost server directory
+          server: '${{ secrets.FTP_HOST }}'
+          username: '${{ secrets.FTP_USERNAME }}'
+          password: '${{ secrets.FTP_PASSWORD }}'
+          protocol: 'ftp'  # Use FTP instead of SFTP
+          local-dir: build/  # Folder on the GitHub runner
+          server-dir: /clcq.me/  # Path on the FTP server
