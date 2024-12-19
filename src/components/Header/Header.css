@@ -1,0 +1,116 @@
+.headerContainer {
+  display: grid; /* Use CSS Grid for layout */
+  grid-template-columns: repeat(3, 1fr); /* Divide the container into 3 equal columns */
+  gap: 20px; /* Space between columns */
+  padding: 20px; /* Inner padding */
+  width: 100%; /* Full width of the parent */
+  box-sizing: border-box; /* Include padding in the width */
+}
+
+/* Column Styles */
+.col1, .col2, .col3 {
+  display: flex;
+  flex-direction: column; /* Stack items vertically within each column */
+  gap: 10px; /* Space between items in the column */
+  box-sizing: border-box; /* Include padding in sizing */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .headerContainer {
+    grid-template-columns: 1fr; /* Stack all columns vertically */
+  }
+}
+
+/* Header Title */
+.header-title {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  font-family: 'Karla', sans-serif;
+  font-weight: 600;
+}
+
+/* Text */
+.text {
+  font-size: 0.9rem;
+  color: black;
+
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.5; /* Improve readability */
+}
+
+/* Rectangles (col3 visual elements) */
+
+.social-media {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column; /* Stack button rows */
+  gap: 20px; /* Space between each button row */
+}
+
+.button-row {
+  display: flex; 
+  flex-wrap: nowrap;
+  align-items: center; /* Align items vertically */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth background and transform transition */
+}
+
+.social-link {
+  display: flex; /* Row layout for image and text */
+  align-items: center; /* Center text and image vertically */
+  text-decoration: none; /* Remove link underline */
+  color: inherit; /* Inherit text color */
+}
+
+.icon {
+  width: 32px; /* Set image width */
+  height: 32px; 
+  margin-right: 10px; /* Space between icon and text */
+}
+
+.social-link span {
+  font-size: 18px; /* Font size for the text */
+  color: #333; /* Text color */
+}
+
+.social-link:hover span {
+  color: var(--primary-color); /* Change text color on hover */
+}
+
+
+
+
+
+
+.contact-button {
+  display: inline-flex; /* Flex to align the icon and text */
+  align-items: center; /* Vertically align items */
+  justify-content: center; /* Center contents */
+  padding: 10px 20px; /* Add padding for better button look */
+  background-color: var(--primary-color); /* Background color for the button */
+  color: #ffffff; /* Text color */
+  border: none; /* No border */
+  border-radius: 8px; /* Rounded corners */
+  text-decoration: none; /* Remove underline from the link */
+  font-size: 16px; /* Font size for the text */
+  font-weight: bold; /* Make the text bold */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth background and transform transition */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.contact-button:hover {
+  background-color:var(--primary-color);
+  transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+.contact-button:active {
+  background-color: var(--primary-color);
+  transform: scale(0.98); /* Slightly shrink on click */
+}
+
+.contact-button svg {
+  width: 24px; /* Set size of the SVG */
+  height: 24px; /* Set size of the SVG */
+}
+
