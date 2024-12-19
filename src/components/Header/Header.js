@@ -48,7 +48,7 @@ const HeaderContent = () => {
           <li>📄 <strong>Research Paper</strong> — <a href="https://www.sciencedirect.com/science/article/abs/pii/S107158192300188X#:~:text=The%20AAR%20taxonomy%20consists%20of,Adapted%2C%20with%20three%20subcategories%20respectively." target="_blank">"Audio AR Definition"</a></li>
         </ul>
         </div>
-        <a href="mailto:2dcharles@gmail.com" className="contact-button" target="_blank" rel="noopener noreferrer">
+        {/* <a href="mailto:2dcharles@gmail.com" className="contact-button" target="_blank" rel="noopener noreferrer">
           <svg 
             width="22" 
             height="22" 
@@ -63,7 +63,7 @@ const HeaderContent = () => {
             </g>
           </svg>
           Contact Me
-        </a>
+        </a> */}
         
         
         <div className="social-media">
