@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Card from '../Card/Card';
@@ -8,9 +9,9 @@ const HomePage = ({ projects, loading }) => {
   const [selectedCard, setSelectedCard] = useState(null); 
   const [isBackgroundActive, setIsBackgroundActive] = useState(false); 
   const navigate = useNavigate();
-  const { projectId } = useParams();
+  const { projectId } = useParams(); // Extract the projectId from the URL
 
-  // When the user visits /project/:id directly, pre-select the card
+  // Preselect the card when visiting /project/:id directly
   useEffect(() => {
     if (projectId && projects.length > 0) {
       const project = projects.find((p) => p.id === parseInt(projectId));
@@ -21,12 +22,10 @@ const HomePage = ({ projects, loading }) => {
     }
   }, [projectId, projects]);
 
-  // Toggles the background class when a card is clicked
   const toggleClass = () => {
     setIsBackgroundActive((prevState) => !prevState);
   };
 
-  // Adds or removes a class from the <body> and <html> tags for the background effect
   useEffect(() => {
     if (isBackgroundActive) {
       document.body.classList.add('background');
@@ -37,24 +36,20 @@ const HomePage = ({ projects, loading }) => {
     }
   }, [isBackgroundActive]); 
 
-  // If still loading, show a loading indicator
   if (loading) {
     return <div className="loading-indicator">Loading projects...</div>;
   }
 
-  // If no projects are available, display a message
   if (!projects.length) {
     return <div className="no-projects">No projects available.</div>;
   }
 
   return (
     <div>
-      {/* Background overlay that appears when Page is open */}
       <div className={`overlay ${isBackgroundActive ? 'background' : ''}`}></div>
 
       <div className="header-title">Selected Works</div>
 
-      {/* Project grid with interactive cards */}
       <div className="project-grid">
         {projects.map((project, index) => (
           <Card
@@ -62,23 +57,21 @@ const HomePage = ({ projects, loading }) => {
             project={project}
             delay={300 * (1 - Math.exp(-index / 5))}
             onClick={() => {
-              console.log('Clicked project:', project);
-              setSelectedCard(project); // Set the selected project for the Page component
-              toggleClass(); // Activate the background change
-              navigate(`/project/${project.id}`); // Update the URL to /project/:id
+              setSelectedCard(project); 
+              toggleClass(); 
+              navigate(`/project/${project.id}`); // Update URL when the card is clicked
             }}
           />
         ))}
       </div>
 
-      {/* Only render Page when a card has been selected */}
       {selectedCard && (
         <div className="page-container">
           <Page 
             project={selectedCard} 
             onClose={() => {
-              setSelectedCard(null); // Clear the selected card
-              toggleClass(); // Reset the background
+              setSelectedCard(null);
+              toggleClass(); 
               navigate('/'); // Return to the home page
             }}
           />

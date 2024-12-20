@@ -11,17 +11,23 @@ function App() {
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const { data, error } = await supabaseClient.from('work_v2').select('*');
-      if (error) {
-        console.error('Error fetching projects:', error);
-        setLoading(false);
-        return;
-      }
-      const filteredData = data.filter((project) => project.enabled !== false); // Filter only enabled projects
-      const sortedData = filteredData.sort((a, b) => a.order - b.order); // Sort projects by order
+      try {
+        const { data, error } = await supabaseClient.from('work_v2').select('*');
+        if (error) {
+          console.error('Error fetching projects:', error);
+          setLoading(false);
+          return;
+        }
 
-      setProjects(sortedData);
-      setLoading(false); 
+        const filteredData = data.filter((project) => project.enabled !== false); // Only enabled projects
+        const sortedData = filteredData.sort((a, b) => a.order - b.order); // Sort projects by "order" field
+
+        setProjects(sortedData);
+      } catch (error) {
+        console.error('Unexpected error:', error);
+      } finally {
+        setLoading(false); 
+      }
     };
     fetchProjects();
   }, []);
@@ -32,9 +38,13 @@ function App() {
         <header className="app-header">
           <HeaderContent />
         </header>
+
         <main className="app-main">
           <Routes>
+            {/* Route for the home page */}
             <Route path="/" element={<HomePage projects={projects} loading={loading} />} />
+            
+            {/* Route for the dynamic project page /project/:id */}
             <Route path="/project/:projectId" element={<HomePage projects={projects} loading={loading} />} />
           </Routes>
         </main>
