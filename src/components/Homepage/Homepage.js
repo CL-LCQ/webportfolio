@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Card from '../Card/Card';
 import Page from '../Page/Page';
+import './Homepage.css';
 
 const HomePage = ({ projects, loading }) => {
   const [selectedCard, setSelectedCard] = useState(null); 

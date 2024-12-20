@@ -11,8 +11,8 @@ const HeaderContent = () => {
         <div className="header-title">Innovator, Designer, and Entrepreneur</div>
         <div className="text">
         <div className="text">
-        <p>I'm CL, a multi-disciplinary innovator blending product design, management, and engineering. I specialize in turning ideas into impactful products, from prototypes to product-market fit and launch.</p>
-        <p>With a track record across AAA Games, Apps, AR/XR, and AI, I’ve launched 12+ connected devices and software products, led startups,  collaborated with large teams, and forged partnerships with the likes of Microsoft.</p>
+        <p>I am Charles Leclercq, a multi-disciplinary innovator blending product design, management, and engineering. I specialize in turning ideas into impactful products, from prototypes to product-market fit and launch.</p>
+        <p>With a track record across AAA Games, Apps, AR/XR, and AI, I have launched 12+ connected devices and software products, led startups,  collaborated with large teams, and forged partnerships with the likes of Microsoft.</p>
         <p>I excel at guiding products through the full 0 to 1 and 1000+ lifecycle—from idea to market-ready release—while collaborating with cross-functional teams.</p> 
         <p>This page showcases some of my 0 to 1 work. Get in touch to learn more.</p>
 </div>
