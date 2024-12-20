@@ -5,6 +5,9 @@ import DisplayLinks from '../LinkList/LinkList';
 
 const Page = ({ project, onClose }) => {
   
+  if (!project) {
+    return <div>Loading project...</div>;
+  }
 
   return (
     <div className="page-content">
