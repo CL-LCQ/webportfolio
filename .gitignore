@@ -1,0 +1,121 @@
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# Cache files
+.cache/
+.cache-loader/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+/.yarn/cache/
+.yarn-integrity
+/yarn-error.log
+.npm/_logs
+*.pack
+
+# Build output
+/build/
+dist/
+out/
+
+# Test output
+/coverage/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*.bak
+*.tmp
+*.log
+*.lock
+
+# Linting files
+.eslintcache
+.stylelintcache
+
+# Git files
+.git/
+*.orig
+
+# Miscellaneous
+*.log
+*.stackdump
+*.pid
+*.seed
+*.pid.lock
+*.gz
+
+# Coverage directory used by testing tools like Jest
+coverage/
+
+# Ignore lint-staged files
+lint-staged.config.js
+
+# Ignore CI/CD configuration files
+.github/
+.gitlab-ci.yml
+.gitattributes
+
+# Ignore IDE settings
+.idea/
+.vscode/
+
+# Ignore local environment settings
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore storybook
+.storybook/
+storybook-static/
+
+# Ignore next.js build files
+.next/
+
+# Ignore vercel (if you are using Vercel)
+.vercel/
+
+# Ignore Netlify (if you are using Netlify)
+.netlify/
+netlify.toml
+
+# Ignore AWS Amplify (if you are using AWS Amplify)
+amplify/
+# Ignore Amplify build folder
+amplify-builds/
+
+# Ignore files created by npm link
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore React Native
+*.hprof
+.expo/
+*.xcworkspace
+*.xcuserstate
