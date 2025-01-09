@@ -92,6 +92,7 @@ body, html {
   display: inline-block !important;
   white-space: nowrap !important;        /* Prevent text wrapping */
   background-color: white !important; 
+  color: #555;
 }
 
 .media-wrapper {
@@ -178,7 +179,8 @@ body, html {
 
 
 #overlay-title {
-  font-size: 1.5rem; 
+  font-size: 2.5rem; 
+  color: #555;
   font-weight: bold;
   margin: 0; /* Remove default margins */
   line-height: 1; /* Ensures no extra vertical space is added */
