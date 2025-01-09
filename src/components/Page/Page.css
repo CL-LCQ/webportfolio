@@ -94,9 +94,19 @@ body, html {
   background-color: white !important; 
 }
 
+.media-wrapper {
+  display: flex; /* Enable flexbox for centering */
+  justify-content: center; /* Center horizontally */
+
+}
+
 .media {
-  
   background-color: #ddd;
+  border-radius: 8px; /* Adds rounded corners */
+  overflow: hidden; /* Ensures content inside respects the border radius */
+  max-height: 40%; /* Prevent media from being too tall */
+  max-width: 90%; /* Prevent media from being too wide */
+  object-fit: contain; /* Maintain the original aspect ratio */
 }
 
 
@@ -121,6 +131,52 @@ body, html {
   gap: 10px; /* Space between title and role */
 }
 
+.two-column-layout {
+  display: flex; /* Enable flexbox for horizontal layout */
+  align-items: flex-start; /* Align columns at the top */
+  gap: 20px; /* Adds space between columns */
+  flex-wrap: wrap; /* Stack columns on smaller screens */
+  padding: 40px;
+}
+
+.left-column {
+  flex: 1; /* Allow the title to take 1 part of the total width */
+  max-width: 15%; /* Limit the max width for the left column */
+}
+
+.right-column {
+  flex: 2; /* Allow the paragraph to take 2 parts of the total width */
+  max-width: 90%; /* Limit the max width for the right column */
+}
+
+.category-title-side {
+  font-size:1.2rem; 
+  font-weight: bolder;
+  margin-top: 15px; /* Remove bottom margin */
+  color: #616365; 
+}
+
+.category-title {
+  font-size:2rem; 
+  font-weight: bolder;
+  margin-top: 15px; /* Remove bottom margin */
+  color: #616365; 
+  display: block; /* Ensure the title takes up its own line */
+}
+
+.category-paragraph {
+  margin-bottom: 30px;
+  display: block; /* Ensures it's treated as a block for top alignment */
+}
+
+.category-content {
+  margin-top: 0px; 
+  color: #555;
+  width: 70%; /* Set width to 70% of the parent container */
+  line-height: 1.5; /* Improve readability */
+}
+
+
 #overlay-title {
   font-size: 1.5rem; 
   font-weight: bold;
@@ -141,13 +197,13 @@ body, html {
   padding: 30px;
 }
 
-.category-paragraph {
-  margin-bottom: 15px;
-}
+
 
 
 .category-content {
   font-size: 0.9em;
+  display: block;
+  margin: 12px auto 0 auto; 
 }
 
 .close-button {

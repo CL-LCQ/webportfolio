@@ -27,7 +27,7 @@ const Page = ({ project, onClose }) => {
                 </button>
                 <div className="title-role-container">
                   <h2 id="overlay-title">{project.title}</h2>
-                  <p id="category-role">{"Role: "+ project.role}</p>
+                  {/* <p id="category-role">{"Role: "+ project.role}</p> */}
                 </div>
               </div>
 
@@ -44,51 +44,84 @@ const Page = ({ project, onClose }) => {
           <div className= "container">
             <div className="fulldescription-subcontainer">
                 <div className="overlay-content">
-                  <p className="category-paragraph">
-                    <span className="category-title gradient-text">THE WHY<br /></span>
-                    <span id="category-why" className="category-content">{project.why}</span>
-                  </p>
+                  
+                  
 
-                  <div className="media" id="media-01">
-                   {<DisplayMedia url= {project.url1}/>}
+                  <div className="two-column-layout">
+                    <div className="left-column">
+                      <span className="category-title">THE WHY</span>
+                    </div>
+                    <div className="right-column">
+                      <p className="category-paragraph">
+                        <span className="category-content">{project.why}</span>
+                      </p>
+                    </div>
                   </div>
+
+
+                  <div className="media-wrapper">
+                    <div className="media" id="media-01">
+                    {<DisplayMedia url= {project.url1}/>}
+                    </div>
+                  </div>
+                  
+
             
 
-                  <p className="category-paragraph">
-                    <span className="category-title">What<br /></span> 
-                    <span id="category-what" className="category-content">{project.what}</span>
-                  </p>
 
-                  <div className="media" id="media-02">
-                   {<DisplayMedia url= {project.url2}/>} 
+
+
+                  <div className="two-column-layout">
+                    <div className="left-column">
+                      <span className="category-title">THE WHAT</span>
+                    </div>
+                    <div className="right-column">
+                      <p className="category-paragraph">
+                        <span className="category-content">{project.what}</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="media-wrapper">
+                    <div className="media" id="media-02">
+                    {<DisplayMedia url= {project.url2}/>} 
+                    </div> 
                   </div>
 
-                  <p className="category-paragraph">
-                    <span className="category-title">Impact<br /></span> 
-                    <span id="category-impact" className="category-content">{project.impact}</span>
-                  </p>
 
-                  <div className="media" id="media-03">
-                  {<DisplayMedia url= {project.url3}/>}
+
+                  <div className="two-column-layout">
+                    <div className="left-column">
+                      <span className="category-title">THE IMPACT</span>
+                    </div>
+                    <div className="right-column">
+                      <p className="category-paragraph">
+                        <span className="category-content">{project.impact}</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="media-wrapper">
+                    <div className="media" id="media-03">
+                    {<DisplayMedia url= {project.url3}/>}
+                    </div>
                   </div>
                 </div>  
             </div>
 
             <div className="annex-subcontainer" id="annex-subcontainer">
               <p className="category-link-section">
-                <span className="category-title">Case Studies<br /></span> 
+                <span className="category-title-side">Case Studies<br /></span> 
                 {<DisplayLinks props={project.link} />}
               </p>
 
               <p className="category-link-section">
-                <span className="category-title">Other Links<br /></span> 
+                <span className="category-title-side">Other Links<br /></span> 
                 {<DisplayLinks props={project.press} />}
                  
                
               </p>
 
               <p className="category-link-section">
-                <span className="category-title">Frameworks<br /></span> 
+                <span className="category-title-side">Frameworks<br /></span> 
                 {<DisplayLinks props={project.tech} />}
               </p>
             </div>
