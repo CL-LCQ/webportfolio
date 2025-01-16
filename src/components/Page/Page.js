@@ -26,20 +26,20 @@ const Page = ({ project, onClose }) => {
                   </svg>
                 </button>
                 <div className="title-role-container">
-                  <h2 id="overlay-title">{project.title}</h2>
+                  <h2 id="overlay-title">{project?.title}</h2>
                   {/* <p id="category-role">{"Role: "+ project.role}</p> */}
                 </div>
               </div>
 
               <div className="chip-container">
-                <span className="chip" id="overlay-date">{project.date}</span>
-                <span className="chip" id="overlay-companyname">{project.company}</span>
-                <span className="chip" id="overlay-industry">{project.industry}</span>
+                <span className="chip" id="overlay-date">{project?.date}</span>
+                <span className="chip" id="overlay-companyname">{project?.company}</span>
+                <span className="chip" id="overlay-industry">{project?.industry}</span>
               </div>
           </div>
 
           <div id="hero-container" className="hero-container">
-            <img src={project.hero_image} alt={project.title} className="hero-image" />
+            <img src={project?.hero_image} alt={project?.title} className="hero-image" />
           </div>
           <div className= "container">
             <div className="fulldescription-subcontainer">
@@ -53,7 +53,7 @@ const Page = ({ project, onClose }) => {
                     </div>
                     <div className="right-column">
                       <p className="category-paragraph">
-                        <span className="category-content">{project.why}</span>
+                        <span className="category-content">{project?.why}</span>
                       </p>
                     </div>
                   </div>
@@ -61,7 +61,7 @@ const Page = ({ project, onClose }) => {
 
                   <div className="media-wrapper">
                     <div className="media" id="media-01">
-                    {<DisplayMedia url= {project.url1}/>}
+                    {<DisplayMedia url= {project?.url1}/>}
                     </div>
                   </div>
                   
@@ -77,13 +77,13 @@ const Page = ({ project, onClose }) => {
                     </div>
                     <div className="right-column">
                       <p className="category-paragraph">
-                        <span className="category-content">{project.what}</span>
+                        <span className="category-content">{project?.what}</span>
                       </p>
                     </div>
                   </div>
                   <div className="media-wrapper">
                     <div className="media" id="media-02">
-                    {<DisplayMedia url= {project.url2}/>} 
+                    {<DisplayMedia url= {project?.url2}/>} 
                     </div> 
                   </div>
 
@@ -95,13 +95,13 @@ const Page = ({ project, onClose }) => {
                     </div>
                     <div className="right-column">
                       <p className="category-paragraph">
-                        <span className="category-content">{project.impact}</span>
+                        <span className="category-content">{project?.impact}</span>
                       </p>
                     </div>
                   </div>
                   <div className="media-wrapper">
                     <div className="media" id="media-03">
-                    {<DisplayMedia url= {project.url3}/>}
+                    {<DisplayMedia url= {project?.url3}/>}
                     </div>
                   </div>
                 </div>  
@@ -110,19 +110,19 @@ const Page = ({ project, onClose }) => {
             <div className="annex-subcontainer" id="annex-subcontainer">
               <p className="category-link-section">
                 <span className="category-title-side">Case Studies<br /></span> 
-                {<DisplayLinks props={project.link} />}
+                {<DisplayLinks props={project?.link} />}
               </p>
 
               <p className="category-link-section">
                 <span className="category-title-side">Other Links<br /></span> 
-                {<DisplayLinks props={project.press} />}
+                {<DisplayLinks props={project?.press} />}
                  
                
               </p>
 
               <p className="category-link-section">
                 <span className="category-title-side">Frameworks<br /></span> 
-                {<DisplayLinks props={project.tech} />}
+                {<DisplayLinks props={project?.tech} />}
               </p>
             </div>
           </div>

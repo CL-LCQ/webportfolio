@@ -12,7 +12,7 @@ const HeaderContent = () => {
         <div className="text">
         <div className="text">
         <p>I'm Charles Leclercq, a Product Manager with software engineering skills and a background in design, experienced with both hardware and software products. I specialize in bringing ideas to life, guiding them from concept to prototype and from launch to product-market fit.</p>
-<p>I recently co-launched the ARx Gen AI wearable device, app, and SDK with Microsoft. My portfolio also includes AAA games, AR/XR tools and experiences, and cooking apps.</p>
+<p>I recently co-launched the ARx Gen AI wearable device, app, and SDK with Microsoft. My portfolio also includes AAA games, AR/XR tools and experiences, and mobile apps.</p>
 <p>I excel at collaborating with cross-functional teams throughout the entire product lifecycle, from initial concept to launch and beyond.</p>
 <p>This page showcases some of my "0 to 1" work. Get in touch to learn more.</p>
 </div>
@@ -77,7 +77,7 @@ const HeaderContent = () => {
               className="social-link"
             >
               <img src={LinkedInLogo} alt="LinkedIn" className="icon" />
-              <span>Find me on LinkedIn</span>
+              
             </a>
           </div>
 
@@ -90,7 +90,7 @@ const HeaderContent = () => {
               className="social-link"
             >
               <img src={GitHubLogo} alt="GitHub" className="icon" />
-              <span>Repos' & Protos'</span>
+              
             </a>
           </div>
 
@@ -103,7 +103,7 @@ const HeaderContent = () => {
               className="social-link"
             >
               <img src={MediumLogo} alt="Medium" className="icon" />
-              <span>Blog articles</span>
+              
             </a>
           </div>
         </div>

@@ -1,114 +1,93 @@
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation} from 'react-router-dom';
 import Card from '../Card/Card';
+import Subcard from '../Subcard/Subcard';
 import Page from '../Page/Page';
 import './Homepage.css';
 
-const HomePage = ({ projects, loading }) => {
-  const [selectedCard, setSelectedCard] = useState(null); 
-  const [isBackgroundActive, setIsBackgroundActive] = useState(false); 
+const HomePage = ({ projects, case_studies, loading }) => {
+  const [selectedItem, setSelectedItem] = useState(null);
   const navigate = useNavigate();
-  const { projectId } = useParams(); // Extract the projectId from the URL
+  const location = useLocation();
 
-  // Preselect the card when visiting /project/:id directly
   useEffect(() => {
-    if (projectId && projects.length > 0) {
-      const project = projects.find((p) => p.id === parseInt(projectId));
-      if (project) {
-        setSelectedCard(project);
-        setIsBackgroundActive(true);
-      }
-    }
-  }, [projectId, projects]);
+    const pathParts = location.pathname.split('/');
+    let isBackgroundNeeded = false; // Flag to track if background should be active
 
-  const toggleClass = () => {
-    setIsBackgroundActive((prevState) => !prevState);
+    if (pathParts.length === 3) {
+      const type = pathParts[1];
+      const id = parseInt(pathParts[2], 10);
+
+      if (type === 'cases') {
+        const caseStudy = case_studies.find(c => c.id === id);
+        if (caseStudy) {
+          setSelectedItem(caseStudy);
+          isBackgroundNeeded = true; // Set flag to true
+        }
+      } else if (type === 'project') {
+        const project = projects.find(p => p.id === id);
+        if (project) {
+          setSelectedItem(project);
+          isBackgroundNeeded = true; // Set flag to true
+        }
+      }
+    } else {
+      setSelectedItem(null);
+    }
+    // Set background based on the flag.
+    document.body.classList.toggle('background', isBackgroundNeeded);
+    document.documentElement.classList.toggle('background', isBackgroundNeeded);
+  }, [location, projects, case_studies]);
+
+  const handleCardClick = (item, isCaseStudy) => {
+    setSelectedItem(item);
+    document.body.classList.add('background');
+    document.documentElement.classList.add('background');
+    navigate(isCaseStudy ? `/cases/${item.id}` : `/project/${item.id}`, { replace: true });
   };
 
-  useEffect(() => {
-    if (isBackgroundActive) {
-      document.body.classList.add('background');
-      document.documentElement.classList.add('background');
-    } else {
-      document.body.classList.remove('background');
-      document.documentElement.classList.remove('background');
-    }
-  }, [isBackgroundActive]); 
-
-  if (loading) {
-    return <div className="loading-indicator">Loading projects...</div>;
-  }
-
-  if (!projects.length) {
-    return <div className="no-projects">No projects available.</div>;
-  }
+  const handleClose = () => {
+    setSelectedItem(null);
+    document.body.classList.remove('background');
+    document.documentElement.classList.remove('background');
+    navigate('/', { replace: true });
+  };
 
   return (
     <div>
-      <div className={`overlay ${isBackgroundActive ? 'background' : ''}`}></div>
+      <div className="overlay" style={{display: document.body.classList.contains('background') ? 'block' : 'none'}}></div>
 
-      <div className="header-title">Case studies</div>
-
+      {/* ... rest of the component (cards and Page) */}
+            <div className="header-title">Case studies</div>
       <div className="project-grid">
-        {projects.map((project, index) => (
+        {case_studies.map((case_study, index) => (
           <Card
-            key={project.id || index}
-            project={project}
+            key={case_study.id || index}
+            project={case_study}
             delay={300 * (1 - Math.exp(-index / 5))}
-            onClick={() => {
-              setSelectedCard(project); 
-              toggleClass(); 
-              navigate(`/project/${project.id}`); // Update URL when the card is clicked
-            }}
+            onClick={() => handleCardClick(case_study, true)}
           />
         ))}
       </div>
 
-      {selectedCard && (
-        <div className="page-container">
-          <Page 
-            project={selectedCard} 
-            onClose={() => {
-              setSelectedCard(null);
-              toggleClass(); 
-              navigate('/'); // Return to the home page
-            }}
-          />
-        </div>
-      )}
-
-
-
-      {/* <div className="header-title">Other Products</div>
+      <div className="header-title">Launched Products</div>
       <div className="project-grid-sub">
         {projects.map((project, index) => (
-          <Card
+          <Subcard
             key={project.id || index}
             project={project}
             delay={300 * (1 - Math.exp(-index / 5))}
-            onClick={() => {
-              setSelectedCard(project); 
-              toggleClass(); 
-              navigate(`/project/${project.id}`); // Update URL when the card is clicked
-            }}
+            onClick={() => handleCardClick(project, false)}
           />
         ))}
       </div>
 
-      {selectedCard && (
+      {selectedItem && (
         <div className="page-container">
-          <Page 
-            project={selectedCard} 
-            onClose={() => {
-              setSelectedCard(null);
-              toggleClass(); 
-              navigate('/'); // Return to the home page
-            }}
-          />
+          <Page project={selectedItem} onClose={handleClose} />
         </div>
-      )} */}
-
+      )}
     </div>
   );
 };

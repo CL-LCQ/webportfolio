@@ -3,8 +3,8 @@
 }
 
 /* Main Card Container */
-.card-container {
-  aspect-ratio: 16/9;
+.subcard-container {
+  aspect-ratio:4/5;
   border: 1px solid rgba(250, 250, 250, 0.6);
   border-radius: 10px;
   overflow: hidden;
@@ -15,20 +15,20 @@
 }
 
 /* Loading State */
-.card-container.loading {
+.subcard-container.loading {
   opacity: 0;
   transform: scale(1.1);
 }
 
 /* Loaded State */
-.card-container.loaded {
+.subcard-container.loaded {
   opacity: 1;
   transform: scale(1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Hover Effect for Loaded State */
-.card-container.loaded:hover {
+.subcard-container.loaded:hover {
   transform: scale(1.05);
   box-shadow: -5px 10px 10px rgba(99, 53, 30, 0.3);
 }
@@ -45,14 +45,14 @@
   }
 }
 
-.card-image-container {
+.subcard-image-container {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
 
-.card-image {
+.subcard-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -60,7 +60,7 @@
   display: block;
 }
 
-.card-title {
+.subcard-title {
   font-family: 'IBM Plex Mono', monospace;
   position: absolute;
   bottom: 0px;
@@ -74,7 +74,7 @@
   z-index: 2; /* Ensure above image */
 }
 
-.card-overlay {
+.subcard-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -90,7 +90,7 @@
   z-index: 2; /* Ensure above image */
 }
 
-.card-year {
+.subcard-year {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 12px;
   font-weight: 400;
@@ -99,7 +99,7 @@
   text-overflow: ellipsis;
 }
 
-.card-tag {
+.subcard-tag {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 14px;
   font-weight: 700;

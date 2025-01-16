@@ -18,7 +18,7 @@ body, html {
 .hero-container {
   z-index: 2;
   width: 100%; /* Full width of the viewport */
-  height: 55%; /* Height relative to the viewport width */
+  height: 35%; /* Height relative to the viewport width */
   overflow: hidden; 
   display: block; 
   position: relative; /* Position relative to allow child elements to be positioned inside */
@@ -60,8 +60,9 @@ body, html {
 }
 
 .annex-subcontainer{
+  
 
-  flex: 0 0 20%; /* Takes 70% of the width */
+  flex: 0 0 10%; /* Takes 20% of the width */
   height: 50%;
   background-color: #fff;
   border-radius: 10px;
@@ -71,18 +72,20 @@ body, html {
 
 
 
-@media (max-width: 768px) {
+
   .container {
     flex-direction: column; /* Stack elements vertically */
   }
 
   .fulldescription-subcontainer, 
   .annex-subcontainer {
+    background-color: #fff;
+    border-radius: 10px;
     flex: 0 0 100%; /* Full width on mobile */
     height: auto; /* Adjust height automatically */
     margin-bottom: 20px; /* Add spacing between stacked items */
   }
-}
+
 
 .chip {
   border: 1px solid;
@@ -98,16 +101,18 @@ body, html {
 .media-wrapper {
   display: flex; /* Enable flexbox for centering */
   justify-content: center; /* Center horizontally */
-
+  
+  padding: 60px;
 }
 
 .media {
   background-color: #ddd;
   border-radius: 8px; /* Adds rounded corners */
   overflow: hidden; /* Ensures content inside respects the border radius */
-  max-height: 40%; /* Prevent media from being too tall */
+  max-height: 20%; /* Prevent media from being too tall */
   max-width: 90%; /* Prevent media from being too wide */
   object-fit: contain; /* Maintain the original aspect ratio */
+
 }
 
 
@@ -135,14 +140,14 @@ body, html {
 .two-column-layout {
   display: flex; /* Enable flexbox for horizontal layout */
   align-items: flex-start; /* Align columns at the top */
-  gap: 20px; /* Adds space between columns */
+  gap: 5px; /* Adds space between columns */
   flex-wrap: wrap; /* Stack columns on smaller screens */
-  padding: 40px;
+  padding: 20px;
 }
 
 .left-column {
   flex: 1; /* Allow the title to take 1 part of the total width */
-  max-width: 15%; /* Limit the max width for the left column */
+  max-width: 10%; /* Limit the max width for the left column */
 }
 
 .right-column {
@@ -166,7 +171,7 @@ body, html {
 }
 
 .category-paragraph {
-  margin-bottom: 30px;
+  margin-bottom: 5px;
   display: block; /* Ensures it's treated as a block for top alignment */
 }
 

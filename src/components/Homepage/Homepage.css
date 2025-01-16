@@ -124,9 +124,7 @@
     display: grid;
     padding-top: 20px;
     padding-bottom: 60px;
-    grid-template-columns: repeat(auto-fill, minmax(clamp(50px, 30%, 170px), 2fr));
+    grid-template-columns: repeat(auto-fill, minmax(clamp(50px, 20%, 170px), 3fr));
     gap: 40px; /* Space between cards */
   }
 
-  .header-title{
-  }

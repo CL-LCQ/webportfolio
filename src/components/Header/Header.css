@@ -45,8 +45,9 @@
 .social-media {
   margin-top: 20px;
   display: flex;
-  flex-direction: column; /* Stack button rows */
+  flex-direction: row; /* Stack button rows */
   gap: 20px; /* Space between each button row */
+  justify-content: center; /* Center horizontally */
 }
 
 .button-row {
