@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const { data, error } = await supabaseClient.from('work_v2').select('*');
+        const { data, error } = await supabaseClient.from('work_v2_duplicate').select('*');
         if (error) {
           throw error; // Throw the error to be caught by try...catch
         }

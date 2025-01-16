@@ -4,6 +4,7 @@ import { useNavigate, useParams, useLocation} from 'react-router-dom';
 import Card from '../Card/Card';
 import Subcard from '../Subcard/Subcard';
 import Page from '../Page/Page';
+import CaseStudyPage from '../CaseStudyPage/CaseStudyPage';
 import './Homepage.css';
 
 const HomePage = ({ projects, case_studies, loading }) => {
@@ -18,18 +19,18 @@ const HomePage = ({ projects, case_studies, loading }) => {
     if (pathParts.length === 3) {
       const type = pathParts[1];
       const id = parseInt(pathParts[2], 10);
-
+  
       if (type === 'cases') {
         const caseStudy = case_studies.find(c => c.id === id);
         if (caseStudy) {
-          setSelectedItem(caseStudy);
-          isBackgroundNeeded = true; // Set flag to true
+          setSelectedItem({ ...caseStudy, type: 'caseStudy' }); // Set the type here!
+          isBackgroundNeeded = true;
         }
       } else if (type === 'project') {
         const project = projects.find(p => p.id === id);
         if (project) {
-          setSelectedItem(project);
-          isBackgroundNeeded = true; // Set flag to true
+          setSelectedItem({ ...project, type: 'project' }); // Set the type here!
+          isBackgroundNeeded = true;
         }
       }
     } else {
@@ -41,7 +42,7 @@ const HomePage = ({ projects, case_studies, loading }) => {
   }, [location, projects, case_studies]);
 
   const handleCardClick = (item, isCaseStudy) => {
-    setSelectedItem(item);
+    setSelectedItem({ ...item, type: isCaseStudy ? 'caseStudy' : 'project' }); // Set the type here!
     document.body.classList.add('background');
     document.documentElement.classList.add('background');
     navigate(isCaseStudy ? `/cases/${item.id}` : `/project/${item.id}`, { replace: true });
@@ -49,6 +50,7 @@ const HomePage = ({ projects, case_studies, loading }) => {
 
   const handleClose = () => {
     setSelectedItem(null);
+    
     document.body.classList.remove('background');
     document.documentElement.classList.remove('background');
     navigate('/', { replace: true });
@@ -59,36 +61,41 @@ const HomePage = ({ projects, case_studies, loading }) => {
       <div className="overlay" style={{display: document.body.classList.contains('background') ? 'block' : 'none'}}></div>
 
       {/* ... rest of the component (cards and Page) */}
-            <div className="header-title">Case studies</div>
-      <div className="project-grid">
-        {case_studies.map((case_study, index) => (
-          <Card
-            key={case_study.id || index}
-            project={case_study}
-            delay={300 * (1 - Math.exp(-index / 5))}
-            onClick={() => handleCardClick(case_study, true)}
-          />
-        ))}
-      </div>
+      <div className="header-title">Case studies</div>
+        <div className="project-grid">
+          {case_studies.map((case_study, index) => (
+            <Card
+              key={case_study.id || index}
+              project={case_study}
+              delay={300 * (1 - Math.exp(-index / 5))}
+              onClick={() => handleCardClick(case_study, true)}
+            />
+          ))}
+        </div>
 
-      <div className="header-title">Launched Products</div>
-      <div className="project-grid-sub">
-        {projects.map((project, index) => (
-          <Subcard
-            key={project.id || index}
-            project={project}
-            delay={300 * (1 - Math.exp(-index / 5))}
-            onClick={() => handleCardClick(project, false)}
-          />
-        ))}
-      </div>
+        <div className="header-title">Launched Products</div>
+        <div className="project-grid-sub">
+          {projects.map((project, index) => (
+            <Subcard
+              key={project.id || index}
+              project={project}
+              delay={300 * (1 - Math.exp(-index / 5))}
+              onClick={() => handleCardClick(project, false)}
+            />
+          ))}
+        </div>
 
-      {selectedItem && (
+        {selectedItem && (
         <div className="page-container">
-          <Page project={selectedItem} onClose={handleClose} />
+          {selectedItem.type === 'caseStudy' ? (
+            <CaseStudyPage project={selectedItem} onClose={handleClose} />
+          ) : (
+            <Page project={selectedItem} onClose={handleClose} />
+          )}
         </div>
       )}
-    </div>
+
+      </div>
   );
 };
 
