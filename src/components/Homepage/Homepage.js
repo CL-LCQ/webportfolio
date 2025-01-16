@@ -48,7 +48,7 @@ const HomePage = ({ projects, loading }) => {
     <div>
       <div className={`overlay ${isBackgroundActive ? 'background' : ''}`}></div>
 
-      <div className="header-title">Selected Works</div>
+      <div className="header-title">Case studies</div>
 
       <div className="project-grid">
         {projects.map((project, index) => (
@@ -77,6 +77,38 @@ const HomePage = ({ projects, loading }) => {
           />
         </div>
       )}
+
+
+
+      {/* <div className="header-title">Other Products</div>
+      <div className="project-grid-sub">
+        {projects.map((project, index) => (
+          <Card
+            key={project.id || index}
+            project={project}
+            delay={300 * (1 - Math.exp(-index / 5))}
+            onClick={() => {
+              setSelectedCard(project); 
+              toggleClass(); 
+              navigate(`/project/${project.id}`); // Update URL when the card is clicked
+            }}
+          />
+        ))}
+      </div>
+
+      {selectedCard && (
+        <div className="page-container">
+          <Page 
+            project={selectedCard} 
+            onClose={() => {
+              setSelectedCard(null);
+              toggleClass(); 
+              navigate('/'); // Return to the home page
+            }}
+          />
+        </div>
+      )} */}
+
     </div>
   );
 };
