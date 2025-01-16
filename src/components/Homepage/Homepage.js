@@ -9,12 +9,13 @@ import './Homepage.css';
 
 const HomePage = ({ projects, case_studies, loading }) => {
   const [selectedItem, setSelectedItem] = useState(null);
+  const [isBackgroundActive, setIsBackgroundActive] = useState(false); // Manage background state
+
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
     const pathParts = location.pathname.split('/');
-    let isBackgroundNeeded = false; // Flag to track if background should be active
 
     if (pathParts.length === 3) {
       const type = pathParts[1];
@@ -24,42 +25,40 @@ const HomePage = ({ projects, case_studies, loading }) => {
         const caseStudy = case_studies.find(c => c.id === id);
         if (caseStudy) {
           setSelectedItem({ ...caseStudy, type: 'caseStudy' }); // Set the type here!
-          isBackgroundNeeded = true;
+          
         }
       } else if (type === 'project') {
         const project = projects.find(p => p.id === id);
         if (project) {
           setSelectedItem({ ...project, type: 'project' }); // Set the type here!
-          isBackgroundNeeded = true;
+    
         }
       }
     } else {
       setSelectedItem(null);
     }
-    // Set background based on the flag.
-    document.body.classList.toggle('background', isBackgroundNeeded);
-    document.documentElement.classList.toggle('background', isBackgroundNeeded);
+ 
   }, [location, projects, case_studies]);
 
   const handleCardClick = (item, isCaseStudy) => {
     setSelectedItem({ ...item, type: isCaseStudy ? 'caseStudy' : 'project' }); // Set the type here!
-    document.body.classList.add('background');
-    document.documentElement.classList.add('background');
+    setIsBackgroundActive(true); // Update state here
     navigate(isCaseStudy ? `/cases/${item.id}` : `/project/${item.id}`, { replace: true });
   };
 
   const handleClose = () => {
     setSelectedItem(null);
-    
-    document.body.classList.remove('background');
-    document.documentElement.classList.remove('background');
+    setIsBackgroundActive(false); // Update state here
     navigate('/', { replace: true });
   };
 
-  return (
-    <div>
-      <div className="overlay" style={{display: document.body.classList.contains('background') ? 'block' : 'none'}}></div>
 
+  return (
+   
+    <div>
+      <div className={`overlay ${isBackgroundActive ? 'background' : ''}`}></div>
+
+  
       {/* ... rest of the component (cards and Page) */}
       <div className="header-title">Case studies</div>
         <div className="project-grid">
