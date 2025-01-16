@@ -43,6 +43,7 @@ const CaseStudyPage = ({ project, onClose }) => {
           </div>
           <div className= "container">
             <div className="fulldescription-subcontainer">
+              <p>case study coming soon</p>
 
 
 
