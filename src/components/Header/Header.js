@@ -8,13 +8,13 @@ const HeaderContent = () => {
   return (
     <div className="headerContainer">
       <div className="col1">
-        <div className="header-title">Hello</div>
+        <div className="header-title">Hello </div>
         <div className="text">
         <div className="text">
-        <p>I'm Charles Leclercq, a Product Manager with software engineering skills and a background in design, experienced with both hardware and software products. I specialize in bringing ideas to life, guiding them from concept to prototype and from launch to product-market fit.</p>
-<p>I recently co-launched the ARx Gen AI wearable device, app, and SDK with Microsoft. My portfolio also includes AAA games, AR/XR tools and experiences, and mobile apps.</p>
-<p>I excel at collaborating with cross-functional teams throughout the entire product lifecycle, from initial concept to launch and beyond.</p>
-<p>This page showcases some of my "0 to 1" work. Get in touch to learn more.</p>
+  <p>I currently lead a product squad at ARxVision, a company who partnered with Microsoft to build the first generative AI wearable and suite of Apps.</p> 
+  <p>My global experience (France, India, Spain, Romania, UK, USA) and diverse startup journey (public speaking, sales, research) have made me a well-rounded individual with a deep appreciation for different perspectives and XFN collaboration.</p>
+  <p>Having worked at companies like the BBC, Ubisoft, and raised funding from Venture Capital, I can influence and collaborate at scale. Having worked at startups building and selling complex products, I know how to get things done without excuses.</p>
+  <p>I'm motivated by ambitious, product-minded teams redefining sectors through thoughtful use of design, tech, and data. If you are part of one, click the orange button and let's chat!</p>
 </div>
 
 <a href="mailto:charles.lclcq@gmail.com" className="contact-button" target="_blank" rel="noopener noreferrer">
