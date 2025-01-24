@@ -147,6 +147,17 @@ body, html {
   padding: 10px;
 }
 
+/* Media query for screens under 1024px */
+@media (max-width: 1024px) {
+  .three-column-layout {
+    flex-direction: column; /* Stack columns vertically */
+    gap: 10px; /* Reduce gap between columns */
+  }
+  
+  .column {
+    width: 100%; /* Ensure columns take the full width */
+  }
+}
 .category-title-side {
   font-size:1.2rem; 
   font-weight: bolder;
@@ -238,4 +249,32 @@ body, html {
   gap: 10px;         /* Add space between each chip */
   margin-top: 10px;  /* Space between chips and other content */
   z-index: 20;       /* Ensure the chip container is on top */
+}
+
+.next-button-container {
+  display: flex;
+  justify-content: right;
+
+}
+
+.next-button {
+  background:#f6f6f6;
+  font-size: 12px;
+  font-weight: 100;
+  padding: 10px 20px;
+  border-radius: 11px; /* Rounded button */
+  cursor: pointer;
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  border:none;
+  border-radius: 11;
+}
+
+.next-button:hover {
+  background: #e8e8ee;
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.next-button:active {
+  transform: scale(1); /* Remove zoom on click */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Reset shadow */
 }

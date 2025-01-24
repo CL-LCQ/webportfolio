@@ -2,12 +2,15 @@ import React from 'react';
 import './Page.css';
 import DisplayMedia from '../MediaDisplay/MediaDisplay';
 import DisplayLinks from '../LinkList/LinkList';
+import { handleNextItem } from '../Homepage/Homepage'; // Adjust the path to HomePage.js
 
 const Page = ({ project, onClose }) => {
   
   if (!project) {
     return <div>Loading project...</div>;
   }
+
+  
 
   return (
     <div className="page-content">
@@ -27,7 +30,8 @@ const Page = ({ project, onClose }) => {
                 </button>
                 <div className="title-role-container">
                   <h2 id="overlay-title">{project?.title}</h2>
-                  {/* <p id="category-role">{"Role: "+ project.role}</p> */}
+                  {/* <p id="category-role">{"Role: "+ project.role}</p>
+                  <p id="category-role">{"Team: "+ project.role}</p> */}
                 </div>
               </div>
 
@@ -35,6 +39,12 @@ const Page = ({ project, onClose }) => {
                 <span className="chip" id="overlay-date">{project?.date}</span>
                 <span className="chip" id="overlay-companyname">{project?.company}</span>
                 <span className="chip" id="overlay-industry">{project?.industry}</span>
+              </div>
+
+              <div className="next-button-container">
+                <button className="next-button" onClick={handleNextItem}>
+                  Next
+                </button>
               </div>
           </div>
 

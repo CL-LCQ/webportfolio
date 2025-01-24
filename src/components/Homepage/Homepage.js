@@ -7,12 +7,32 @@ import Page from '../Page/Page';
 import CaseStudyPage from '../CaseStudyPage/CaseStudyPage';
 import './Homepage.css';
 
+export const handleNextItem = (selectedItem, case_studies = [], projects = [], handleCardClick) => {
+  if (!selectedItem) return;
+
+  const isCaseStudy = selectedItem.type === 'caseStudy';
+  const items = isCaseStudy ? case_studies : projects;
+
+  // Ensure items is a valid array
+  if (!items || !Array.isArray(items) || items.length === 0) return;
+
+  const currentIndex = items.findIndex(item => item.id === selectedItem.id);
+
+  // Handle invalid or non-existing index
+  if (currentIndex === -1) return;
+
+  const nextIndex = (currentIndex + 1) % items.length; // Loop to start
+  const nextItem = items[nextIndex];
+  handleCardClick(nextItem, isCaseStudy);
+};
+
 const HomePage = ({ projects, case_studies, loading }) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isBackgroundActive, setIsBackgroundActive] = useState(false); // Manage background state
 
   const navigate = useNavigate();
   const location = useLocation();
+
 
   useEffect(() => {
     const pathParts = location.pathname.split('/');
@@ -51,6 +71,20 @@ const HomePage = ({ projects, case_studies, loading }) => {
     setIsBackgroundActive(false); // Update state here
     navigate('/', { replace: true });
   };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'ArrowRight') {
+      handleNextItem(); // Reuse the logic for the right arrow key
+    } else if (event.key === 'ArrowLeft') {
+      // Logic for the left arrow key, if needed
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedItem]);
 
 
   return (
