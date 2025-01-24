@@ -1,13 +1,39 @@
 
 :root {
-    --primary-color: #FFB65A;
+    /* --primary-color: #FFB65A; */
+    --primary-color: #ff4c00;
     --accent-color: #85857B;
+    --background-color: #ecece9;
+    --primary-text: #0d0d0d;
+    --secondary-text: #404040;
   }
   
+/* Not-clicked link */
+  a:link {
+    color: var(--primary-text);       /* Change to your preferred color */
+    /* text-decoration: none; */
+    text-decoration-color: var(--primary-color);
+  }
+
+/* Clicked (visited) link */
+a:visited {
+  color: var(--primary-text);       /* Change to your preferred color */
+  /* text-decoration: none; */
+  text-decoration-color: var(--primary-color);
+}
+
+  a:hover {
+    color: var(--primary-color);     
+    /* styles */
+  }
+  a:active {
+    /* styles */
+  }
+
   /* Set the background color for the whole canvas */
   body, html {
     height: 100%;
-    background-color: #E9E9E9;
+    background-color: var(--background-color);
     font-family: 'Karla', sans-serif;
     overflow:auto;
     

@@ -90,7 +90,8 @@
   justify-content: center; /* Center contents */
   padding: 10px 20px; /* Add padding for better button look */
   background-color: var(--primary-color); /* Background color for the button */
-  color: #ffffff; /* Text color */
+  
+  color: #ffffff!important;   /* Text color */
   border: none; /* No border */
   border-radius: 8px; /* Rounded corners */
   text-decoration: none; /* Remove underline from the link */
