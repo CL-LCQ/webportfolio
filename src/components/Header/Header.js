@@ -12,8 +12,8 @@ const HeaderContent = () => {
         <div className="text">
         <div className="text">
   <p>I currently lead a product squad at ARxVision, a company who partnered with Microsoft to build the first generative AI wearable and suite of Apps.</p> 
-  <p>My global experience (France, India, Spain, Romania, UK, USA) and diverse startup journey (public speaking, sales, research) have made me a well-rounded individual with a deep appreciation for different perspectives and XFN collaboration.</p>
-  <p>Having worked at companies like the BBC, Ubisoft, and raised funding from Venture Capital, I can influence and collaborate at scale. Having worked at startups building and selling complex products, I know how to get things done without excuses.</p>
+  <p>Having worked at companies like the BBC, Ubisoft, and raised funding from Venture Capital, I can influence and collaborate at scale. Having worked at startups, I just get things done.</p>
+  <p>My global experience (France, India, Spain, Romania, UK, USA) and diverse startup journey (UX design, code, GTM, public speaking, sales, scientific research) have made me a well-rounded individual with a deep appreciation for different perspectives and XFN collaboration.</p>
   <p>I'm motivated by ambitious, product-minded teams redefining sectors through thoughtful use of design, tech, and data. If you are part of one, click the orange button and let's chat!</p>
 </div>
 
