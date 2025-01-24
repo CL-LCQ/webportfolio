@@ -44,6 +44,18 @@ a:visited {
     overflow: hidden; /* Disable scrolling */
     
   }
+  .chip {
+    border: 1px solid;
+    margin: 4px;
+    padding: 4px 8px !important;           /* Reduced padding for smaller chips */
+    border-radius: 12px !important;        /* Rounded corners for pill-shaped look */
+    font-size: 0.7em !important;           /* Smaller font size */
+    display: inline-block !important;
+    white-space: nowrap !important;        /* Prevent text wrapping */
+    background-color: transparent !important;
+    color:var(--secondary-text) !important;
+    border-color: var(--secondary-text) !important;
+  }
   
   /* Container to divide the canvas into rows */
   .app-container {

@@ -65,6 +65,35 @@ const HeaderContent = () => {
           <li>📄 <strong>Research Paper</strong> — <a href="https://www.sciencedirect.com/science/article/abs/pii/S107158192300188X#:~:text=The%20AAR%20taxonomy%20consists%20of,Adapted%2C%20with%20three%20subcategories%20respectively." target="_blank">"Audio AR Definition"</a></li>
         </ul>
         </div>
+
+        {/* <div className="header-title">Skills</div>
+          <div className="text">
+                <ul>
+            
+              <li>
+                <strong>Product Management</strong> <br></br>
+                <span className="chip ">Roadmap</span>
+                <span className="chip">Jira</span>
+                <span className="chip">Scrum</span>
+              </li>
+              
+          
+              <li>
+                <strong>Product Design</strong> <br></br>
+                <span className="chip">Protopie</span>
+                <span className="chip">Figma</span>
+                <span className="chip">Sketch</span>
+              </li>
+
+            
+              <li>
+                <strong>Engineering</strong> <br></br>
+                <span className="chip">Python</span>
+                <span className="chip">C++</span>
+                <span className="chip">AWS</span>
+              </li>
+            </ul>
+          </div> */}
         
         
         <div className="social-media">

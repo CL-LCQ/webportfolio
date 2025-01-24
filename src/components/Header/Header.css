@@ -7,6 +7,9 @@
   box-sizing: border-box; /* Include padding in the width */
 }
 
+
+
+
 /* Column Styles */
 .col1, .col2, .col3 {
   display: flex;
@@ -29,6 +32,8 @@
   font-family: 'Karla', sans-serif;
   font-weight: 600;
 }
+
+
 
 /* Text */
 .text {
@@ -62,6 +67,14 @@
   align-items: center; /* Center text and image vertically */
   text-decoration: none; /* Remove link underline */
   color: inherit; /* Inherit text color */
+  
+  /* Enable smooth transitions for transform and color */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-link:hover {
+  color: /* your hover color here, e.g. */ #ff6600;
+  transform: scale(1.05); /* Slight scale up */
 }
 
 .icon {
@@ -78,7 +91,6 @@
 .social-link:hover span {
   color: var(--primary-color); /* Change text color on hover */
 }
-
 
 
 
