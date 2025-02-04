@@ -94,6 +94,7 @@ const HomePage = ({ projects, case_studies, loading }) => {
 
   
       {/* ... rest of the component (cards and Page) */}
+     {/*
       <div className="header-title">Case studies</div>
         <div className="project-grid">
           {case_studies.map((case_study, index) => (
@@ -105,6 +106,7 @@ const HomePage = ({ projects, case_studies, loading }) => {
             />
           ))}
         </div>
+        */}
 
         <div className="header-title">Launched Products</div>
         <div className="project-grid-sub">
