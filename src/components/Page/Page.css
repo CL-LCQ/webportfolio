@@ -1,280 +1,229 @@
-/* Base styles */
-body, html {
+/* Ensure the body and html take up full height and have no scrollbars */
+html, body {
+  margin: 0;
+  padding: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-.page-content{
-  top:0px;
+/* Full screen background with hero image */
+.page-content {
+  position: relative;
   width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
+  height: 100vh; /* Full viewport height */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.hero-container {
-  z-index: 2;
-  width: 100%; /* Full width of the viewport */
-  height: 35%; /* Height relative to the viewport width */
-  overflow: hidden; 
-  display: block; 
-  position: relative; /* Position relative to allow child elements to be positioned inside */
-}
-
-.hero-container img {
-  width: 100%; 
-  height: 100%; 
-  object-fit: cover; /* Ensures the image fills the container while maintaining aspect ratio */
-  object-position: center left; /* Focus on the bottom of the image */
-  
-}
-
-.container{
-  display: flex;
-  width: 100%;  /* Full viewport height */
-  overflow: hidden;
-  box-sizing: border-box;  /* Ensure padding and borders are included in the element's width and height */
-  padding-right:  20px; /* Add padding inside the container */
-  padding-left: 20px ;
-  margin-top: -25px;
-  gap: 20px; /* Space between child elements */
-  position: relative; 
-  z-index: 10; 
-  margin-bottom: 50px;
-  position: relative; /* Necessary to define the context for the sticky child */
-  flex-wrap: nowrap;
-
-
-}
-
-.fulldescription-subcontainer{
- background-color: #fff;
- border-radius: 10px;
- box-sizing: border-box; /* Ensure padding and border don't increase the total width */
- 
-}
-
-.annex-subcontainer{
-  
-  height: 50%;
-  background-color: #fff;
+/* Centered overlay box for all content */
+.overlay-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.95); /* Semi-opaque white */
+  padding: 30px;
   border-radius: 10px;
-  padding: 10px;
-  backdrop-filter: blur(10px);
+  width: 90%;
+  max-width: 1000px;
+  max-height: 90%;
+  overflow-y: auto; /* Allow internal scrolling if content is too long */
 }
 
-
-
-
-  .container {
-    flex-direction: column; /* Stack elements vertically */
-  }
-
-  .fulldescription-subcontainer, 
-  .annex-subcontainer {
-    background-color: #fff;
-    border-radius: 10px;
-    flex: 0 0 100%; /* Full width on mobile */
-    height: auto; /* Adjust height automatically */
-    margin-bottom: 20px; /* Add spacing between stacked items */
-  }
-
-
-.chip {
-  border: 1px solid;
-  padding: 4px 8px !important;           /* Reduced padding for smaller chips */
-  border-radius: 12px !important;        /* Rounded corners for pill-shaped look */
-  font-size: 0.7em !important;           /* Smaller font size */
-  display: inline-block !important;
-  white-space: nowrap !important;        /* Prevent text wrapping */
-  background-color: white !important; 
-  color: #555;
-}
-
-.media-wrapper {
-  display: flex; /* Enable flexbox for centering */
-  justify-content: center; /* Center horizontally */
-  
-  padding: 60px;
-}
-
-.media {
-  background-color: #ddd;
-  border-radius: 8px; /* Adds rounded corners */
-  overflow: hidden; /* Ensures content inside respects the border radius */
-  max-height: 20%; /* Prevent media from being too tall */
-  max-width: 90%; /* Prevent media from being too wide */
-  object-fit: contain; /* Maintain the original aspect ratio */
-
-}
-
-
-.title-overlay-sticky {
-  position: sticky;
-  top: 0;
-  background-color: #fff;
-  z-index: 9990;
-  padding: 20px;
-  
-}
-
-.first-row{
-  display: flex;
-  align-items: center; /* Align items vertically in the center */
-  justify-content: space-between; /* Space out the button and title */
-}
-
-.title-role-container {
-  display: flex; 
-  align-items: baseline; /* Align title and role on their text baseline */
-  gap: 10px; /* Space between title and role */
-}
-
-
-.three-column-layout {
+/* Header styles */
+/* .overlay-header {
+  position: relative;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+} */
+.overlay-header-top {
   display: flex;
   justify-content: space-between;
-  gap: 20px; /* Space between columns */
-  padding: 20px;
+  align-items: baseline; /* Align children on their text baseline */
+  gap: 20px; /* Optional: add spacing between the title and chips */
+  margin-bottom: 20px;
 }
 
-.column {
-  flex: 1; /* Make each column equal in width */
+/* Title and chip styles */
+.title-role-container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align content to the left */
-  padding: 10px;
+  align-items: baseline;
+  gap: 10px;
 }
-
-/* Media query for screens under 1024px */
-@media (max-width: 1024px) {
-  .three-column-layout {
-    flex-direction: column; /* Stack columns vertically */
-    gap: 10px; /* Reduce gap between columns */
-  }
-  
-  .column {
-    width: 100%; /* Ensure columns take the full width */
-  }
-}
-.category-title-side {
-  font-size:1.2rem; 
-  font-weight: bolder;
-  margin-top: 15px; /* Remove bottom margin */
-  color: #616365; 
-}
-
-.category-title {
-  font-size:2rem; 
-  font-weight: bolder;
-  margin-top: 15px; /* Remove bottom margin */
-  color: #616365; 
-  display: block; /* Ensure the title takes up its own line */
-}
-
-.category-paragraph {
-  margin-bottom: 5px;
-  display: block; /* Ensures it's treated as a block for top alignment */
-}
-
-.category-content {
-  margin-top: 0px; 
-  color: #555;
-  line-height: 1.5; /* Improve readability */
-}
-
 
 #overlay-title {
-  font-size: 2.5rem; 
+  font-size: 2.5rem;
   color: #555;
   font-weight: bold;
-  margin: 0; /* Remove default margins */
-  line-height: 1; /* Ensures no extra vertical space is added */
+  margin: 0;
+  line-height: 1;
 }
-
-#category-role {
-  font-size: 1rem; 
-  margin: 0; /* Remove default margins */
-  color: #555;
-  line-height: 1; /* Ensures no extra vertical space is added */
-}
-
-.overlay-container {
-  display: flex;
-  gap: 30px;
-  padding: 30px;
-}
-
-
-
-
-.category-content {
-  font-size: 0.9em;
-  display: block;
-  margin: 12px auto 0 auto; 
-}
-
-.close-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 30px; 
-  aspect-ratio: 1 / 1; /* Maintains 1:1 ratio */
-  background: #e74c3c; 
-  color: white; 
-  font-size: 24px; 
-  border: none; 
-  border-radius: 50%; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  cursor: pointer; 
-  transition: transform 0.3s ease, background 0.3s ease; 
-}
-
-.close-button:hover {
-  background: #c0392b; /* Change to a darker shade of red on hover */
-  transform: scale(1.2); /* Scale the button up */
-}
-
-.close-button:focus {
-  outline: none; /* Remove the default focus outline */
-}
-
 
 .chip-container {
   display: flex;
-  flex-wrap: wrap;   /* Ensure chips wrap if they don't fit in one line */
-  gap: 10px;         /* Add space between each chip */
-  margin-top: 10px;  /* Space between chips and other content */
-  z-index: 20;       /* Ensure the chip container is on top */
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  z-index: 20;
+  padding-right: 60px;
 }
 
-.next-button-container {
-  display: flex;
-  justify-content: right;
+.chip {
+  border: 1px solid;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.7em;
+  background-color: white;
+  color: #555;
+  white-space: nowrap;
+}
 
+/* Next button styling */
+.next-button-container {
+  text-align: right;
+  margin-top: 10px;
 }
 
 .next-button {
-  background:#f6f6f6;
+  background: #f6f6f6;
   font-size: 12px;
   font-weight: 100;
   padding: 10px 20px;
-  border-radius: 11px; /* Rounded button */
+  border: none;
+  border-radius: 11px;
   cursor: pointer;
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
-  border:none;
-  border-radius: 11;
+  transition: all 0.3s ease;
 }
 
 .next-button:hover {
   background: #e8e8ee;
-  transform: scale(1.05); /* Slight zoom effect */
+  transform: scale(1.05);
 }
 
-.next-button:active {
-  transform: scale(1); /* Remove zoom on click */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Reset shadow */
+/* Close button positioned at the top-right corner of the overlay */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  aspect-ratio: 1 / 1;
+  background: #e74c3c;
+  color: white;
+  font-size: 24px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.close-button:hover {
+  background: #c0392b;
+  transform: scale(1.2);
+}
+
+.close-button:focus {
+  outline: none;
+}
+
+/* Body of the overlay */
+.overlay-body {
+  margin-bottom: 20px;
+}
+
+/* Three-column layout */
+.three-column-layout {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+.category-title {
+  font-size: 2rem;
+  font-weight: bolder;
+  color: #616365;
+  margin-top: 15px;
+  display: block;
+}
+
+.category-paragraph {
+  margin-bottom: 5px;
+  display: block;
+}
+
+.category-content {
+  font-size: 0.9em;
+  color: #555;
+  line-height: 1.5;
+  margin-top: 0;
+}
+
+/* Media wrapper styling */
+.media-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+.media {
+  background-color: #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  max-height: 20%;
+  max-width: 90%;
+  object-fit: contain;
+}
+
+/* Footer for additional links */
+.overlay-footer {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.link-section {
+  flex: 1;
+  min-width: 200px;
+}
+
+.category-title-side {
+  font-size: 1.2rem;
+  font-weight: bolder;
+  color: #616365;
+  margin-bottom: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .three-column-layout {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .column {
+    width: 100%;
+  }
+
+  .overlay-footer {
+    flex-direction: column;
+    gap: 15px;
+  }
 }
