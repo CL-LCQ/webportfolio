@@ -1,3 +1,6 @@
+/* ===========================================
+   Base & Page Setup
+=========================================== */
 /* Ensure the body and html take up full height and have no scrollbars */
 html, body {
   margin: 0;
@@ -16,6 +19,7 @@ html, body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  overflow: hidden !important;
 }
 
 /* Centered overlay box for all content */
@@ -30,25 +34,22 @@ html, body {
   width: 90%;
   max-width: 1000px;
   max-height: 90%;
-  overflow-y: auto; /* Allow internal scrolling if content is too long */
+  overflow-y: auto; /* Internal scrolling if content is too long */
 }
 
-/* Header styles */
-/* .overlay-header {
-  position: relative;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 20px;
-} */
+/* ===========================================
+   Header & Navigation Elements
+=========================================== */
 .overlay-header-top {
   display: flex;
   justify-content: space-between;
   align-items: baseline; /* Align children on their text baseline */
-  gap: 20px; /* Optional: add spacing between the title and chips */
-  margin-bottom: 20px;
+  gap: 20px; /* Space between title and chips */
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
 }
 
-/* Title and chip styles */
+/* Title container */
 .title-role-container {
   display: flex;
   align-items: baseline;
@@ -57,12 +58,13 @@ html, body {
 
 #overlay-title {
   font-size: 2.5rem;
-  color: #555;
+  color: #616365; /* Updated to provided grey */
   font-weight: bold;
   margin: 0;
   line-height: 1;
 }
 
+/* Chip container */
 .chip-container {
   display: flex;
   flex-wrap: wrap;
@@ -78,11 +80,11 @@ html, body {
   border-radius: 12px;
   font-size: 0.7em;
   background-color: white;
-  color: #555;
+  color: #616365; /* Updated to provided grey */
   white-space: nowrap;
 }
 
-/* Next button styling */
+/* Next button */
 .next-button-container {
   text-align: right;
   margin-top: 10px;
@@ -104,7 +106,7 @@ html, body {
   transform: scale(1.05);
 }
 
-/* Close button positioned at the top-right corner of the overlay */
+/* Close button */
 .close-button {
   position: absolute;
   top: 10px;
@@ -121,6 +123,7 @@ html, body {
   align-items: center;
   cursor: pointer;
   transition: transform 0.3s ease, background 0.3s ease;
+  z-index: 999;
 }
 
 .close-button:hover {
@@ -132,12 +135,13 @@ html, body {
   outline: none;
 }
 
-/* Body of the overlay */
+/* ===========================================
+   Existing Content Blocks (if still used)
+=========================================== */
 .overlay-body {
   margin-bottom: 20px;
 }
 
-/* Three-column layout */
 .three-column-layout {
   display: flex;
   justify-content: space-between;
@@ -168,12 +172,12 @@ html, body {
 
 .category-content {
   font-size: 0.9em;
-  color: #555;
+  color: #616365; /* Updated to provided grey */
   line-height: 1.5;
   margin-top: 0;
 }
 
-/* Media wrapper styling */
+/* Media wrapper */
 .media-wrapper {
   display: flex;
   justify-content: center;
@@ -189,7 +193,7 @@ html, body {
   object-fit: contain;
 }
 
-/* Footer for additional links */
+/* Footer links */
 .overlay-footer {
   border-top: 1px solid #ddd;
   padding-top: 20px;
@@ -211,7 +215,144 @@ html, body {
   margin-bottom: 10px;
 }
 
-/* Responsive adjustments */
+/* ===========================================
+   New Layout Sections
+=========================================== */
+
+/* Block 1: Introduction (large, centered title) */
+.section-intro {
+  margin-top: 10px;
+  text-align: left;
+  margin-bottom: 120px;
+}
+.section-intro .intro-title {
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 0;
+  color: #616365; /* Updated to provided grey */
+}
+
+/* Block 2: My Role & Media (two columns) */
+.section-role {
+  display: flex;
+  gap: 20px;
+  align-items: top;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.section-role .role-column {
+  flex: 1;
+  min-width: 300px;
+
+}
+.section-role .role-media-column {
+  flex: 1;
+  min-width: 300px;
+}
+.section-role .section-heading {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #616365; /* Updated to provided grey */
+}
+.section-role .role-description {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #616365; /* Updated to provided grey */
+}
+
+/* Block 3: Main Media (centered media element) */
+.section-media {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Block 4: Problem & Before (two columns) */
+.section-problem-before {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.section-problem-before .problem-column,
+.section-problem-before .before-column {
+  flex: 1;
+  min-width: 300px;
+}
+.section-problem-before .section-subheading {
+  font-size:2rem;
+  margin-bottom: 10px;
+  color: #616365; /* Updated to provided grey */
+}
+.section-problem-before .problem-text{
+  font-size:2rem;
+  line-height: 1.5;
+  color: #616365; /* Updated to provided grey */
+}
+.section-problem-before .before-text {
+  font-size:1.2rem;
+  line-height: 1.5;
+  color: #616365; /* Updated to provided grey */
+}
+
+/* Block 5: Hypothesis (with separators) */
+.section-hypothesis {
+  text-align: Left;
+  margin-bottom: 40px;
+}
+.separator {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+.section-hypothesis .hypothesis-title {
+  font-size: 2rem;
+
+  margin-bottom: 10px;
+  color: #616365; /* Updated to provided grey */
+}
+.section-hypothesis .hypothesis-text {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  color: #616365; /* Updated to provided grey */
+}
+
+
+.media-banner{
+  padding-top: 20px;
+  padding-bottom: 60px;
+}
+
+/* Block 8: After Thoughts (centered concluding section) */
+.heading{
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #616365; /* Updated to provided grey */
+}
+
+.subheading{
+  font-size: 2rem;
+  line-height: 1.5;
+  color: #616365; /* Updated to provided grey */
+}
+
+.statement-text{
+  font-size: 1.7rem;
+  line-height: 1.5;
+  color: #616365; /* Updated to provided grey */
+}
+.regular-text {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #616365; /* Updated to provided grey */
+}
+
+
+/* ===========================================
+   Responsive Adjustments
+=========================================== */
 @media (max-width: 1024px) {
   .three-column-layout {
     flex-direction: column;
@@ -225,5 +366,20 @@ html, body {
   .overlay-footer {
     flex-direction: column;
     gap: 15px;
+  }
+  
+  .overlay-header-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* New sections: force column layout on smaller screens */
+  .section-role,
+  .section-process,
+  .section-problem-before,
+  .section-product-features-1,
+  .section-product-features-2 {
+    flex-direction: column;
+ 
   }
 }

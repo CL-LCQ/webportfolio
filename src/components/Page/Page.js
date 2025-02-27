@@ -15,11 +15,7 @@ const Page = ({ project, onClose }) => {
       className="page-content" 
       style={{ backgroundImage: `url(${project.hero_image})` }}
     >
-      {/* Overlay box that holds all page info */}
-      <div className="overlay-box">
-        
-        <div className="overlay-header">
-          <button className="close-button" onClick={onClose}>
+                <button className="close-button" onClick={onClose}>
             <svg 
               width="24" 
               height="24" 
@@ -30,6 +26,11 @@ const Page = ({ project, onClose }) => {
               <path d="M6 6L18 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
+      {/* Overlay box that holds all page info */}
+      <div className="overlay-box">
+        
+        <div className="overlay-header">
+
           <div className="overlay-header-top">
             <div className="title-role-container">
               <h2 id="overlay-title">{project.title}</h2>
@@ -42,7 +43,99 @@ const Page = ({ project, onClose }) => {
           </div>
 
           </div>
-          <div className="overlay-footer">
+
+              
+
+        <div className="overlay-body">
+          {/* Block 1: Introduction */}
+          <div className="section-intro">
+            <h1 className="intro-title">{project.introduction}</h1>
+          </div>
+
+          {/* Block 2: My Role and Media */}
+          <div className="section-role">
+            <div className="role-column">
+              <h2 className="subheading">My Role</h2>
+              <p className="regular-text">{project.role}</p>
+            </div>
+            <div className="role-media-column">
+              <DisplayMedia url={project.url3} />
+            </div>
+          </div>
+
+    
+          {/* Block 4: Problem & Before */}
+          <div className="section-problem-before">
+            <div className="problem-column">
+              <h3 className="subheading">Problem</h3>
+              <p className="statement-text">{project.problem}</p>
+            </div>
+            <div className="before-column">
+              <h3 className="subheading">Before</h3>
+              <p className="regular-text">{project.before}</p>
+            </div>
+          </div>
+          <hr className="separator" />
+                {/* Block 3: Main Media */}
+                <div className="section-media">
+            <DisplayMedia url={project.url1} />
+          </div>
+
+
+          {/* Block 5: Hypothesis */}
+          <div className="section-hypothesis">
+            <hr className="separator" />
+            <h4 className="subheading">Process</h4>
+            <p className="regular-text">{project.hypothesis}</p>
+
+          {/* PROCESS 1*/}
+          <div className="section-role">
+            <div className="role-column">
+              <p className="regular-text">{project.processone}</p>
+            </div>
+            <div className="role-media-column">
+              <DisplayMedia url={project.urlprocess1} />
+            </div>
+          </div>
+
+
+          <div className="media-banner">
+              <DisplayMedia url={project.processimage} />
+            </div>
+
+          {/* Block 2: My Role and Media */}
+          <div className="section-role">
+          <div className="role-media-column">
+              <DisplayMedia url={project.urlprocess2} />
+            </div>
+            <div className="role-column">
+              <p className="regular-text">{project.processtwo}</p>
+            </div>
+          
+          </div>
+
+
+
+            <hr className="separator" />
+          </div>
+
+
+          {/* Block 8: After Thoughts */}
+          <div className="section-after-thoughts">
+            <h2 className="subheading">Results</h2>
+            <p className="regular-text">{project.impact}</p>
+            
+            <div className="role-media-column">
+              <DisplayMedia url={project.url4} />
+            </div>
+
+            </div>
+        </div>
+
+
+
+
+        <div className="overlay-footer">
           <div className="link-section">
             <span className="category-title-side">
               Case Studies<br />
@@ -64,38 +157,6 @@ const Page = ({ project, onClose }) => {
             <DisplayLinks props={project.tech} />
           </div>
         </div>
-      
-
-        <div className="overlay-body">
-          <div className="three-column-layout">
-            <div className="column">
-              <span className="category-title">WHY</span>
-              <p className="category-paragraph">
-                <span className="category-content">{project.why}</span>
-              </p>
-            </div>
-            <div className="column">
-              <span className="category-title">WHAT</span>
-              <p className="category-paragraph">
-                <span className="category-content">{project.what}</span>
-              </p>
-            </div>
-            <div className="column">
-              <span className="category-title">IMPACT</span>
-              <p className="category-paragraph">
-                <span className="category-content">{project.impact}</span>
-              </p>
-            </div>
-          </div>
-
-          <div className="media-wrapper">
-            <div className="media" id="media-03">
-              <DisplayMedia url={project.url3} />
-            </div>
-          </div>
-        </div>
-
-
         
       </div>
     </div>
