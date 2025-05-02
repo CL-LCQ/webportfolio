@@ -6,7 +6,7 @@ import { ProjectData } from '@/types/Project';
 export const fetchProjects = async (): Promise<ProjectData[]> => {
   // Using the work_v2 table from your Supabase project
   const { data, error } = await supabase
-    .from('work_v2')
+    .from('content_v04')
     .select('*')
     .eq('enabled', true)
     .order('order', { ascending: false });
